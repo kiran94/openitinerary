@@ -22,8 +22,8 @@ class BaseSegment(BaseModel):
     )
     start_time_utc: datetime = Field(description="Segment start date and time, expressed in UTC.")
     end_time_utc: datetime | None = Field(description="Segment end date and time, expressed in UTC when known.")
-    operator: Organization | None
-    booking: Booking | None
+    operator: Organization | None = None
+    booking: Booking | None = None
 
 
 class TransportSegment(BaseSegment):
