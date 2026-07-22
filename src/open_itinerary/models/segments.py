@@ -16,7 +16,7 @@ class BaseSegment(BaseModel):
 
     id: UUID = Field(description="Globally unique identifier for the segment.")
     type: SegmentType = Field(description="Kind of itinerary segment, such as flight, hotel, activity, or train.")
-    title: MultilingualText = Field(default=None, description="Brief traveller-facing label for the segment.")
+    title: MultilingualText = Field(description="Brief traveller-facing label for the segment.")
     description: MultilingualText | None = Field(
         default=None, description="Additional traveller-facing details about the segment."
     )
