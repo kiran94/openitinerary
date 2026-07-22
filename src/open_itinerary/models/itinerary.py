@@ -3,10 +3,10 @@ from typing import Annotated
 
 from pydantic import BaseModel, Field
 from open_itinerary.models.domains.flight import FlightSegment
+from open_itinerary.models.domains.train import TrainSegment
 
 Segment = Annotated[
-    FlightSegment,
-    # | TrainSegment
+    FlightSegment | TrainSegment,
     # | HotelSegment
     # | TourSegment,
     Field(discriminator="type"),
