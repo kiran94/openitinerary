@@ -1,21 +1,10 @@
 from pydantic import BaseModel, Field, ConfigDict
 from uuid import UUID
-from enum import StrEnum
 from datetime import datetime
 
-from open_itinerary.models.common import Booking, Organization
+from open_itinerary.models.common import Booking, Organization, MultilingualText
 from open_itinerary.models.place import Place
-
-
-class SegmentType(StrEnum):
-    FLIGHT = "flight"
-    # HOTEL = "hotel"
-    # ACTIVITY = "activity"
-    # TRAIN = "train"
-    # TRANSFER = "transfer"
-    # CAR_RENTAL = "car_rental"
-    # FERRY = "ferry"
-    # CRUISE = "cruise"
+from open_itinerary.models.segment_type import SegmentType
 
 
 class BaseSegment(BaseModel):
