@@ -2,13 +2,21 @@ from datetime import datetime
 from typing import Annotated
 
 from pydantic import BaseModel, Field
-from open_itinerary.models.segments import BaseSegment
+from open_itinerary.models.domains.flight import FlightSegment
+
+Segment = Annotated[
+    FlightSegment,
+    # | TrainSegment
+    # | HotelSegment
+    # | TourSegment,
+    Field(discriminator="type"),
+]
 
 
 class Itinerary(BaseModel):
     schema_version: str
     id: str | None = None
     title: str | None = None
-    segments: list[BaseSegment]
+    segments: list[Segment]
     created_at: datetime | None = None
     updated_at: datetime | None = None
