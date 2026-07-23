@@ -185,4 +185,7 @@ pyrightconfig.json
 
 # End of https://www.toptal.com/developers/gitignore/api/python
 
-out.json
+schema.html
+schema.json
+schema_doc.css
+schema_doc.min.js
