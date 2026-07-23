@@ -7,7 +7,7 @@ from pydantic_extra_types.language_code import LanguageAlpha2
 class LocalizedText(BaseModel):
     language: LanguageAlpha2
     region: CountryAlpha2 | None = None
-    value: str
+    value: str = Field(min_length=1)
 
 
 class MultilingualText(BaseModel):
