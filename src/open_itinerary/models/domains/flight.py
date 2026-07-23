@@ -1,12 +1,12 @@
 from typing import Literal
 
 from open_itinerary.models.place import Place
-from open_itinerary.models.segment_type import SegmentType
+from open_itinerary.models.segment_type import SegmentType, PlaceType
 from open_itinerary.models.segments import TransportSegment
 
 
 class AirportPlace(Place):
-    type: Literal[SegmentType.FLIGHT] = SegmentType.FLIGHT
+    type: Literal[PlaceType.AIRPORT] = PlaceType.AIRPORT
     iata_code: str | None = None
     icao_code: str | None = None
 
