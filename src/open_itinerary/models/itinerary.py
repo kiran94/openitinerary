@@ -13,9 +13,11 @@ Segment = Annotated[
 
 
 class Itinerary(BaseModel):
-    schema_version: str
-    id: str | None = None
-    title: str | None = None
-    segments: list[Segment]
+    schema_version: str = Field(description="The schema version of open itinerary being used.")
+    id: str | None = Field(description="Unique identifier for the Itinerary")
+    title: str | None = Field(description="Title of the Itinerary")
+    segments: list[Segment] = Field(
+        description="A collection of travel activities. Segments should represent a coherent sequence and should normally be ordered by start_time_utc."
+    )
     created_at: datetime | None = None
     updated_at: datetime | None = None
