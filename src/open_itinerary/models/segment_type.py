@@ -4,8 +4,8 @@ from enum import StrEnum
 class SegmentType(StrEnum):
     FLIGHT = "flight"
     ACCOMMODATION = "accommodation"
-    # ACTIVITY = "activity"
     TRAIN = "train"
+    # ACTIVITY = "activity"
     # TRANSFER = "transfer"
     # CAR_RENTAL = "car_rental"
     # FERRY = "ferry"
