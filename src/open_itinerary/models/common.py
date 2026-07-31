@@ -15,10 +15,10 @@ class MultilingualText(BaseModel):
 
 
 class Organization(BaseModel):
-    name: MultilingualText
-    website: HttpUrl | None = None
-    phone: str | None = None
-    email: EmailStr | None = None
+    name: MultilingualText = Field(description="The name of the Organization")
+    website: HttpUrl | None = Field(description="The website of the Organization", default=None)
+    phone: str | None = Field(description="The phone number of the Organization (with country code)", default=None)
+    email: EmailStr | None = Field(description="The email of the Organization", default=None)
 
 
 class Booking(BaseModel):
