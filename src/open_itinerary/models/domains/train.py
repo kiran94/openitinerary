@@ -11,8 +11,6 @@ class TrainStation(Place):
 
 class TrainSegment(TransportSegment):
     type: Literal["train"] = "train"
-
     train_number: str | None = None
-
     start_place: TrainStation
     end_place: TrainStation

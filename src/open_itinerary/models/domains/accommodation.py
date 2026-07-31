@@ -6,5 +6,4 @@ from open_itinerary.models.segments import BaseSegment
 
 class AccommodationSegment(BaseSegment):
     type: Literal[SegmentType.ACCOMMODATION] = SegmentType.ACCOMMODATION
-
     place: Place
