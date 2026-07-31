@@ -2,55 +2,45 @@
 
 OpenItinerary is an open, vendor-neutral standard for representing travel itineraries as structured data.
 
-The goal is to create the equivalent of JSON for travel itineraries: a common, extensible specification that any travel company, airline, online travel agency, tour operator, booking platform, or application can produce and consume without relying on proprietary formats.
+Create the equivalent of JSON for travel itineraries to facilitate a common specification that any travel company can produce or consume without relying on proprietary formats. A single itinerary can contain flights, trains, accommodation and other travel related activities from various vendors within a single unified model.
 
-Rather than modelling every supplier independently, OpenItinerary models the underlying travel concepts. Every itinerary is composed of a sequence of strongly typed **Segments**, each representing an activity occurring over a period of time.
+Principles:
+* Vendor Neutral: No dependency on any particular vendor proprietary format. Instead model the underlying travel concepts.
+* Open & Interoperable: Designed to move cleanly between systems and programming languages.
+* Strongly Typed: Fields have clear semantics and avoid ambiguity. Missing concept and fields should be proposed to be added to the standard and there should be no custom metadata "escape hatches".
+* Minimal: Universal Concepts are defined at the base models and domain specifics belong in specialized types.
+* Serialization Friendly: Data model will at *minimum* map cleanly to JSON.
+* Versioning: Schema is versioned and follows standard semantic versioning rules.
+* Single Canonical Time: Date/Times are *always* stored in UTC format. Geographic Places will always store the Time zone in which they take place. Downstream applications are responsible for ensuring that time presented correctly.
+* Internationalization: International differences are handled explicitly. Textual fields will store the language they are stored in so that downstream applications can present/provide translation when needed.
 
-Examples include:
 
-- Flights
-- Trains
-- Hotels
-- Car rentals
-- Airport transfers
-- Public transport
-- Tours
+## Implementation
 
-All segment types inherit from a common base model containing shared fields such as:
+The schema is defined and maintained using *Pydantic Models* however this does not mean that OpenItinerary is a python project. These models are used to generate a **JSON Schema** which serves as the canonical schema of the project.
 
-- Stable identifier
-- Segment type
-- Start and end timestamps (UTC-aware datetimes)
-- Locations
-- Supplier information
-- Booking reference
-- Status
-- Metadata
+JSON is the default interchange format because it is universal, readable, and easy to integrate. From this format, other formats can be derived:
 
-Specialized segment types extend the base model with domain-specific fields while remaining compatible with generic itinerary consumers.
+```mermaid
+graph LR
 
-## Design Principles
+Pydantic(Pydantic Models)
+JSONSchema(JSON Schema)
 
-- Vendor neutral
-- Open standard
-- JSON-first
-- Language agnostic
-- Schema driven
-- Strongly typed
-- Extensible through inheritance rather than arbitrary custom objects
-- Backwards compatible through semantic versioning
-- Canonical UTC timestamps (clients convert to local time for display)
+Pydantic --> JSONSchema
 
-## Data Modelling Principles
+JSONSchema --> Typescript
+JSONSchema --> Protobuf
+JSONSchema --> Flatbuffer
+JSONSchema --> ...
+```
 
-- Prefer explicit models over unstructured dictionaries.
-- New concepts should be introduced as first-class schema types rather than "custom" extensions.
-- Use inheritance to share common behaviour.
-- Model real-world concepts instead of supplier-specific APIs.
-- Every schema should be convertible into JSON Schema and consumable by multiple programming languages.
+*Performance sensitive consumers may want to use binary formats such as Protobuf so the standard only states that JSON is a minimum supported format. Binary formats must represent the same model.*
 
-## Technology
+## Concepts
 
-The canonical schema is defined using Pydantic models (Python). JSON Schema is generated automatically from these models and acts as the portable interchange format. SDKs for other languages can be generated from the JSON Schema.
+* `Itinerary`: An itinerary is an ordered collection of typed segments.
+* `Segment`: A travel activity that happens at a specified time at a specific place.
+* `Place`: A geographical location on the earth.
 
-The repository is the canonical source of truth for the OpenItinerary specification.
+The `BaseSegment` defined common concepts for all travel related activities and domain specific models such as `FlightSegment` add stronger fields and validation.
