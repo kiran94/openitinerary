@@ -22,8 +22,11 @@ class Organization(BaseModel):
 
 
 class Booking(BaseModel):
-    provider: Organization | None = None
-    reference: str
+    provider: Organization | None = Field(
+        description="The intermediary or organization through which the booking was made, such as booking.com, Expedia, GetYourGuide, directly with an airline or any other travel agency/platfo or any other travel agency/platform",
+        default=None,
+    )
+    reference: str = Field(description="The booking confirmation/reference code used by the traveller.")
 
 
 class Coordinate(BaseModel):
