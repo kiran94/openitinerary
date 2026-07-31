@@ -2,10 +2,10 @@ build:
 	uv build
 
 generate:
-	uv run open-itinerary | jq | bat -l json
+	uv run open-itinerary --output stdout
 
 generate_out:
-	cd schemas && uv run --project .. open-itinerary > schema.json.tmp && jq . schema.json.tmp > schema.json && rm schema.json.tmp
+	uv run open-itinerary --output versioned --indent
 
 visualise_schema: generate_out
-	cd schemas && uvx --from json-schema-for-humans generate-schema-doc schema.json schema.html && open schema.html
+	cd schemas/0.0.1 && uvx --from json-schema-for-humans generate-schema-doc schema.json schema.html && open schema.html

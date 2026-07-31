@@ -6,6 +6,9 @@ from open_itinerary.models.domains.flight import FlightSegment
 from open_itinerary.models.domains.train import TrainSegment
 from open_itinerary.models.domains.accommodation import AccommodationSegment
 
+
+OPEN_ITINERARY_VERSION = "0.0.1"
+
 Segment = Annotated[
     FlightSegment | TrainSegment | AccommodationSegment,
     Field(discriminator="type"),
@@ -13,7 +16,9 @@ Segment = Annotated[
 
 
 class Itinerary(BaseModel):
-    schema_version: str = Field(description="The schema version of open itinerary being used.")
+    schema_version: str = Field(
+        description="The schema version of open itinerary being used.", default=OPEN_ITINERARY_VERSION
+    )
     id: str | None = Field(description="Unique identifier for the Itinerary")
     title: str | None = Field(description="Title of the Itinerary")
     segments: list[Segment] = Field(
