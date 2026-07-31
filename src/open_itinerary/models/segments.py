@@ -16,14 +16,20 @@ class BaseSegment(BaseModel):
 
     id: UUID = Field(description="Globally unique identifier for the segment.")
     type: SegmentType = Field(description="Kind of itinerary segment, such as flight, hotel, activity, or train.")
-    title: MultilingualText = Field(description="Brief traveller-facing label for the segment.")
-    description: MultilingualText | None = Field(
-        default=None, description="Additional traveller-facing details about the segment."
+    title: MultilingualText = Field(description="Summary title of the segment.")
+    description: MultilingualText | None = Field(description="Additional description about the Segment", default=None)
+
+    start_time_utc: datetime = Field(description="The start datetime of the segment, expressed in UTC")
+    end_time_utc: datetime | None = Field(
+        description="The end datetime of the segment (if known), expressed in UTC",
+        default=None,
     )
-    start_time_utc: datetime = Field(description="Segment start date and time, expressed in UTC.")
-    end_time_utc: datetime | None = Field(description="Segment end date and time, expressed in UTC when known.")
-    operator: Organization | None = None
-    booking: Booking | None = None
+
+    operator: Organization | None = Field(
+        description="The organization operating or providing the service.",
+        default=None,
+    )
+    booking: Booking | None = Field(description="booking information about the segment.", default=None)
 
 
 class TransportSegment(BaseSegment):
