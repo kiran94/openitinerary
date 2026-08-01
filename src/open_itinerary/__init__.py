@@ -4,13 +4,14 @@ import logging
 import argparse
 from pathlib import Path
 
-from open_itinerary.models.itinerary import Itinerary, OPEN_ITINERARY_VERSION
+from open_itinerary.models.itinerary import Itinerary
+from open_itinerary.version import OPEN_ITINERARY_VERSION, derive_major_minor
 
 logging.basicConfig(format=logging.BASIC_FORMAT, level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 SCHEMAS_FOLDER = "schemas"
-SCHEMAS_FILE = "schema.json"
+SCHEMAS_FILE = "itinerary.schema.json"
 
 
 def main() -> None:
@@ -28,7 +29,8 @@ def main() -> None:
     if args.output == "stdout":
         print(json.dumps(schema, indent=indent))
     elif args.output == "versioned":
-        versioned_folder = Path(os.getcwd()) / SCHEMAS_FOLDER / OPEN_ITINERARY_VERSION
+        major_minor_folder = derive_major_minor(OPEN_ITINERARY_VERSION)
+        versioned_folder = Path(os.getcwd()) / SCHEMAS_FOLDER / major_minor_folder
         versioned_file = versioned_folder / SCHEMAS_FILE
 
         logger.info("output schema to %s", versioned_file)
