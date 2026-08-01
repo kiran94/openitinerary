@@ -16,7 +16,9 @@ semantic_version_regex = re.compile(r"^(\d+)\.(\d+)\.(\d+)$")
 
 def validate(version: str):
     if not semantic_version_regex.match(version):
-        raise ValueError(f"{version} is not in the correct format. It must be a semantic version e.g 0.0.1")
+        raise ValueError(
+            f"{version} is not in the correct format. It must be a semantic version e.g 0.0.1 ({semantic_version_regex.pattern})"
+        )
 
 
 def derive_major_minor(version: str) -> str:
