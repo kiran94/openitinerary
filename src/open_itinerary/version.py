@@ -11,7 +11,12 @@ implementation-only work such as tooling improvements, documentation changes etc
 which may not result in a new published schema.
 """
 
-semantic_version_regex = re.compile(r"^(\d+)\.(\d+)\.(\d+)$")
+semantic_version_regex = re.compile(
+    r"^(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)"
+    r"(?:-(?:0|[1-9][0-9]*|[0-9]*[A-Za-z-][0-9A-Za-z-]*)"
+    r"(?:\.(?:0|[1-9][0-9]*|[0-9]*[A-Za-z-][0-9A-Za-z-]*))*)?"
+    r"(?:\+[0-9A-Za-z-]+(?:\.[0-9A-Za-z-]+)*)?$"
+)
 
 
 def validate(version: str):
