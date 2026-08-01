@@ -1,6 +1,9 @@
 build:
 	uv build
 
+test:
+	uv run pytest
+
 generate:
 	uv run open-itinerary --output stdout
 
