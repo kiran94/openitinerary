@@ -1,6 +1,15 @@
 import re
 
+
 OPEN_ITINERARY_VERSION = "0.0.1"
+"""
+Version of the published OpenItinerary Schema.
+
+This is conceptually different to the version defined in pyproject.toml
+of this project because the version of the python package may include
+implementation-only work such as tooling improvements, documentation changes etc
+which may not result in a new published schema.
+"""
 
 semantic_version_regex = re.compile(r"^(\d+)\.(\d+)\.(\d+)$")
 
