@@ -21,6 +21,10 @@ requires = ["uv_build>=0.11.8,<0.12.0"]
 build-backend = "uv_build"
 
 [dependency-groups]
+adapters = [
+    "langchain-community>=0.4.2",
+    "pypdf>=6.14.2",
+]
 dev = [
     "pytest>=9.0.3",
     "ruff>=0.15.20",
