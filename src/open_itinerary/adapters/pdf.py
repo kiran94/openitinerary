@@ -4,7 +4,8 @@ from tempfile import TemporaryDirectory
 from langchain_community.document_loaders.pdf import PyPDFLoader
 from open_itinerary.adapters import InputContent
 from open_itinerary.adapters import Adapter
-from open_itinerary.models.segments import BaseSegment
+from open_itinerary.adapters.agent import agent_factory
+from open_itinerary.models.itinerary import Segment
 
 
 class PdfAdapter(Adapter):
@@ -27,9 +28,10 @@ class PdfAdapter(Adapter):
         extracted_content = "".join([d.page_content for d in docs])
         return extracted_content
 
-    def _translate(self, content: str) -> BaseSegment:
-
-        pass
+    def _translate(self, content: str) -> list[Segment]:
+        agent = agent_factory()
+        result = agent.run_sync(content)
+        return result.output
 
     def get_expected_media_types(self) -> set[str]:
         return {"application/pdf"}
