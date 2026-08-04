@@ -1,7 +1,7 @@
 from pathlib import Path
 from tempfile import TemporaryDirectory
 
-from langchain_community.document_loaders.pdf import PyPDFLoader
+from pypdf import PdfReader
 from open_itinerary.adapters import InputContent
 from open_itinerary.adapters import Adapter
 from open_itinerary.adapters.agent import agent_factory
@@ -22,10 +22,9 @@ class PdfAdapter(Adapter):
             path = Path(directory) / "input.pdf"
             path.write_bytes(content.data)
 
-            loader = PyPDFLoader(str(path))
-            docs = loader.load()
+            reader = PdfReader(path)
+            extracted_content = "".join(page.extract_text() or "" for page in reader.pages)
 
-        extracted_content = "".join([d.page_content for d in docs])
         return extracted_content
 
     def _translate(self, content: str) -> list[Segment]:
