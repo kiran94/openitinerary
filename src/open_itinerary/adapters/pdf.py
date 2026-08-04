@@ -1,3 +1,4 @@
+from io import BytesIO
 from pathlib import Path
 from tempfile import TemporaryDirectory
 
@@ -17,12 +18,8 @@ class PdfAdapter(Adapter):
                 f"{content.media_type} is not supported by this adapter. Expected {','.join(expected_media_types)}"
             )
 
-        with TemporaryDirectory() as directory:
-            path = Path(directory) / "input.pdf"
-            path.write_bytes(content.data)
-
-            reader = PdfReader(path)
-            extracted_content = "".join(page.extract_text() or "" for page in reader.pages)
+        reader = PdfReader(BytesIO(content.data))
+        extracted_content = "".join(page.extract_text() or "" for page in reader.pages)
 
         return extracted_content
 
