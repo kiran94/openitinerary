@@ -32,6 +32,7 @@ Rules:
 - Ignore information that has no representation in the schema.
 - For flight types, lookup the flight number instead of putting the airline name. For example the text is British Airways 123 then we should put BA123.
 - For the operator, if the official website, phone, email cannot be found in the document then attempt to lookup the data from the internet. If it cannot be reliably sourced then leave it null.
+- Make sure that telephone numbers never have spaces in them
 
 When the input is ambiguous:
 
