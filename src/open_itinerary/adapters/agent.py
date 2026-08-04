@@ -49,5 +49,4 @@ def agent_factory() -> Agent:
         output_type=list[Segment],
         system_prompt=SYSTEM_PROMPT,
         capabilities=[Thinking(), WebSearch(local="duckduckgo")],
-        model_settings=ModelSettings(temperature=0.0),
     )
