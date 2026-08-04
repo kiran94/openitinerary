@@ -10,7 +10,6 @@ from open_itinerary.models.itinerary import Segment
 
 class PdfAdapter(Adapter):
     def _extract(self, content: InputContent) -> str:
-
         expected_media_types = self.get_expected_media_types()
 
         if content.media_type not in expected_media_types:
