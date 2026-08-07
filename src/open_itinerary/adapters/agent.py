@@ -14,6 +14,7 @@ Your task is to convert unstructured travel-related text into a JSON object that
 Rules:
 
 - The provided JSON Schema is the single source of truth.
+- Ensure that the id field is a freshly generated UUID
 - Output exactly one valid JSON object.
 - Do not output Markdown.
 - Do not wrap the JSON in code fences.
