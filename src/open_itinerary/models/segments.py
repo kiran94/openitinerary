@@ -3,7 +3,7 @@ from uuid import UUID
 from datetime import datetime
 
 from open_itinerary.models.common import Booking, Organization, MultilingualText
-from open_itinerary.models.place import Place
+from open_itinerary.models.place import BasePlace
 from open_itinerary.models.segment_type import SegmentType
 
 
@@ -33,5 +33,5 @@ class BaseSegment(BaseModel):
 
 
 class TransportSegment(BaseSegment):
-    start_place: Place | None
-    end_place: Place | None
+    start_place: BasePlace | None
+    end_place: BasePlace | None

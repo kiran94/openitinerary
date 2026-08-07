@@ -5,11 +5,12 @@ from pydantic import BaseModel, Field
 from open_itinerary.models.domains.flight import FlightSegment
 from open_itinerary.models.domains.train import TrainSegment
 from open_itinerary.models.domains.accommodation import AccommodationSegment
+from open_itinerary.models.domains.transfer import TransferSegment
 from open_itinerary.version import OPEN_ITINERARY_VERSION
 
 
 Segment = Annotated[
-    FlightSegment | TrainSegment | AccommodationSegment,
+    FlightSegment | TrainSegment | AccommodationSegment | TransferSegment,
     Field(discriminator="type"),
 ]
 
