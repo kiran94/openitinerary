@@ -2,7 +2,7 @@ build:
 	uv build
 
 test:
-	uv run pytest
+	uv run --all-extras pytest
 
 generate:
 	uv run open-itinerary --output stdout
