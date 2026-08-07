@@ -76,8 +76,39 @@
                     "description": "booking information about the segment."
                 },
                 "place": {
-                    "$ref": "#/$defs/Place",
-                    "description": "information about where the accommodation is location"
+                    "description": "information about where the accommodation is location",
+                    "discriminator": {
+                        "mapping": {
+                            "airport": "#/$defs/AirportPlace",
+                            "location": "#/$defs/GenericPlace",
+                            "train_station": "#/$defs/TrainStation"
+                        },
+                        "propertyName": "type"
+                    },
+                    "oneOf": [
+                        {
+                            "$ref": "#/$defs/GenericPlace"
+                        },
+                        {
+                            "$ref": "#/$defs/AirportPlace"
+                        },
+                        {
+                            "$ref": "#/$defs/TrainStation"
+                        }
+                    ],
+                    "title": "Place"
+                },
+                "unit_type": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/MultilingualText"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "description": "The booked accommodation unit or space type, as named by the provider, such as 'Deluxe Double or Twin Room with River View', 'Entire two-bedroom apartment', or 'Bed in a 6-bed mixed dormitory'."
                 }
             },
             "required": [
@@ -883,6 +914,19 @@
                     "description": "The well known flight number of this flight. Airline Code + Flight Number e.g PR101",
                     "title": "Flight Number",
                     "type": "string"
+                },
+                "pnr": {
+                    "anyOf": [
+                        {
+                            "type": "string"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "description": "The airline passenger name record (PNR) or record locator.",
+                    "title": "Pnr"
                 }
             },
             "required": [
@@ -896,113 +940,7 @@
             "title": "FlightSegment",
             "type": "object"
         },
-        "LocalizedText": {
-            "properties": {
-                "language": {
-                    "pattern": "^\\w{2}$",
-                    "title": "Language",
-                    "type": "string"
-                },
-                "region": {
-                    "anyOf": [
-                        {
-                            "pattern": "^\\w{2}$",
-                            "type": "string"
-                        },
-                        {
-                            "type": "null"
-                        }
-                    ],
-                    "default": null,
-                    "title": "Region"
-                },
-                "value": {
-                    "minLength": 1,
-                    "title": "Value",
-                    "type": "string"
-                }
-            },
-            "required": [
-                "language",
-                "value"
-            ],
-            "title": "LocalizedText",
-            "type": "object"
-        },
-        "MultilingualText": {
-            "properties": {
-                "values": {
-                    "items": {
-                        "$ref": "#/$defs/LocalizedText"
-                    },
-                    "minItems": 1,
-                    "title": "Values",
-                    "type": "array"
-                }
-            },
-            "required": [
-                "values"
-            ],
-            "title": "MultilingualText",
-            "type": "object"
-        },
-        "Organization": {
-            "properties": {
-                "name": {
-                    "$ref": "#/$defs/MultilingualText",
-                    "description": "The name of the Organization"
-                },
-                "website": {
-                    "anyOf": [
-                        {
-                            "format": "uri",
-                            "maxLength": 2083,
-                            "minLength": 1,
-                            "type": "string"
-                        },
-                        {
-                            "type": "null"
-                        }
-                    ],
-                    "default": null,
-                    "description": "The website of the Organization",
-                    "title": "Website"
-                },
-                "phone": {
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "null"
-                        }
-                    ],
-                    "default": null,
-                    "description": "The phone number of the Organization (with country code)",
-                    "title": "Phone"
-                },
-                "email": {
-                    "anyOf": [
-                        {
-                            "format": "email",
-                            "type": "string"
-                        },
-                        {
-                            "type": "null"
-                        }
-                    ],
-                    "default": null,
-                    "description": "The email of the Organization",
-                    "title": "Email"
-                }
-            },
-            "required": [
-                "name"
-            ],
-            "title": "Organization",
-            "type": "object"
-        },
-        "Place": {
+        "GenericPlace": {
             "properties": {
                 "name": {
                     "$ref": "#/$defs/MultilingualText",
@@ -1620,6 +1558,12 @@
                 },
                 "coordinate": {
                     "$ref": "#/$defs/Coordinate"
+                },
+                "type": {
+                    "const": "location",
+                    "default": "location",
+                    "title": "Type",
+                    "type": "string"
                 }
             },
             "required": [
@@ -1628,7 +1572,113 @@
                 "timezone",
                 "coordinate"
             ],
-            "title": "Place",
+            "title": "GenericPlace",
+            "type": "object"
+        },
+        "LocalizedText": {
+            "properties": {
+                "language": {
+                    "pattern": "^\\w{2}$",
+                    "title": "Language",
+                    "type": "string"
+                },
+                "region": {
+                    "anyOf": [
+                        {
+                            "pattern": "^\\w{2}$",
+                            "type": "string"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "title": "Region"
+                },
+                "value": {
+                    "minLength": 1,
+                    "title": "Value",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "language",
+                "value"
+            ],
+            "title": "LocalizedText",
+            "type": "object"
+        },
+        "MultilingualText": {
+            "properties": {
+                "values": {
+                    "items": {
+                        "$ref": "#/$defs/LocalizedText"
+                    },
+                    "minItems": 1,
+                    "title": "Values",
+                    "type": "array"
+                }
+            },
+            "required": [
+                "values"
+            ],
+            "title": "MultilingualText",
+            "type": "object"
+        },
+        "Organization": {
+            "properties": {
+                "name": {
+                    "$ref": "#/$defs/MultilingualText",
+                    "description": "The name of the Organization"
+                },
+                "website": {
+                    "anyOf": [
+                        {
+                            "format": "uri",
+                            "maxLength": 2083,
+                            "minLength": 1,
+                            "type": "string"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "description": "The website of the Organization",
+                    "title": "Website"
+                },
+                "phone": {
+                    "anyOf": [
+                        {
+                            "type": "string"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "description": "The phone number of the Organization (with country code)",
+                    "title": "Phone"
+                },
+                "email": {
+                    "anyOf": [
+                        {
+                            "format": "email",
+                            "type": "string"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "description": "The email of the Organization",
+                    "title": "Email"
+                }
+            },
+            "required": [
+                "name"
+            ],
+            "title": "Organization",
             "type": "object"
         },
         "TrainSegment": {
@@ -2369,6 +2419,151 @@
             ],
             "title": "TrainStation",
             "type": "object"
+        },
+        "TransferMode": {
+            "enum": [
+                "taxi",
+                "private_car",
+                "ride_hail",
+                "shuttle"
+            ],
+            "title": "TransferMode",
+            "type": "string"
+        },
+        "TransferSegment": {
+            "additionalProperties": false,
+            "properties": {
+                "id": {
+                    "description": "Globally unique identifier for the segment.",
+                    "format": "uuid",
+                    "title": "Id",
+                    "type": "string"
+                },
+                "type": {
+                    "const": "transfer",
+                    "default": "transfer",
+                    "title": "Type",
+                    "type": "string"
+                },
+                "title": {
+                    "$ref": "#/$defs/MultilingualText",
+                    "description": "Summary title of the segment."
+                },
+                "description": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/MultilingualText"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "description": "Additional description about the Segment"
+                },
+                "start_time_utc": {
+                    "description": "The start datetime of the segment, expressed in UTC",
+                    "format": "date-time",
+                    "title": "Start Time Utc",
+                    "type": "string"
+                },
+                "end_time_utc": {
+                    "anyOf": [
+                        {
+                            "format": "date-time",
+                            "type": "string"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "description": "The end datetime of the segment (if known), expressed in UTC",
+                    "title": "End Time Utc"
+                },
+                "operator": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/Organization"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "description": "The organization operating or providing the service."
+                },
+                "booking": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/Booking"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "description": "booking information about the segment."
+                },
+                "start_place": {
+                    "discriminator": {
+                        "mapping": {
+                            "airport": "#/$defs/AirportPlace",
+                            "location": "#/$defs/GenericPlace",
+                            "train_station": "#/$defs/TrainStation"
+                        },
+                        "propertyName": "type"
+                    },
+                    "oneOf": [
+                        {
+                            "$ref": "#/$defs/GenericPlace"
+                        },
+                        {
+                            "$ref": "#/$defs/AirportPlace"
+                        },
+                        {
+                            "$ref": "#/$defs/TrainStation"
+                        }
+                    ],
+                    "title": "Start Place"
+                },
+                "end_place": {
+                    "discriminator": {
+                        "mapping": {
+                            "airport": "#/$defs/AirportPlace",
+                            "location": "#/$defs/GenericPlace",
+                            "train_station": "#/$defs/TrainStation"
+                        },
+                        "propertyName": "type"
+                    },
+                    "oneOf": [
+                        {
+                            "$ref": "#/$defs/GenericPlace"
+                        },
+                        {
+                            "$ref": "#/$defs/AirportPlace"
+                        },
+                        {
+                            "$ref": "#/$defs/TrainStation"
+                        }
+                    ],
+                    "title": "End Place"
+                },
+                "transfer_mode": {
+                    "$ref": "#/$defs/TransferMode",
+                    "description": "How the pre-booked road transfer is provided."
+                }
+            },
+            "required": [
+                "id",
+                "title",
+                "start_time_utc",
+                "start_place",
+                "end_place",
+                "transfer_mode"
+            ],
+            "title": "TransferSegment",
+            "type": "object"
         }
     },
     "properties": {
@@ -2409,7 +2604,8 @@
                     "mapping": {
                         "accommodation": "#/$defs/AccommodationSegment",
                         "flight": "#/$defs/FlightSegment",
-                        "train": "#/$defs/TrainSegment"
+                        "train": "#/$defs/TrainSegment",
+                        "transfer": "#/$defs/TransferSegment"
                     },
                     "propertyName": "type"
                 },
@@ -2422,6 +2618,9 @@
                     },
                     {
                         "$ref": "#/$defs/AccommodationSegment"
+                    },
+                    {
+                        "$ref": "#/$defs/TransferSegment"
                     }
                 ]
             },
