@@ -18,5 +18,9 @@ class FlightSegment(TransportSegment):
     flight_number: str = Field(
         description="The well known flight number of this flight. Airline Code + Flight Number e.g PR101"
     )
+    pnr: str | None = Field(
+        default=None,
+        description="The airline passenger name record (PNR) or record locator.",
+    )
     start_place: AirportPlace = Field(description="Details about the origin airport of the flight")
     end_place: AirportPlace = Field(description="Details about the destination airport of the flight")
