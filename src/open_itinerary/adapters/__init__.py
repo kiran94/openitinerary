@@ -1,5 +1,6 @@
 from abc import ABC, abstractmethod
 from dataclasses import dataclass
+from uuid import uuid4
 
 from open_itinerary.models.itinerary import Segment
 
@@ -13,7 +14,9 @@ class InputContent:
 class Adapter(ABC):
     def load(self, content: InputContent) -> list[Segment]:
         temp = self._extract(content)
-        return self._translate(temp)
+        temp = self._translate(temp)
+        temp = self._post_process(temp)
+        return temp
 
     @abstractmethod
     def _extract(self, content: InputContent) -> str:
@@ -26,3 +29,9 @@ class Adapter(ABC):
     @abstractmethod
     def get_expected_media_types(self) -> set[str]:
         pass
+
+    def _post_process(self, segments: list[Segment]) -> list[Segment]:
+        for segment in segments:
+            segment.id = uuid4()
+
+        return segments
