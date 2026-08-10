@@ -1,5 +1,4 @@
-from pydantic import BaseModel, HttpUrl, Field
-from pydantic import EmailStr
+from pydantic import BaseModel, EmailStr, Field, HttpUrl
 from pydantic_extra_types.country import CountryAlpha2
 from pydantic_extra_types.language_code import LanguageAlpha2
 

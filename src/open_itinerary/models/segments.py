@@ -1,8 +1,9 @@
-from pydantic import BaseModel, Field, ConfigDict
-from uuid import UUID
 from datetime import datetime
+from uuid import UUID
 
-from open_itinerary.models.common import Booking, Organization, MultilingualText
+from pydantic import BaseModel, ConfigDict, Field
+
+from open_itinerary.models.common import Booking, MultilingualText, Organization
 from open_itinerary.models.place import BasePlace
 from open_itinerary.models.segment_type import SegmentType
 

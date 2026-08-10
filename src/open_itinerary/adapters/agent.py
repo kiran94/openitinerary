@@ -1,5 +1,6 @@
 import os
-from pydantic_ai import Agent, ModelSettings
+
+from pydantic_ai import Agent
 from pydantic_ai.capabilities import Thinking, WebSearch
 
 from open_itinerary.models.itinerary import Segment

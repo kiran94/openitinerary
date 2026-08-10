@@ -1,7 +1,7 @@
-import os
-from pathlib import Path
 import argparse
 import logging
+import os
+from pathlib import Path
 
 from open_itinerary.adapters import Adapter, InputContent
 from open_itinerary.adapters.pdf import PdfAdapter

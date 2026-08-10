@@ -1,7 +1,7 @@
-import os
+import argparse
 import json
 import logging
-import argparse
+import os
 from pathlib import Path
 
 from open_itinerary.models.itinerary import Itinerary

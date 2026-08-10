@@ -1,6 +1,6 @@
 import pytest
 
-from open_itinerary.version import validate, derive_major_minor
+from open_itinerary.version import derive_major_minor, validate
 
 
 @pytest.mark.parametrize(

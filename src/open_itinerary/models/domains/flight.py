@@ -3,7 +3,7 @@ from typing import Literal
 from pydantic import Field
 
 from open_itinerary.models.place import BasePlace
-from open_itinerary.models.segment_type import SegmentType, PlaceType
+from open_itinerary.models.segment_type import PlaceType, SegmentType
 from open_itinerary.models.segments import TransportSegment
 
 

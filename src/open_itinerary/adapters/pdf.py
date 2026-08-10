@@ -1,10 +1,8 @@
 from io import BytesIO
-from pathlib import Path
-from tempfile import TemporaryDirectory
 
 from pypdf import PdfReader
-from open_itinerary.adapters import InputContent
-from open_itinerary.adapters import Adapter
+
+from open_itinerary.adapters import Adapter, InputContent
 from open_itinerary.adapters.agent import agent_factory
 from open_itinerary.models.itinerary import Segment
 

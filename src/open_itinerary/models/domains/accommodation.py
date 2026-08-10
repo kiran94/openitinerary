@@ -1,6 +1,7 @@
 from typing import Literal
 
 from pydantic import Field
+
 from open_itinerary.models.common import MultilingualText
 from open_itinerary.models.places import Place
 from open_itinerary.models.segment_type import SegmentType
