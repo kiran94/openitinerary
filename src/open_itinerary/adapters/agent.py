@@ -36,6 +36,25 @@ Rules:
 - Make sure that telephone numbers never have spaces in them
 - For Places, look at the source document to see if there are coordinates (even if hidden in links) and make sure to use them. If there are none then look at the locations closely and lookup the correct coordinates for them.
 
+Segment classification rules for activities and tours:
+
+- Select "tour" when the source explicitly describes the booking as a tour, excursion, sightseeing trip, guided day trip, or other experience whose purpose involves visiting or travelling through multiple locations.
+- A tour does not require a complete list of stops. If the source establishes that the booking is a tour but does not provide its itinerary, output a TourSegment and omit "stops".
+- Do not classify a tour as an attraction merely because its stops are unknown.
+- Select activity type "attraction" only when the experience is primarily a visit or admission to one venue, landmark, museum, park, or similar place.
+- Distinguish a tour from a transfer by purpose: a tour provides a sightseeing or guided experience where travel is incidental; a transfer primarily transports the traveller from one place to another.
+- Treat the booked document and selected option as authoritative. Do not populate tour stops from a general product page unless the page can be reliably matched to both the booked product and the selected option.
+- When a product page contains optional, alternative, or option-dependent stops and the booked option cannot be matched, omit the uncertain stops rather than including the general itinerary.
+
+Tour stop extraction rules:
+
+- Populate "stops" only when the source explicitly presents an itinerary, route, ordered sequence of stops, or clearly states that the tour visits specific places.
+- Place names appearing only in a tour title do not establish that those places are itinerary stops and must not be copied into "stops".
+- Marketing names, highlights, regional references, and incidental mentions do not establish an ordered itinerary.
+- Because "stops" is ordered, do not infer the order from the order of place names in a title or description.
+- If the source establishes that the booking is a tour but does not explicitly provide its itinerary, omit "stops".
+- Web search or geocoding may enrich the coordinates of a stop already established by the source. It must not be used to decide that a place is a stop.
+
 When the input is ambiguous:
 
 - Prefer the interpretation most directly supported by the text.

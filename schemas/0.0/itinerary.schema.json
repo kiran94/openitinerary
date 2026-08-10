@@ -120,6 +120,138 @@
             "title": "AccommodationSegment",
             "type": "object"
         },
+        "ActivitySegment": {
+            "additionalProperties": false,
+            "properties": {
+                "id": {
+                    "description": "Globally unique identifier for the segment.",
+                    "format": "uuid",
+                    "title": "Id",
+                    "type": "string"
+                },
+                "type": {
+                    "const": "activity",
+                    "default": "activity",
+                    "title": "Type",
+                    "type": "string"
+                },
+                "title": {
+                    "$ref": "#/$defs/MultilingualText",
+                    "description": "Summary title of the segment."
+                },
+                "description": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/MultilingualText"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "description": "Additional description about the Segment"
+                },
+                "start_time_utc": {
+                    "description": "The start datetime of the segment, expressed in UTC",
+                    "format": "date-time",
+                    "title": "Start Time Utc",
+                    "type": "string"
+                },
+                "end_time_utc": {
+                    "anyOf": [
+                        {
+                            "format": "date-time",
+                            "type": "string"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "description": "The end datetime of the segment (if known), expressed in UTC",
+                    "title": "End Time Utc"
+                },
+                "operator": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/Organization"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "description": "The organization operating or providing the service."
+                },
+                "booking": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/Booking"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "description": "booking information about the segment."
+                },
+                "place": {
+                    "description": "The activity venue.",
+                    "discriminator": {
+                        "mapping": {
+                            "airport": "#/$defs/AirportPlace",
+                            "location": "#/$defs/GenericPlace",
+                            "train_station": "#/$defs/TrainStation"
+                        },
+                        "propertyName": "type"
+                    },
+                    "oneOf": [
+                        {
+                            "$ref": "#/$defs/GenericPlace"
+                        },
+                        {
+                            "$ref": "#/$defs/AirportPlace"
+                        },
+                        {
+                            "$ref": "#/$defs/TrainStation"
+                        }
+                    ],
+                    "title": "Place"
+                },
+                "activity_type": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/ActivityType"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null
+                }
+            },
+            "required": [
+                "id",
+                "title",
+                "start_time_utc",
+                "place"
+            ],
+            "title": "ActivitySegment",
+            "type": "object"
+        },
+        "ActivityType": {
+            "enum": [
+                "attraction",
+                "event",
+                "class",
+                "wellness",
+                "dining",
+                "show",
+                "other"
+            ],
+            "title": "ActivityType",
+            "type": "string"
+        },
         "AirportPlace": {
             "properties": {
                 "name": {
@@ -1681,6 +1813,179 @@
             "title": "Organization",
             "type": "object"
         },
+        "TourSegment": {
+            "additionalProperties": false,
+            "properties": {
+                "id": {
+                    "description": "Globally unique identifier for the segment.",
+                    "format": "uuid",
+                    "title": "Id",
+                    "type": "string"
+                },
+                "type": {
+                    "const": "tour",
+                    "default": "tour",
+                    "title": "Type",
+                    "type": "string"
+                },
+                "title": {
+                    "$ref": "#/$defs/MultilingualText",
+                    "description": "Summary title of the segment."
+                },
+                "description": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/MultilingualText"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "description": "Additional description about the Segment"
+                },
+                "start_time_utc": {
+                    "description": "The start datetime of the segment, expressed in UTC",
+                    "format": "date-time",
+                    "title": "Start Time Utc",
+                    "type": "string"
+                },
+                "end_time_utc": {
+                    "anyOf": [
+                        {
+                            "format": "date-time",
+                            "type": "string"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "description": "The end datetime of the segment (if known), expressed in UTC",
+                    "title": "End Time Utc"
+                },
+                "operator": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/Organization"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "description": "The organization operating or providing the service."
+                },
+                "booking": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/Booking"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "description": "booking information about the segment."
+                },
+                "place": {
+                    "description": "The tour meeting, pickup, or starting location.",
+                    "discriminator": {
+                        "mapping": {
+                            "airport": "#/$defs/AirportPlace",
+                            "location": "#/$defs/GenericPlace",
+                            "train_station": "#/$defs/TrainStation"
+                        },
+                        "propertyName": "type"
+                    },
+                    "oneOf": [
+                        {
+                            "$ref": "#/$defs/GenericPlace"
+                        },
+                        {
+                            "$ref": "#/$defs/AirportPlace"
+                        },
+                        {
+                            "$ref": "#/$defs/TrainStation"
+                        }
+                    ],
+                    "title": "Place"
+                },
+                "stops": {
+                    "anyOf": [
+                        {
+                            "items": {
+                                "discriminator": {
+                                    "mapping": {
+                                        "airport": "#/$defs/AirportPlace",
+                                        "location": "#/$defs/GenericPlace",
+                                        "train_station": "#/$defs/TrainStation"
+                                    },
+                                    "propertyName": "type"
+                                },
+                                "oneOf": [
+                                    {
+                                        "$ref": "#/$defs/GenericPlace"
+                                    },
+                                    {
+                                        "$ref": "#/$defs/AirportPlace"
+                                    },
+                                    {
+                                        "$ref": "#/$defs/TrainStation"
+                                    }
+                                ]
+                            },
+                            "type": "array"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "description": "Places visited by the tour, in itinerary order. Pickup and drop-off locations are excluded unless they are genuine itinerary stops.",
+                    "title": "Stops"
+                },
+                "drop_off_place": {
+                    "anyOf": [
+                        {
+                            "discriminator": {
+                                "mapping": {
+                                    "airport": "#/$defs/AirportPlace",
+                                    "location": "#/$defs/GenericPlace",
+                                    "train_station": "#/$defs/TrainStation"
+                                },
+                                "propertyName": "type"
+                            },
+                            "oneOf": [
+                                {
+                                    "$ref": "#/$defs/GenericPlace"
+                                },
+                                {
+                                    "$ref": "#/$defs/AirportPlace"
+                                },
+                                {
+                                    "$ref": "#/$defs/TrainStation"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "description": "Where the traveller is dropped off after the tour, if known.",
+                    "title": "Drop Off Place"
+                }
+            },
+            "required": [
+                "id",
+                "title",
+                "start_time_utc",
+                "place"
+            ],
+            "title": "TourSegment",
+            "type": "object"
+        },
         "TrainSegment": {
             "additionalProperties": false,
             "properties": {
@@ -2603,7 +2908,9 @@
                 "discriminator": {
                     "mapping": {
                         "accommodation": "#/$defs/AccommodationSegment",
+                        "activity": "#/$defs/ActivitySegment",
                         "flight": "#/$defs/FlightSegment",
+                        "tour": "#/$defs/TourSegment",
                         "train": "#/$defs/TrainSegment",
                         "transfer": "#/$defs/TransferSegment"
                     },
@@ -2621,6 +2928,12 @@
                     },
                     {
                         "$ref": "#/$defs/TransferSegment"
+                    },
+                    {
+                        "$ref": "#/$defs/ActivitySegment"
+                    },
+                    {
+                        "$ref": "#/$defs/TourSegment"
                     }
                 ]
             },
