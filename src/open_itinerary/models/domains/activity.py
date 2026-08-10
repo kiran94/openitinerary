@@ -26,6 +26,7 @@ class ActivityType(StrEnum):
 
 class ActivitySegment(BaseActivitySegment):
     type: Literal[SegmentType.ACTIVITY] = SegmentType.ACTIVITY
+    place: Place = Field(description="The activity venue.")
 
     # None means the source did not provide enough information to classify the activity.
     activity_type: ActivityType | None = None
@@ -33,4 +34,15 @@ class ActivitySegment(BaseActivitySegment):
 
 class TourSegment(BaseActivitySegment):
     type: Literal[SegmentType.TOUR] = SegmentType.TOUR
-    stops: list[Place] = Field(default=[], description="Places visited by the tour, in itinerary order.")
+    place: Place = Field(description="The tour meeting, pickup, or starting location.")
+    stops: list[Place] | None = Field(
+        default=None,
+        description=(
+            "Places visited by the tour, in itinerary order. Pickup and drop-off locations are excluded unless they "
+            "are genuine itinerary stops."
+        ),
+    )
+    drop_off_place: Place | None = Field(
+        default=None,
+        description="Where the traveller is dropped off after the tour, if known.",
+    )

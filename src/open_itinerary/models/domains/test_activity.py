@@ -86,7 +86,8 @@ def test_activity_segment_rejects_missing_or_null_place(field: str):
 def test_tour_segment_defaults_to_no_stops():
     segment = TourSegment.model_validate(tour_payload())
 
-    assert segment.stops == []
+    assert segment.stops is None
+    assert segment.drop_off_place is None
 
 
 @pytest.mark.parametrize(
@@ -118,6 +119,32 @@ def test_tour_segment_rejects_malformed_stop():
         TourSegment.model_validate(payload)
 
 
+@pytest.mark.parametrize(
+    ("place_type", "expected_type"),
+    [
+        ("location", GenericPlace),
+        ("airport", AirportPlace),
+        ("train_station", TrainStation),
+    ],
+)
+def test_tour_segment_accepts_drop_off_place(place_type: str, expected_type: type):
+    payload = tour_payload()
+    payload["drop_off_place"] = place_payload(place_type, "Drop-off point")
+
+    segment = TourSegment.model_validate(payload)
+
+    assert isinstance(segment.drop_off_place, expected_type)
+    assert segment.drop_off_place.name.values[0].value == "Drop-off point"
+
+
+def test_tour_segment_rejects_malformed_drop_off_place():
+    payload = tour_payload()
+    payload["drop_off_place"] = {"type": "location"}
+
+    with pytest.raises(ValidationError):
+        TourSegment.model_validate(payload)
+
+
 @pytest.mark.parametrize("field", ["place"])
 def test_tour_segment_rejects_missing_or_null_meeting_place(field: str):
     payload = tour_payload()
@@ -134,13 +161,20 @@ def test_tour_segment_rejects_missing_or_null_meeting_place(field: str):
 
 
 def test_itinerary_parses_activity_and_tour_segments():
+    tour = tour_payload()
+    tour["stops"] = [place_payload(name="Tour stop")]
+    tour["drop_off_place"] = place_payload(name="Drop-off point")
+
     itinerary = Itinerary.model_validate(
         {
             "id": "test-itinerary",
             "title": "Test itinerary",
-            "segments": [activity_payload(), tour_payload()],
+            "segments": [activity_payload(), tour],
         }
     )
 
     assert isinstance(itinerary.segments[0], ActivitySegment)
     assert isinstance(itinerary.segments[1], TourSegment)
+    assert itinerary.segments[1].place.name.values[0].value == "Meeting point"
+    assert itinerary.segments[1].stops[0].name.values[0].value == "Tour stop"
+    assert itinerary.segments[1].drop_off_place.name.values[0].value == "Drop-off point"

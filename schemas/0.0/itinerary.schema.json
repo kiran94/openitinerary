@@ -196,7 +196,7 @@
                     "description": "booking information about the segment."
                 },
                 "place": {
-                    "description": "The activity venue, tour meeting point or starting location",
+                    "description": "The activity venue.",
                     "discriminator": {
                         "mapping": {
                             "airport": "#/$defs/AirportPlace",
@@ -1889,7 +1889,7 @@
                     "description": "booking information about the segment."
                 },
                 "place": {
-                    "description": "The activity venue, tour meeting point or starting location",
+                    "description": "The tour meeting, pickup, or starting location.",
                     "discriminator": {
                         "mapping": {
                             "airport": "#/$defs/AirportPlace",
@@ -1912,31 +1912,69 @@
                     "title": "Place"
                 },
                 "stops": {
-                    "default": [],
-                    "description": "Places visited by the tour, in itinerary order.",
-                    "items": {
-                        "discriminator": {
-                            "mapping": {
-                                "airport": "#/$defs/AirportPlace",
-                                "location": "#/$defs/GenericPlace",
-                                "train_station": "#/$defs/TrainStation"
+                    "anyOf": [
+                        {
+                            "items": {
+                                "discriminator": {
+                                    "mapping": {
+                                        "airport": "#/$defs/AirportPlace",
+                                        "location": "#/$defs/GenericPlace",
+                                        "train_station": "#/$defs/TrainStation"
+                                    },
+                                    "propertyName": "type"
+                                },
+                                "oneOf": [
+                                    {
+                                        "$ref": "#/$defs/GenericPlace"
+                                    },
+                                    {
+                                        "$ref": "#/$defs/AirportPlace"
+                                    },
+                                    {
+                                        "$ref": "#/$defs/TrainStation"
+                                    }
+                                ]
                             },
-                            "propertyName": "type"
+                            "type": "array"
                         },
-                        "oneOf": [
-                            {
-                                "$ref": "#/$defs/GenericPlace"
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "description": "Places visited by the tour, in itinerary order. Pickup and drop-off locations are excluded unless they are genuine itinerary stops.",
+                    "title": "Stops"
+                },
+                "drop_off_place": {
+                    "anyOf": [
+                        {
+                            "discriminator": {
+                                "mapping": {
+                                    "airport": "#/$defs/AirportPlace",
+                                    "location": "#/$defs/GenericPlace",
+                                    "train_station": "#/$defs/TrainStation"
+                                },
+                                "propertyName": "type"
                             },
-                            {
-                                "$ref": "#/$defs/AirportPlace"
-                            },
-                            {
-                                "$ref": "#/$defs/TrainStation"
-                            }
-                        ]
-                    },
-                    "title": "Stops",
-                    "type": "array"
+                            "oneOf": [
+                                {
+                                    "$ref": "#/$defs/GenericPlace"
+                                },
+                                {
+                                    "$ref": "#/$defs/AirportPlace"
+                                },
+                                {
+                                    "$ref": "#/$defs/TrainStation"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "description": "Where the traveller is dropped off after the tour, if known.",
+                    "title": "Drop Off Place"
                 }
             },
             "required": [
