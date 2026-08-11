@@ -7,6 +7,13 @@ from open_itinerary.models.itinerary import Segment
 
 class HtmlAdapter(Adapter):
     def _extract(self, content: InputContent) -> str:
+        expected_media_types = self.get_expected_media_types()
+
+        if content.media_type not in expected_media_types:
+            raise ValueError(
+                f"{content.media_type} is not supported by this adapter. Expected {','.join(expected_media_types)}"
+            )
+
         result = BeautifulSoup(content.data, "html.parser")
 
         # remove whitespace to reduce the context window
