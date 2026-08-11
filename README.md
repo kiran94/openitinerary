@@ -43,3 +43,24 @@ JSONSchema --> ...
 * `Place`: A geographical location on the earth.
 
 The `BaseSegment` defined common concepts for all travel related activities and domain specific models such as `FlightSegment` add stronger fields and validation.
+
+## Roadmap
+
+**Schema**
+  - [x] Base Segment Types
+  - [x] Flights and Airports
+  - [x] Train and Train Stations
+  - [x] Accommodation
+  - [x] Transfers
+  - [x] Activities and Tours
+  - [ ] Car Rentals
+  - [ ] Ferries
+  - [ ] Cruises
+
+**Implementations**
+ - [x] PDF Adapter
+ - [ ] HTML Adapter
+ - [ ] Email Adapter
+ - [ ] Calender Adapter
+ - [ ] ZIP Adapter
+ - [ ] Model Validation API
