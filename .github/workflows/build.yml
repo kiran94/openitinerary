@@ -56,3 +56,7 @@ jobs:
 
         - name: Generate Schema
           run: make generate_out
+
+        - uses: EndBug/add-and-commit@v10
+          with:
+            message: 'chore(schema): generate'
