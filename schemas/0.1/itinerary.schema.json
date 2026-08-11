@@ -871,19 +871,6 @@
                 "coordinate": {
                     "$ref": "#/$defs/Coordinate"
                 },
-                "formatted_address": {
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "null"
-                        }
-                    ],
-                    "default": null,
-                    "description": "The place's formatted postal or street address, as supplied by the provider.",
-                    "title": "Formatted Address"
-                },
                 "type": {
                     "const": "airport",
                     "default": "airport",
@@ -1703,19 +1690,6 @@
                 },
                 "coordinate": {
                     "$ref": "#/$defs/Coordinate"
-                },
-                "formatted_address": {
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "null"
-                        }
-                    ],
-                    "default": null,
-                    "description": "The place's formatted postal or street address, as supplied by the provider.",
-                    "title": "Formatted Address"
                 },
                 "type": {
                     "const": "location",
@@ -2734,19 +2708,6 @@
                 },
                 "coordinate": {
                     "$ref": "#/$defs/Coordinate"
-                },
-                "formatted_address": {
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "null"
-                        }
-                    ],
-                    "default": null,
-                    "description": "The place's formatted postal or street address, as supplied by the provider.",
-                    "title": "Formatted Address"
                 },
                 "type": {
                     "const": "train_station",
