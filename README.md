@@ -59,7 +59,7 @@ The `BaseSegment` defined common concepts for all travel related activities and 
 
 **Implementations**
  - [x] PDF Adapter
- - [ ] HTML Adapter
+ - [x] HTML Adapter
  - [ ] Email Adapter
  - [ ] Calender Adapter
  - [ ] ZIP Adapter
