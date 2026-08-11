@@ -1,6 +1,6 @@
 import re
 
-OPEN_ITINERARY_VERSION = "0.0.1"
+OPEN_ITINERARY_VERSION = "0.1.0"
 """
 Version of the published OpenItinerary Schema.
 
