@@ -13,6 +13,9 @@ class BasePlace(BaseModel):
     country: CountryAlpha2
     timezone: TimeZoneName
     coordinate: Coordinate
+    formatted_address: MultilingualText | None = Field(
+        default=None, description="The place's formatted postal or street address, as supplied by the provider."
+    )
 
 
 class GenericPlace(BasePlace):
