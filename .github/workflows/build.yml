@@ -32,3 +32,13 @@ jobs:
 
       - name: Run unit tests
         run: make test
+
+      - name: Check Schema Changes
+        run: |
+          make generate_out
+
+          if [ -n "$(git status --porcelain --untracked-files=all -- schemas)" ]; then
+            git status --short -- schemas
+            echo "::error::Generated schema is out of date. Run 'make generate_out' and commit the changes."
+            exit 1
+          fi
