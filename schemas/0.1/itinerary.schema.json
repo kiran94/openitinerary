@@ -871,6 +871,18 @@
                 "coordinate": {
                     "$ref": "#/$defs/Coordinate"
                 },
+                "formatted_address": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/MultilingualText"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "description": "The place's formatted postal or street address, as supplied by the provider."
+                },
                 "type": {
                     "const": "airport",
                     "default": "airport",
@@ -1690,6 +1702,18 @@
                 },
                 "coordinate": {
                     "$ref": "#/$defs/Coordinate"
+                },
+                "formatted_address": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/MultilingualText"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "description": "The place's formatted postal or street address, as supplied by the provider."
                 },
                 "type": {
                     "const": "location",
@@ -2708,6 +2732,18 @@
                 },
                 "coordinate": {
                     "$ref": "#/$defs/Coordinate"
+                },
+                "formatted_address": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/MultilingualText"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "description": "The place's formatted postal or street address, as supplied by the provider."
                 },
                 "type": {
                     "const": "train_station",
