@@ -39,6 +39,8 @@ jobs:
 
           if [ -n "$(git status --porcelain --untracked-files=all -- schemas)" ]; then
             git status --short -- schemas
+            git add --intent-to-add -- schemas
+            git diff -- schemas
             echo "::error::Generated schema is out of date. Run 'make generate_out' and commit the changes."
             exit 1
           fi
