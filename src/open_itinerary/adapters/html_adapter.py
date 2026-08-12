@@ -1,4 +1,4 @@
-from bs4 import BeautifulSoup
+from bs4 import BeautifulSoup, NavigableString
 
 from open_itinerary.adapters import Adapter, InputContent
 from open_itinerary.adapters.agent import agent_factory
@@ -19,6 +19,11 @@ class HtmlAdapter(Adapter):
         # remove whitespace to reduce the context window
         for element in result(["script", "style", "noscript", "template", "svg"]):
             element.decompose()
+
+        # Links can contain useful structured data, such as map coordinates, that is
+        # not present in their visible label.
+        for link in result.find_all("a", href=True):
+            link.append(NavigableString(f" (href: {link['href']})"))
 
         result = "\n".join(result.stripped_strings)
         return result
