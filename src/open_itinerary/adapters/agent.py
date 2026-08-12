@@ -23,17 +23,22 @@ Rules:
 - Every field must conform to the schema.
 - The schema defines a discriminator field (called "type"), select the single most appropriate subtype based on the evidence in the input.
 - Never invent information that is not reasonably supported by the source text.
+- Text provenance is mandatory for source-content fields: titles, descriptions, organization names, place names, addresses, unit types, contact details other than phone numbers, and identifiers must be present in the input document. Do not translate, transliterate, paraphrase, normalize, expand, or combine those source-text values into new textual values.
+- Schema-required codes and other normalized structured values may be derived from the document evidence when required by the schema. This includes language, country, and timezone codes; dates and times; coordinates; phone numbers; and freshly generated UUIDs.
+- When the same field is supplied in more than one language in the input document, preserve every distinct source-language representation in its `MultilingualText.values` list. Set each entry's `language` to the language of that source representation, and do not add a language variant unless that variant appears in the input.
+- Do not infer a language variant from a place, country, map, website, booking provider, or general knowledge. If a field appears in only one language in the input, emit only that source-language value.
+- Adjacent address strings that describe the same address in different languages are alternate representations of `place.formatted_address`. Include each as a separate `MultilingualText.values` entry, even when the document does not explicitly label the second string with "Address". Do not put an address in `place.name` unless the source uses it as the place's name.
 - If a value is unknown, omit optional fields rather than guessing.
 - Do not fabricate required values. If the input does not contain sufficient information, leave fields unset where the schema allows.
 - Preserve the original meaning of the source text.
 - Preserve identifiers exactly as written, including booking references, confirmation codes, flight numbers, train numbers, reservation numbers, ticket numbers, and similar values.
-- Preserve names exactly unless normalization is explicitly required by the schema.
+- Preserve source-content textual values exactly as they appear in the input, except phone numbers. Schema-required codes and normalized structured values may use the representation required by the schema.
 - Parse dates, times, locations, and other structured information whenever possible.
 - Convert values into the representation required by the schema.
 - Extract all information that has a corresponding field in the schema.
 - Ignore information that has no representation in the schema.
 - For flight types, lookup the flight number instead of putting the airline name. For example the text is British Airways 123 then we should put BA123.
-- For the operator, if the official website, phone, email cannot be found in the document then attempt to lookup the data from the internet. If it cannot be reliably sourced then leave it null.
+- For the operator, only populate the website, phone, and email when they appear in the document; otherwise leave them null.
 - Make sure that telephone numbers never have spaces in them
 - For Places, look at the source document to see if there are coordinates (even if hidden in links) and make sure to use them. If there are none then look at the locations closely and lookup the correct coordinates for them.
 
