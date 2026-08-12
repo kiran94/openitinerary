@@ -20,6 +20,15 @@ class HtmlAdapter(Adapter):
         for element in result(["script", "style", "noscript", "template", "svg"]):
             element.decompose()
 
+        # Hidden content can contain cancelled bookings, unselected options, modal
+        # content, or responsive duplicates that must not be sent to the agent.
+        for element in result.find_all(
+            lambda tag: tag.has_attr("hidden")
+            or tag.get("aria-hidden", "").strip().lower() == "true"
+            or "display:none" in "".join(tag.get("style", "").lower().split())
+        ):
+            element.decompose()
+
         # Links can contain useful structured data, such as map coordinates, that is
         # not present in their visible label.
         for link in result.find_all("a", href=True):

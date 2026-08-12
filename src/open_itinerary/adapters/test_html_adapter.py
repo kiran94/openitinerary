@@ -43,6 +43,24 @@ def test_html_adapter_extracts_visible_text_and_preserves_non_latin_text():
     )
 
 
+def test_html_adapter_excludes_explicitly_hidden_content():
+    content = InputContent(
+        b"""
+        <body>
+          <p>Confirmed booking</p>
+          <p hidden>Cancelled booking</p>
+          <p aria-hidden="true">Unselected option</p>
+          <p style="display: none">Responsive duplicate</p>
+          <p style="DISPLAY : NONE">Hidden modal content</p>
+          <p aria-hidden="false">Visible itinerary detail</p>
+        </body>
+        """,
+        "text/html",
+    )
+
+    assert HtmlAdapter()._extract(content) == "Confirmed booking\nVisible itinerary detail"
+
+
 @patch("open_itinerary.adapters.html_adapter.agent_factory")
 def test_html_adapter_load_passes_extracted_text_to_agent(agent_factory: Mock):
     expected_segments = [Mock(name="segment")]
