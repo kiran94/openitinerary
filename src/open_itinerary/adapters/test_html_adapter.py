@@ -25,6 +25,7 @@ def test_html_adapter_extracts_visible_text_and_preserves_non_latin_text():
           <body>
             <h1>Best Western Hotel Fino Tokyo Akihabara</h1>
             <p>Taito-ku, Ueno 5-1-6</p>
+            <p class="hidden">Cancelled booking</p>
             <p>\xe5\x8f\xb0\xe6\x9d\xb1\xe5\x8c\xba\xe4\xb8\x8a\xe9\x87\x8e 5-1-6, \xe5\x8f\xb0\xe6\x9d\xb1\xe5\x8c\xba, \xe6\x9d\xb1\xe4\xba\xac\xe9\x83\xbd</p>
             <a href="https://maps.example.com/?q=35.7032,139.7755">Map</a>
             <noscript>ignored fallback</noscript><template>ignored template</template><svg>ignored svg</svg>
