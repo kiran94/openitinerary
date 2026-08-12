@@ -36,9 +36,17 @@ def test_email_adapter_prefers_plain_text_over_html():
 
 def test_email_adapter_falls_back_to_html_body():
     message = EmailMessage()
-    message.set_content("<p>HTML booking confirmation</p>", subtype="html")
+    message.set_content(
+        """
+        <p>Confirmed booking</p>
+        <p hidden>Cancelled booking</p>
+        <script>ignored()</script>
+        <p style="display: none">Responsive duplicate</p>
+        """,
+        subtype="html",
+    )
 
-    assert EmailAdapter()._extract(_email_content(message)) == "<p>HTML booking confirmation</p>"
+    assert EmailAdapter()._extract(_email_content(message)) == "Confirmed booking"
 
 
 def test_email_adapter_raises_when_message_has_no_body():

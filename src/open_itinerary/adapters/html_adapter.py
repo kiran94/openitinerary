@@ -8,19 +8,25 @@ from open_itinerary.models.itinerary import Segment
 class HtmlAdapter(Adapter):
     def _extract(self, content: InputContent) -> str:
         self.check_media_type(content)
+        return self.extract_visible_text(content.data)
 
-        result = BeautifulSoup(content.data, "html.parser")
+    @staticmethod
+    def extract_visible_text(html: bytes | str) -> str:
+        """Extract visible, meaningful text from an HTML document."""
+        result = BeautifulSoup(html, "html.parser")
 
-        # remove whitespace to reduce the context window
+        # Remove whitespace to reduce the context window.
         for element in result(["script", "style", "noscript", "template", "svg"]):
             element.decompose()
 
         # Hidden content can contain cancelled bookings, unselected options, modal
         # content, or responsive duplicates that must not be sent to the agent.
         for element in result.find_all(
-            lambda tag: tag.has_attr("hidden")
-            or tag.get("aria-hidden", "").strip().lower() == "true"
-            or "display:none" in "".join(tag.get("style", "").lower().split())
+            lambda tag: (
+                tag.has_attr("hidden")
+                or tag.get("aria-hidden", "").strip().lower() == "true"
+                or "display:none" in "".join(tag.get("style", "").lower().split())
+            )
         ):
             element.decompose()
 
@@ -29,8 +35,7 @@ class HtmlAdapter(Adapter):
         for link in result.find_all("a", href=True):
             link.append(NavigableString(f" (href: {link['href']})"))
 
-        result = "\n".join(result.stripped_strings)
-        return result
+        return "\n".join(result.stripped_strings)
 
     def _translate(self, content: str) -> list[Segment]:
         agent = agent_factory()

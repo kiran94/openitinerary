@@ -5,6 +5,7 @@ from io import BytesIO
 
 from open_itinerary.adapters import Adapter, InputContent
 from open_itinerary.adapters.agent import agent_factory
+from open_itinerary.adapters.html_adapter import HtmlAdapter
 from open_itinerary.models.itinerary import Segment
 
 
@@ -18,7 +19,7 @@ class EmailAdapter(Adapter):
             return _clean_text(body_part.get_content())
 
         if html_part := message.get_body(preferencelist=("html",)):
-            return _clean_text(html_part.get_content())
+            return HtmlAdapter.extract_visible_text(html_part.get_content())
 
         raise ValueError("could not find any content from email message")
 
