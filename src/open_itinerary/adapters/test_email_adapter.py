@@ -57,6 +57,14 @@ def test_email_adapter_falls_back_to_html_body():
     assert EmailAdapter()._extract(_email_content(message)) == "Confirmed booking"
 
 
+def test_email_adapter_raises_when_html_body_has_no_visible_content():
+    message = EmailMessage()
+    message.set_content("<script>ignored()</script><p hidden>Cancelled booking</p>", subtype="html")
+
+    with pytest.raises(ValueError, match="could not find any content"):
+        EmailAdapter()._extract(_email_content(message))
+
+
 def test_email_adapter_raises_when_message_has_no_body():
     message = EmailMessage()
     message.make_mixed()

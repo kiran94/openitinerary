@@ -20,8 +20,10 @@ class EmailAdapter(Adapter):
         ):
             return plain_text
 
-        if html_part := message.get_body(preferencelist=("html",)):
-            return HtmlAdapter.extract_visible_text(html_part.get_content())
+        if (html_part := message.get_body(preferencelist=("html",))) and (
+            html_text := HtmlAdapter.extract_visible_text(html_part.get_content())
+        ):
+            return html_text
 
         raise ValueError("could not find any content from email message")
 
