@@ -4,6 +4,7 @@ import os
 from pathlib import Path
 
 from open_itinerary.adapters import Adapter, InputContent
+from open_itinerary.adapters.html_adapter import HtmlAdapter
 from open_itinerary.adapters.pdf import PdfAdapter
 
 logging.basicConfig(format=logging.BASIC_FORMAT, level=logging.INFO)
@@ -26,6 +27,9 @@ def main():
         case ".pdf":
             content_type = "application/pdf"
             adapter = PdfAdapter()
+        case ".html":
+            content_type = "text/html"
+            adapter = HtmlAdapter()
         case _:
             raise NotImplementedError(f"{file_type} is not supported")
 
