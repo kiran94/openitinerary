@@ -16,7 +16,8 @@ class EmailAdapter(Adapter):
         message = BytesParser(policy=policy.default).parse(BytesIO(content.data))
 
         if body_part := message.get_body(preferencelist=("plain",)):
-            return _clean_text(body_part.get_content())
+            if plain_text := _clean_text(body_part.get_content()):
+                return plain_text
 
         if html_part := message.get_body(preferencelist=("html",)):
             return HtmlAdapter.extract_visible_text(html_part.get_content())

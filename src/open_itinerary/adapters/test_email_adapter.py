@@ -34,6 +34,14 @@ def test_email_adapter_prefers_plain_text_over_html():
     assert EmailAdapter()._extract(_email_content(message)) == "Plain booking confirmation"
 
 
+def test_email_adapter_falls_back_to_html_when_plain_text_is_empty():
+    message = EmailMessage()
+    message.set_content(" \n\t")
+    message.add_alternative("<p>HTML booking confirmation</p>", subtype="html")
+
+    assert EmailAdapter()._extract(_email_content(message)) == "HTML booking confirmation"
+
+
 def test_email_adapter_falls_back_to_html_body():
     message = EmailMessage()
     message.set_content(
