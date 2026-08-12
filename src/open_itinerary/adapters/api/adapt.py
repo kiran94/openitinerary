@@ -30,6 +30,6 @@ async def adapt(file: UploadFile) -> list[Segment]:
     await file.close()
 
     adapter = determine_adapter(file.content_type)
-    segments = adapter.load(InputContent(raw_file_data, file.content_type))
+    segments = await adapter.load(InputContent(raw_file_data, file.content_type))
 
     return segments
