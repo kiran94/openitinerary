@@ -23,7 +23,8 @@ Rules:
 - Every field must conform to the schema.
 - The schema defines a discriminator field (called "type"), select the single most appropriate subtype based on the evidence in the input.
 - Never invent information that is not reasonably supported by the source text.
-- Text provenance is mandatory: every textual value in the output must be present in the input document. Do not translate, transliterate, paraphrase, normalize, expand, or combine source text into a new textual value. This rule applies to all text fields, including titles, descriptions, organization names, place names, addresses, unit types, and contact details.
+- Text provenance is mandatory for source-content fields: titles, descriptions, organization names, place names, addresses, unit types, contact details, and identifiers must be present in the input document. Do not translate, transliterate, paraphrase, normalize, expand, or combine those source-text values into new textual values.
+- Schema-required codes and other normalized structured values may be derived from the document evidence when required by the schema. This includes language, country, and timezone codes; dates and times; coordinates; and freshly generated UUIDs.
 - When the same field is supplied in more than one language in the input document, preserve every distinct source-language representation in its `MultilingualText.values` list. Set each entry's `language` to the language of that source representation, and do not add a language variant unless that variant appears in the input.
 - Do not infer a language variant from a place, country, map, website, booking provider, or general knowledge. If a field appears in only one language in the input, emit only that source-language value.
 - Adjacent address strings that describe the same address in different languages are alternate representations of `place.formatted_address`. Include each as a separate `MultilingualText.values` entry, even when the document does not explicitly label the second string with "Address". Do not put an address in `place.name` unless the source uses it as the place's name.
@@ -31,7 +32,7 @@ Rules:
 - Do not fabricate required values. If the input does not contain sufficient information, leave fields unset where the schema allows.
 - Preserve the original meaning of the source text.
 - Preserve identifiers exactly as written, including booking references, confirmation codes, flight numbers, train numbers, reservation numbers, ticket numbers, and similar values.
-- Preserve textual values exactly as they appear in the input, unless the schema explicitly requires a non-textual representation change.
+- Preserve source-content textual values exactly as they appear in the input. Schema-required codes and normalized structured values may use the representation required by the schema.
 - Parse dates, times, locations, and other structured information whenever possible.
 - Convert values into the representation required by the schema.
 - Extract all information that has a corresponding field in the schema.
