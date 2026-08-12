@@ -30,4 +30,13 @@ class Adapter(ABC):
 
     @abstractmethod
     def get_expected_media_types(self) -> set[str]:
-        pass
+        """
+        Declares the expected media types that this adapter supports
+        """
+
+    def check_media_type(self, content: InputContent) -> None:
+        expected_media_type = self.get_expected_media_types()
+        if content.media_type not in expected_media_type:
+            raise ValueError(
+                f"{content.media_type} is not supported by this adapter. Expected {','.join(expected_media_type)}"
+            )
