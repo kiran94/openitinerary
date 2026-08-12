@@ -46,10 +46,12 @@ def test_email_adapter_falls_back_to_html_body():
     message = EmailMessage()
     message.set_content(
         """
+        <style>.mobile { display: none; }</style>
         <p>Confirmed booking</p>
         <p hidden>Cancelled booking</p>
         <script>ignored()</script>
         <p style="display: none">Responsive duplicate</p>
+        <p class="mobile">Mobile cancellation duplicate</p>
         """,
         subtype="html",
     )

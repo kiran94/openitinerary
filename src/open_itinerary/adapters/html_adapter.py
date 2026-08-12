@@ -1,4 +1,7 @@
+import re
+
 from bs4 import BeautifulSoup, NavigableString
+from soupsieve import SelectorSyntaxError
 
 from open_itinerary.adapters import Adapter, InputContent
 from open_itinerary.adapters.agent import agent_factory
@@ -15,6 +18,18 @@ class HtmlAdapter(Adapter):
         """Extract visible, meaningful text from an HTML document."""
         result = BeautifulSoup(html, "html.parser")
 
+        for stylesheet in result.find_all("style"):
+            for selector, declarations in re.findall(r"([^{}]+)\{([^{}]+)\}", stylesheet.get_text()):
+                if not _is_hidden_style(declarations):
+                    continue
+
+                try:
+                    for element in result.select(selector.strip()):
+                        element.decompose()
+                except SelectorSyntaxError:
+                    # Email stylesheets may contain unsupported CSS syntax.
+                    continue
+
         # Remove whitespace to reduce the context window.
         for element in result(["script", "style", "noscript", "template", "svg"]):
             element.decompose()
@@ -25,7 +40,7 @@ class HtmlAdapter(Adapter):
             lambda tag: (
                 tag.has_attr("hidden")
                 or tag.get("aria-hidden", "").strip().lower() == "true"
-                or "display:none" in "".join(tag.get("style", "").lower().split())
+                or _is_hidden_style(tag.get("style", ""))
             )
         ):
             element.decompose()
@@ -44,3 +59,8 @@ class HtmlAdapter(Adapter):
 
     def get_expected_media_types(self) -> set[str]:
         return {"text/html"}
+
+
+def _is_hidden_style(style: str) -> bool:
+    normalized_style = "".join(style.lower().split())
+    return "display:none" in normalized_style or "visibility:hidden" in normalized_style
