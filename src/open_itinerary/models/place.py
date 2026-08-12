@@ -20,6 +20,9 @@ class BasePlace(BaseModel):
     @field_validator("formatted_address", mode="after")
     @classmethod
     def clean_formatted_address(cls, obj: MultilingualText) -> MultilingualText:
+        if not obj:
+            return None
+
         for current_lang in obj.values:
             current_lang.value = current_lang.value.replace("\r\n", " ")
             current_lang.value = current_lang.value.replace("\n", " ")

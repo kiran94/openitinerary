@@ -57,3 +57,19 @@ def test_place_formatted_address_whitespace(input: str, expected_output: str):
 
     assert len(place.formatted_address.values) == 1
     assert place.formatted_address.values[0].value == expected_output
+
+
+def test_place_formatted_address_none():
+    place = BasePlace.model_validate(
+        {
+            "name": {"values": [{"language": "en", "value": "Best Western Hotel Fino Tokyo Akihabara"}]},
+            "formatted_address": None,
+            "country": "JP",
+            "timezone": "Asia/Tokyo",
+            "coordinate": {"latitude": 35.7032, "longitude": 139.7755},
+            "type": "location",
+        }
+    )
+
+    validated_place = BasePlace.model_validate(place)
+    assert not validated_place.formatted_address
