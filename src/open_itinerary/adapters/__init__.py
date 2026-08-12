@@ -17,11 +17,16 @@ class Adapter(ABC):
 
     @abstractmethod
     def _extract(self, content: InputContent) -> str:
-        pass
+        """
+        Takes the input content and translates it into common string.
+        """
 
     @abstractmethod
     def _translate(self, content: str) -> list[Segment]:
-        pass
+        """
+        Takes the input string and transcribe into structured list of
+        Segments.
+        """
 
     @abstractmethod
     def get_expected_media_types(self) -> set[str]:
