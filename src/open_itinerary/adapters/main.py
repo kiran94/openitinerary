@@ -4,6 +4,7 @@ import os
 from pathlib import Path
 
 from open_itinerary.adapters import Adapter, InputContent
+from open_itinerary.adapters.email_adapter import EmailAdapter
 from open_itinerary.adapters.html_adapter import HtmlAdapter
 from open_itinerary.adapters.pdf import PdfAdapter
 
@@ -30,6 +31,9 @@ def main():
         case ".html":
             content_type = "text/html"
             adapter = HtmlAdapter()
+        case ".eml":
+            content_type = "message/rfc822"
+            adapter = EmailAdapter()
         case _:
             raise NotImplementedError(f"{file_type} is not supported")
 
