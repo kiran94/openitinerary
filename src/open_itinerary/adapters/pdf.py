@@ -16,9 +16,9 @@ class PdfAdapter(Adapter):
 
         return extracted_content
 
-    def _translate(self, content: str) -> list[Segment]:
+    async def _translate(self, content: str) -> list[Segment]:
         agent = agent_factory()
-        result = agent.run_sync(content)
+        result = await agent.run(content)
         return result.output
 
     def get_expected_media_types(self) -> set[str]:

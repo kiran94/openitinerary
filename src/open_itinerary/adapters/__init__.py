@@ -11,9 +11,9 @@ class InputContent:
 
 
 class Adapter(ABC):
-    def load(self, content: InputContent) -> list[Segment]:
+    async def load(self, content: InputContent) -> list[Segment]:
         temp = self._extract(content)
-        return self._translate(temp)
+        return await self._translate(temp)
 
     @abstractmethod
     def _extract(self, content: InputContent) -> str:
@@ -22,7 +22,7 @@ class Adapter(ABC):
         """
 
     @abstractmethod
-    def _translate(self, content: str) -> list[Segment]:
+    async def _translate(self, content: str) -> list[Segment]:
         """
         Takes the input string and transcribe into structured list of
         Segments.

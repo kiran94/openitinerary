@@ -1,4 +1,5 @@
 import argparse
+import asyncio
 import logging
 import os
 from pathlib import Path
@@ -12,7 +13,7 @@ logging.basicConfig(format=logging.BASIC_FORMAT, level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 
-def main():
+async def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("-i", "--input", default="./data/example_documents/HNL_MNL.pdf")
     parser.add_argument("-o", "--output-folder", dest="output_folder", default="./data/example_documents/converted/")
@@ -38,12 +39,11 @@ def main():
             raise NotImplementedError(f"{file_type} is not supported")
 
     logger.info("reading %s", args.input)
-    with open(args.input, mode="rb") as f:
-        data = f.read()
+    data = await asyncio.to_thread(Path(args.input).read_bytes)
 
     logger.info("adapting content")
     content = InputContent(data, content_type)
-    result = adapter.load(content)
+    result = await adapter.load(content)
 
     os.makedirs(args.output_folder, exist_ok=True)
 
@@ -54,9 +54,8 @@ def main():
         file_name = os.path.join(args.output_folder, file_name)
 
         logger.info("dumping result %s to %s", index, file_name)
-        with open(file_name, "w") as f:
-            f.write(obj)
+        await asyncio.to_thread(Path(file_name).write_text, obj)
 
 
 if __name__ == "__main__":
-    main()
+    asyncio.run(main())

@@ -1,4 +1,5 @@
-from unittest.mock import Mock, patch
+import asyncio
+from unittest.mock import AsyncMock, Mock, patch
 
 import pytest
 
@@ -14,7 +15,7 @@ def test_html_adapter_rejects_unsupported_media_type():
     content = InputContent(b"", "application/pdf")
 
     with pytest.raises(ValueError, match="application/pdf is not supported"):
-        HtmlAdapter().load(content)
+        asyncio.run(HtmlAdapter().load(content))
 
 
 def test_html_adapter_extracts_visible_text_and_preserves_non_latin_text():
@@ -66,10 +67,10 @@ def test_html_adapter_excludes_explicitly_hidden_content():
 def test_html_adapter_load_passes_extracted_text_to_agent(agent_factory: Mock):
     expected_segments = [Mock(name="segment")]
     agent = agent_factory.return_value
-    agent.run_sync.return_value = Mock(output=expected_segments)
+    agent.run = AsyncMock(return_value=Mock(output=expected_segments))
     content = InputContent(b"<p>English</p><p>\xe6\x97\xa5\xe6\x9c\xac\xe8\xaa\x9e</p>", "text/html")
 
-    actual = HtmlAdapter().load(content)
+    actual = asyncio.run(HtmlAdapter().load(content))
 
     assert actual == expected_segments
-    agent.run_sync.assert_called_once_with("English\n\u65e5\u672c\u8a9e")
+    agent.run.assert_awaited_once_with("English\n\u65e5\u672c\u8a9e")

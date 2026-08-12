@@ -1,5 +1,6 @@
+import asyncio
 from io import BytesIO
-from unittest.mock import Mock, patch
+from unittest.mock import AsyncMock, Mock, patch
 
 import pytest
 from pypdf import PdfWriter
@@ -22,7 +23,7 @@ def test_pdf_adapter_load_not_pdf():
     adapter = PdfAdapter()
 
     with pytest.raises(ValueError, match="not supported"):
-        adapter.load(content)
+        asyncio.run(adapter.load(content))
 
 
 @patch("open_itinerary.adapters.pdf.agent_factory")
@@ -34,12 +35,12 @@ def test_pdf_adapter_load(agent_factory: Mock):
 
     expected_segments = [Mock(name="segment")]
     agent = agent_factory.return_value
-    agent.run_sync.return_value = Mock(output=expected_segments)
+    agent.run = AsyncMock(return_value=Mock(output=expected_segments))
 
     content = InputContent(pdf_buffer.getvalue(), "application/pdf")
     adapter = PdfAdapter()
 
-    actual = adapter.load(content)
+    actual = asyncio.run(adapter.load(content))
 
     assert actual == expected_segments
-    agent.run_sync.assert_called_once_with("")
+    agent.run.assert_awaited_once_with("")
