@@ -16,3 +16,6 @@ visualise_schema: generate_out
 format:
 	uv run ruff check --fix
 	uv run ruff format
+
+api:
+	uv run src/open_itinerary/adapters/api/main.py
