@@ -18,4 +18,4 @@ format:
 	uv run ruff format
 
 api:
-	uv run src/open_itinerary/adapters/api/main.py
+	uv run fastapi dev src/open_itinerary/adapters/api/main.py
