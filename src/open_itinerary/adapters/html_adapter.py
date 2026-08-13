@@ -1,3 +1,4 @@
+import asyncio
 import re
 
 from bs4 import BeautifulSoup, NavigableString
@@ -9,7 +10,10 @@ from open_itinerary.models.itinerary import Segment
 
 
 class HtmlAdapter(Adapter):
-    def _extract(self, content: InputContent) -> str:
+    async def _extract(self, content: InputContent) -> str:
+        return await asyncio.to_thread(self._extract_sync, content)
+
+    def _extract_sync(self, content: InputContent) -> str:
         self.check_media_type(content)
         return self.extract_visible_text(content.data)
 

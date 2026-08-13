@@ -36,7 +36,7 @@ def test_html_adapter_extracts_visible_text_and_preserves_non_latin_text():
         "text/html",
     )
 
-    assert HtmlAdapter()._extract(content) == (
+    assert asyncio.run(HtmlAdapter()._extract(content)) == (
         "Best Western Hotel Fino Tokyo Akihabara\n"
         "Taito-ku, Ueno 5-1-6\n"
         "\u53f0\u6771\u533a\u4e0a\u91ce 5-1-6, \u53f0\u6771\u533a, \u6771\u4eac\u90fd\n"
@@ -60,7 +60,7 @@ def test_html_adapter_excludes_explicitly_hidden_content():
         "text/html",
     )
 
-    assert HtmlAdapter()._extract(content) == "Confirmed booking\nVisible itinerary detail"
+    assert asyncio.run(HtmlAdapter()._extract(content)) == "Confirmed booking\nVisible itinerary detail"
 
 
 @patch("open_itinerary.adapters.html_adapter.agent_factory")

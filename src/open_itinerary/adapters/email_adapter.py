@@ -1,3 +1,4 @@
+import asyncio
 import re
 from email import policy
 from email.parser import BytesParser
@@ -10,7 +11,10 @@ from open_itinerary.models.itinerary import Segment
 
 
 class EmailAdapter(Adapter):
-    def _extract(self, content: InputContent) -> str:
+    async def _extract(self, content: InputContent) -> str:
+        return await asyncio.to_thread(self._extract_sync, content)
+
+    def _extract_sync(self, content: InputContent) -> str:
         self.check_media_type(content)
 
         message = BytesParser(policy=policy.default).parse(BytesIO(content.data))

@@ -12,11 +12,11 @@ class InputContent:
 
 class Adapter(ABC):
     async def load(self, content: InputContent) -> list[Segment]:
-        temp = self._extract(content)
+        temp = await self._extract(content)
         return await self._translate(temp)
 
     @abstractmethod
-    def _extract(self, content: InputContent) -> str:
+    async def _extract(self, content: InputContent) -> str:
         """
         Takes the input content and translates it into common string.
         """

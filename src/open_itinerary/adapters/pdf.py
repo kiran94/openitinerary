@@ -1,3 +1,4 @@
+import asyncio
 from io import BytesIO
 
 from pypdf import PdfReader
@@ -8,7 +9,10 @@ from open_itinerary.models.itinerary import Segment
 
 
 class PdfAdapter(Adapter):
-    def _extract(self, content: InputContent) -> str:
+    async def _extract(self, content: InputContent) -> str:
+        return await asyncio.to_thread(self._extract_sync, content)
+
+    def _extract_sync(self, content: InputContent) -> str:
         self.check_media_type(content)
 
         reader = PdfReader(BytesIO(content.data))
