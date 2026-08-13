@@ -1,4 +1,4 @@
-from fastapi import Response, UploadFile
+from fastapi import HTTPException, Response, UploadFile, status
 from fastapi.routing import APIRouter
 
 from open_itinerary.adapters import Adapter, InputContent
@@ -18,6 +18,7 @@ def determine_adapter(content_type: str) -> Adapter:
     for adapter in ALL_ADAPTERS:
         if content_type in adapter.get_expected_media_types():
             return adapter
+    return None
 
 
 @router.post("/segment", response_model=list[Segment], tags=_TAGS)
@@ -30,6 +31,12 @@ async def adapt(file: UploadFile, response: Response) -> list[Segment]:
     await file.close()
 
     adapter = determine_adapter(file.content_type)
+    if not adapter:
+        raise HTTPException(
+            status_code=status.HTTP_415_UNSUPPORTED_MEDIA_TYPE,
+            detail=f"'{file.content_type}' is not supported",
+        )
+
     segments = await adapter.load(InputContent(raw_file_data, file.content_type))
 
     response.headers["X-Segment-Count"] = str(len(segments))
