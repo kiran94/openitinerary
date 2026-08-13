@@ -1,4 +1,4 @@
-from fastapi import UploadFile
+from fastapi import Response, UploadFile
 from fastapi.routing import APIRouter
 
 from open_itinerary.adapters import Adapter, InputContent
@@ -21,7 +21,7 @@ def determine_adapter(content_type: str) -> Adapter:
 
 
 @router.post("/segment", response_model=list[Segment], tags=_TAGS)
-async def adapt(file: UploadFile) -> list[Segment]:
+async def adapt(file: UploadFile, response: Response) -> list[Segment]:
     """
     Convert a traditional file into an OpenItinerary Segment
     """
@@ -32,4 +32,5 @@ async def adapt(file: UploadFile) -> list[Segment]:
     adapter = determine_adapter(file.content_type)
     segments = await adapter.load(InputContent(raw_file_data, file.content_type))
 
+    response.headers["X-Segment-Count"] = str(len(segments))
     return segments
