@@ -73,6 +73,31 @@ def test_multilingual_text_rejects_empty_values(value: str | list):
         MultilingualText.model_validate({"values": value})
 
 
+def test_multilingual_text_rejects_duplicate_language_and_region_combination():
+    with pytest.raises(ValidationError, match="each language and region combination must be unique"):
+        MultilingualText.model_validate(
+            {
+                "values": [
+                    {"language": "en", "value": "293 North Quay, Brisbane CBD, 4000"},
+                    {"language": "en", "value": "Brisbane, Australia"},
+                ]
+            }
+        )
+
+
+def test_multilingual_text_accepts_same_language_with_different_regions():
+    multilingual_text = MultilingualText.model_validate(
+        {
+            "values": [
+                {"language": "en", "region": "AU", "value": "Brisbane QLD 4000"},
+                {"language": "en", "region": "US", "value": "Brisbane, Queensland 4000"},
+            ]
+        }
+    )
+
+    assert [value.region for value in multilingual_text.values] == ["AU", "US"]
+
+
 def test_organization_accepts_contact_details():
     payload = organization_payload()
     payload.update(
