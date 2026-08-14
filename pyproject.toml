@@ -1,18 +1,29 @@
 [project]
 name = "open-itinerary"
 version = "0.1.0"
-description = "Add your description here"
+description = "OpenItinerary is an open, vendor-neutral standard for representing travel itineraries as structured data."
 readme = "README.md"
+license = "Apache-2.0"
+license-files = ["LICENSE"]
 authors = [
-    { name = "kiran94", email = "" }
+    { name = "kiran94" }
 ]
 requires-python = ">=3.11"
+keywords = [ "itinerary", "open", "standard", "travel", "flight", "mcp" ]
+classifiers = [
+    "Intended Audience :: Developers",
+    "Operating System :: OS Independent",
+    "Topic :: Utilities",
+    "Topic :: Software Development",
+    "Topic :: Software Development :: Version Control :: Git"
+]
 dependencies = [
     "pycountry>=26.2.16",
     "pydantic[email]>=2.13.4",
     "pydantic-extra-types>=2.11.1",
     "tzdata>=2026.3",
 ]
+
 
 [project.optional-dependencies]
 adapters = [
@@ -25,6 +36,11 @@ adapters = [
 
 [project.scripts]
 open-itinerary = "open_itinerary:main"
+
+[project.urls]
+Homepage = "https://pypi.org/project/openitinerary/"
+Repository = "https://github.com/kiran94/openitinerary"
+Documentation = "https://github.com/kiran94/openitinerary/blob/main/README.md"
 
 [build-system]
 requires = ["uv_build>=0.11.8,<0.12.0"]
