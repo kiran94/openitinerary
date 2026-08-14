@@ -4,7 +4,7 @@ from email import policy
 from email.parser import BytesParser
 from io import BytesIO
 
-from open_itinerary.adapters import Adapter, InputContent
+from open_itinerary.adapters import Adapter, DocumentExtractionError, InputContent
 from open_itinerary.adapters.agent import agent_factory
 from open_itinerary.adapters.html_adapter import HtmlAdapter
 from open_itinerary.models.itinerary import Segment
@@ -29,7 +29,7 @@ class EmailAdapter(Adapter):
         ):
             return html_text
 
-        raise ValueError("could not find any content from email message")
+        raise DocumentExtractionError("could not find any content from email message")
 
     async def _translate(self, content: str) -> list[Segment]:
         agent = agent_factory()

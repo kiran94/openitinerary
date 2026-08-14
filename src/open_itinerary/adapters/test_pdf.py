@@ -5,7 +5,7 @@ from unittest.mock import AsyncMock, Mock, patch
 import pytest
 from pypdf import PdfWriter
 
-from open_itinerary.adapters import InputContent
+from open_itinerary.adapters import DocumentExtractionError, InputContent
 from open_itinerary.adapters.pdf import PdfAdapter
 
 
@@ -24,6 +24,13 @@ def test_pdf_adapter_load_not_pdf():
 
     with pytest.raises(ValueError, match="not supported"):
         asyncio.run(adapter.load(content))
+
+
+def test_pdf_adapter_rejects_invalid_pdf_content():
+    content = InputContent(b"not a PDF", "application/pdf")
+
+    with pytest.raises(DocumentExtractionError, match="could not extract content from PDF"):
+        asyncio.run(PdfAdapter().load(content))
 
 
 @patch("open_itinerary.adapters.pdf.agent_factory")

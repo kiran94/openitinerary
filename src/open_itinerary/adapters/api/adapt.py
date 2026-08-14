@@ -3,7 +3,7 @@ import os
 from fastapi import HTTPException, Response, UploadFile, status
 from fastapi.routing import APIRouter
 
-from open_itinerary.adapters import Adapter, InputContent
+from open_itinerary.adapters import Adapter, DocumentExtractionError, InputContent
 from open_itinerary.adapters.email_adapter import EmailAdapter
 from open_itinerary.adapters.html_adapter import HtmlAdapter
 from open_itinerary.adapters.pdf import PdfAdapter
@@ -52,7 +52,10 @@ async def adapt(file: UploadFile, response: Response) -> list[Segment]:
         if len(raw_file_data) > OPEN_ITINERARY_MAX_UPLOAD_SIZE_BYTES:
             raise _upload_too_large_error()
 
-        segments = await adapter.load(InputContent(raw_file_data, file.content_type))
+        try:
+            segments = await adapter.load(InputContent(raw_file_data, file.content_type))
+        except DocumentExtractionError as exc:
+            raise HTTPException(status_code=status.HTTP_422_UNPROCESSABLE_CONTENT, detail=str(exc)) from exc
 
         response.headers["X-Segment-Count"] = str(len(segments))
         return segments

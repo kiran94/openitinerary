@@ -2,8 +2,9 @@ import asyncio
 from io import BytesIO
 
 from pypdf import PdfReader
+from pypdf.errors import PdfReadError
 
-from open_itinerary.adapters import Adapter, InputContent
+from open_itinerary.adapters import Adapter, DocumentExtractionError, InputContent
 from open_itinerary.adapters.agent import agent_factory
 from open_itinerary.models.itinerary import Segment
 
@@ -15,8 +16,11 @@ class PdfAdapter(Adapter):
     def _extract_sync(self, content: InputContent) -> str:
         self.check_media_type(content)
 
-        reader = PdfReader(BytesIO(content.data))
-        extracted_content = "".join(page.extract_text() or "" for page in reader.pages)
+        try:
+            reader = PdfReader(BytesIO(content.data))
+            extracted_content = "".join(page.extract_text() or "" for page in reader.pages)
+        except PdfReadError as exc:
+            raise DocumentExtractionError("could not extract content from PDF document") from exc
 
         return extracted_content
 

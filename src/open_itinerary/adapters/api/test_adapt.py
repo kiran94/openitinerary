@@ -5,7 +5,7 @@ from unittest.mock import AsyncMock, Mock, patch
 import pytest
 from fastapi import HTTPException, Response, status
 
-from open_itinerary.adapters import Adapter, InputContent
+from open_itinerary.adapters import Adapter, DocumentExtractionError, InputContent
 from open_itinerary.adapters.api import adapt as adapt_api
 
 
@@ -104,4 +104,19 @@ def test_adapt_closes_upload_when_adapter_fails(all_adapters: list[Adapter]):
     with pytest.raises(RuntimeError, match="adapter failed"):
         asyncio.run(adapt_api.adapt(upload, Response()))
 
+    upload.close.assert_awaited_once_with()
+
+
+@patch("open_itinerary.adapters.api.adapt.ALL_ADAPTERS", new_callable=list)
+def test_adapt_rejects_unextractable_document(all_adapters: list[Adapter]):
+    adapter = _adapter()
+    adapter.load.side_effect = DocumentExtractionError("could not extract document content")
+    all_adapters.append(adapter)
+    upload = _upload(b"malformed content")
+
+    with pytest.raises(HTTPException) as e:
+        asyncio.run(adapt_api.adapt(upload, Response()))
+
+    assert e.value.status_code == status.HTTP_422_UNPROCESSABLE_CONTENT
+    assert e.value.detail == "could not extract document content"
     upload.close.assert_awaited_once_with()

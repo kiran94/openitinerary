@@ -4,6 +4,10 @@ from dataclasses import dataclass
 from open_itinerary.models.itinerary import Segment
 
 
+class DocumentExtractionError(ValueError):
+    """Raised when declared document content cannot be extracted."""
+
+
 @dataclass(frozen=True, slots=True)
 class InputContent:
     data: bytes
