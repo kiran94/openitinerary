@@ -78,3 +78,6 @@ The `BaseSegment` defined common concepts for all travel related activities and 
  - [ ] ZIP Adapter
  - [ ] Model Validation API
  - [x] Adapter API
+ - [ ] Python Package
+ - [ ] JSON Schema Package
+ - [ ] Batch Ingestion & Job Processing Service
