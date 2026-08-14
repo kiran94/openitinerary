@@ -1,4 +1,4 @@
-from pydantic import BaseModel, EmailStr, Field, HttpUrl
+from pydantic import BaseModel, EmailStr, Field, HttpUrl, model_validator
 from pydantic_extra_types.country import CountryAlpha2
 from pydantic_extra_types.language_code import LanguageAlpha2
 
@@ -11,6 +11,15 @@ class LocalizedText(BaseModel):
 
 class MultilingualText(BaseModel):
     values: list[LocalizedText] = Field(min_length=1)
+
+    @model_validator(mode="after")
+    def validate_unique_locales(self) -> "MultilingualText":
+        locales = [(value.language, value.region) for value in self.values]
+
+        if len(locales) != len(set(locales)):
+            raise ValueError("each language and region combination must be unique")
+
+        return self
 
 
 class Organization(BaseModel):
