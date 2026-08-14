@@ -1,16 +1,20 @@
+import asyncio
 import re
 from email import policy
 from email.parser import BytesParser
 from io import BytesIO
 
-from open_itinerary.adapters import Adapter, InputContent
+from open_itinerary.adapters import Adapter, DocumentExtractionError, InputContent
 from open_itinerary.adapters.agent import agent_factory
 from open_itinerary.adapters.html_adapter import HtmlAdapter
 from open_itinerary.models.itinerary import Segment
 
 
 class EmailAdapter(Adapter):
-    def _extract(self, content: InputContent) -> str:
+    async def _extract(self, content: InputContent) -> str:
+        return await asyncio.to_thread(self._extract_sync, content)
+
+    def _extract_sync(self, content: InputContent) -> str:
         self.check_media_type(content)
 
         message = BytesParser(policy=policy.default).parse(BytesIO(content.data))
@@ -25,11 +29,11 @@ class EmailAdapter(Adapter):
         ):
             return html_text
 
-        raise ValueError("could not find any content from email message")
+        raise DocumentExtractionError("could not find any content from email message")
 
-    def _translate(self, content: str) -> list[Segment]:
+    async def _translate(self, content: str) -> list[Segment]:
         agent = agent_factory()
-        result = agent.run_sync(content)
+        result = await agent.run(content)
         return result.output
 
     def get_expected_media_types(self) -> set[str]:

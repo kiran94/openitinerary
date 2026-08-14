@@ -4,6 +4,10 @@ from dataclasses import dataclass
 from open_itinerary.models.itinerary import Segment
 
 
+class DocumentExtractionError(ValueError):
+    """Raised when declared document content cannot be extracted."""
+
+
 @dataclass(frozen=True, slots=True)
 class InputContent:
     data: bytes
@@ -11,18 +15,18 @@ class InputContent:
 
 
 class Adapter(ABC):
-    def load(self, content: InputContent) -> list[Segment]:
-        temp = self._extract(content)
-        return self._translate(temp)
+    async def load(self, content: InputContent) -> list[Segment]:
+        temp = await self._extract(content)
+        return await self._translate(temp)
 
     @abstractmethod
-    def _extract(self, content: InputContent) -> str:
+    async def _extract(self, content: InputContent) -> str:
         """
         Takes the input content and translates it into common string.
         """
 
     @abstractmethod
-    def _translate(self, content: str) -> list[Segment]:
+    async def _translate(self, content: str) -> list[Segment]:
         """
         Takes the input string and transcribe into structured list of
         Segments.

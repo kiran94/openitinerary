@@ -36,6 +36,19 @@ JSONSchema --> ...
 
 *Performance sensitive consumers may want to use binary formats such as Protobuf so the standard only states that JSON is a minimum supported format. Binary formats must represent the same model.*
 
+### Adapter API configuration
+
+The Adapter API limits each uploaded document to 10 MiB by default. Set
+to a positive integer to configure the
+limit in bytes. The value is loaded when the API process starts, so restart the
+process after changing it.
+
+#### Environment Variables
+
+| Name                                   | Description                                              | Default                 |
+| -------------------------------------- | -------------------------------------------------------- | ----------------------- |
+| `OPEN_ITINERARY_MAX_UPLOAD_SIZE_BYTES` | Maximum size of an uploaded document to the `/adapt` API | `10485760` bytes (10MB) |
+
 ## Concepts
 
 * `Itinerary`: An itinerary is an ordered collection of typed segments.
@@ -64,4 +77,4 @@ The `BaseSegment` defined common concepts for all travel related activities and 
  - [ ] Calender Adapter
  - [ ] ZIP Adapter
  - [ ] Model Validation API
- - [ ] Adapter API
+ - [x] Adapter API
