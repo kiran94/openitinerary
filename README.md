@@ -109,7 +109,7 @@ The `BaseSegment` defined common concepts for all travel related activities and 
 This repository has two independent versions:
 
 * The **schema version** is defined by `OPEN_ITINERARY_VERSION` in
-  `src/open_itinerary/version.py`. Changes to the standard must update this
+  `src/openitinerary/version.py`. Changes to the standard must update this
   version in the same pull request and regenerate the committed schemas with
   `make generate_out`.
 * The **Python package version** is defined in `pyproject.toml`. It changes when
