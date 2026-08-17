@@ -123,8 +123,7 @@ small corrections to schema documentation or metadata increment the patch
 version. Generated schema directories intentionally use only the major and
 minor components, for example `schemas/0.1/itinerary.schema.json`. A patch
 release updates the schema for that minor line rather than creating a new
-directory. `schemas/latest/itinerary.schema.json` always contains the current
-schema.
+directory.
 
 Package version changes are made by a developer in a pull request intended to
 create a release. Use `uv version` so `pyproject.toml` and `uv.lock` remain in
