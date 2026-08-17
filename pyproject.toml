@@ -1,5 +1,5 @@
 [project]
-name = "open-itinerary"
+name = "openitinerary"
 version = "0.1.0"
 description = "OpenItinerary is an open, vendor-neutral standard for representing travel itineraries as structured data."
 readme = "README.md"
@@ -35,7 +35,7 @@ adapters = [
 ]
 
 [project.scripts]
-open-itinerary = "open_itinerary:main"
+openitinerary = "openitinerary:main"
 
 [project.urls]
 Homepage = "https://pypi.org/project/openitinerary/"
