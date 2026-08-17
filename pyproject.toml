@@ -1,5 +1,5 @@
 [project]
-name = "open-itinerary"
+name = "openitinerary"
 version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
@@ -24,7 +24,7 @@ adapters = [
 ]
 
 [project.scripts]
-open-itinerary = "open_itinerary:main"
+openitinerary = "openitinerary:main"
 
 [build-system]
 requires = ["uv_build>=0.11.8,<0.12.0"]

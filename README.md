@@ -36,6 +36,26 @@ JSONSchema --> ...
 
 *Performance sensitive consumers may want to use binary formats such as Protobuf so the standard only states that JSON is a minimum supported format. Binary formats must represent the same model.*
 
+### Python package
+
+Install the Python package from PyPI:
+
+```bash
+python -m pip install openitinerary
+```
+
+Import models from the `openitinerary` package:
+
+```python
+from openitinerary.models.itinerary import Itinerary
+```
+
+Generate the current JSON Schema with the installed command:
+
+```bash
+openitinerary --output stdout
+```
+
 ### Adapter API configuration
 
 The Adapter API limits each uploaded document to 10 MiB by default. Set
