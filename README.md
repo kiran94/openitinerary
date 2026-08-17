@@ -1,6 +1,7 @@
 # OpenItinerary
 
-[![build](https://github.com/kiran94/openitinerary/actions/workflows/build.yml/badge.svg)](https://github.com/kiran94/openitinerary/actions/workflows/build.yml)
+[![build](https://github.com/kiran94/openitinerary/actions/workflows/build.yml/badge.svg)](https://github.com/kiran94/openitinerary/actions/workflows/build.yml) ![PyPI Version](https://img.shields.io/pypi/v/openitinerary)
+
 
 OpenItinerary is an open, vendor-neutral standard for representing travel itineraries as structured data.
 
