@@ -204,9 +204,9 @@ jobs:
           This change was prereleased to PyPI. Try it out:
 
           \`\`\`bash
-          python -m pip install open-itinerary==${VERSION}
+          python -m pip install openitinerary==${VERSION}
           \`\`\`
 
-          https://pypi.org/project/open-itinerary/${VERSION}/
+          https://pypi.org/project/openitinerary/${VERSION}/
           EOF
           )"
