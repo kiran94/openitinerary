@@ -1,0 +1,77 @@
+import asyncio
+from email.message import EmailMessage
+
+import pytest
+
+from openitinerary.adapters import InputContent
+from openitinerary.adapters.email_adapter import EmailAdapter
+
+
+def _email_content(message: EmailMessage) -> InputContent:
+    return InputContent(message.as_bytes(), "message/rfc822")
+
+
+def test_email_adapter_get_expected_media_types():
+    assert EmailAdapter().get_expected_media_types() == {"message/rfc822"}
+
+
+def test_email_adapter_rejects_unsupported_media_type():
+    with pytest.raises(ValueError, match="text/plain is not supported"):
+        asyncio.run(EmailAdapter()._extract(InputContent(b"Booking confirmation", "text/plain")))
+
+
+def test_email_adapter_extracts_plain_text_body():
+    message = EmailMessage()
+    message.set_content("Booking confirmation\nReference: ABC123")
+
+    assert asyncio.run(EmailAdapter()._extract(_email_content(message))) == "Booking confirmation\nReference: ABC123"
+
+
+def test_email_adapter_prefers_plain_text_over_html():
+    message = EmailMessage()
+    message.set_content("Plain booking confirmation")
+    message.add_alternative("<p>HTML booking confirmation</p>", subtype="html")
+
+    assert asyncio.run(EmailAdapter()._extract(_email_content(message))) == "Plain booking confirmation"
+
+
+def test_email_adapter_falls_back_to_html_when_plain_text_is_empty():
+    message = EmailMessage()
+    message.set_content(" \n\t")
+    message.add_alternative("<p>HTML booking confirmation</p>", subtype="html")
+
+    assert asyncio.run(EmailAdapter()._extract(_email_content(message))) == "HTML booking confirmation"
+
+
+def test_email_adapter_falls_back_to_html_body():
+    message = EmailMessage()
+    message.set_content(
+        """
+        <style>.mobile { display: none; }</style>
+        <p>Confirmed booking</p>
+        <p hidden>Cancelled booking</p>
+        <script>ignored()</script>
+        <p style="display: none">Responsive duplicate</p>
+        <p class="mobile">Mobile cancellation duplicate</p>
+        """,
+        subtype="html",
+    )
+
+    assert asyncio.run(EmailAdapter()._extract(_email_content(message))) == "Confirmed booking"
+
+
+def test_email_adapter_raises_when_html_body_has_no_visible_content():
+    message = EmailMessage()
+    message.set_content("<script>ignored()</script><p hidden>Cancelled booking</p>", subtype="html")
+
+    with pytest.raises(ValueError, match="could not find any content"):
+        asyncio.run(EmailAdapter()._extract(_email_content(message)))
+
+
+def test_email_adapter_raises_when_message_has_no_body():
+    message = EmailMessage()
+    message.make_mixed()
+    message.add_attachment(b"PDF attachment", maintype="application", subtype="pdf")
+
+    with pytest.raises(ValueError, match="could not find any content"):
+        asyncio.run(EmailAdapter()._extract(_email_content(message)))
