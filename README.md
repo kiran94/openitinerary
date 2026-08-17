@@ -1,5 +1,7 @@
 # OpenItinerary
 
+[![build](https://github.com/kiran94/openitinerary/actions/workflows/build.yml/badge.svg)](https://github.com/kiran94/openitinerary/actions/workflows/build.yml)
+
 OpenItinerary is an open, vendor-neutral standard for representing travel itineraries as structured data.
 
 Inspired by JSON in the data exchange space, OpenItinerary facilitates a common specification that any travel company can produce or consume without relying on proprietary formats. A single itinerary can contain flights, trains, accommodation and other travel related activities from various vendors within a single unified model.
@@ -36,7 +38,7 @@ JSONSchema --> ...
 
 *Performance sensitive consumers may want to use binary formats such as Protobuf so the standard only states that JSON is a minimum supported format. Binary formats must represent the same model.*
 
-### Python package
+### Python Package
 
 Install the Python package from PyPI:
 
@@ -98,6 +100,46 @@ The `BaseSegment` defined common concepts for all travel related activities and 
  - [ ] ZIP Adapter
  - [ ] Model Validation API
  - [x] Adapter API
- - [ ] Python Package
+ - [x] Python Package
  - [ ] JSON Schema Package
  - [ ] Batch Ingestion & Job Processing Service
+
+### Versioning and releases
+
+This repository has two independent versions:
+
+* The **schema version** is defined by `OPEN_ITINERARY_VERSION` in
+  `src/openitinerary/version.py`. Changes to the standard must update this
+  version in the same pull request and regenerate the committed schemas with
+  `make generate_out`.
+* The **Python package version** is defined in `pyproject.toml`. It changes when
+  a new Python distribution is published, including releases containing only
+  Python tooling or adapter changes. Such changes do not require a schema
+  version bump.
+
+Schema versions follow semantic versioning. Breaking changes increment the
+major version, backwards-compatible additions increment the minor version, and
+small corrections to schema documentation or metadata increment the patch
+version. Generated schema directories intentionally use only the major and
+minor components, for example `schemas/0.1/itinerary.schema.json`. A patch
+release updates the schema for that minor line rather than creating a new
+directory.
+
+Package version changes are made by a developer in a pull request intended to
+create a release. Use `uv version` so `pyproject.toml` and `uv.lock` remain in
+sync, then commit both files:
+
+```bash
+uv version --bump patch --no-sync
+```
+
+Use `minor` or `major` instead of `patch` when appropriate. Pull requests are
+published as beta versions for testing. After a package-version change is
+merged to `main`, the committed version is built and published to PyPI. A merge
+that does not change the package version does not publish a stable release.
+
+## License
+
+Copyright 2026 Kiran Patel.
+
+Licensed under the [Apache License, Version 2.0](LICENSE).
