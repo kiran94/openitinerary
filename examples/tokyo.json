@@ -1,0 +1,844 @@
+{
+  "schema_version": "0.1.0",
+  "id": "tokyo-september-2026",
+  "title": "Tokyo in September 2026",
+  "segments": [
+    {
+      "id": "e240ef71-c223-4a1c-a08d-690d48c25a72",
+      "type": "flight",
+      "title": {
+        "values": [
+          {
+            "language": "en",
+            "value": "JL746 from Manila to Tokyo (Narita)"
+          }
+        ]
+      },
+      "description": {
+        "values": [
+          {
+            "language": "en",
+            "value": "Japan Airlines nonstop flight from Manila to Tokyo Narita."
+          }
+        ]
+      },
+      "start_time_utc": "2026-09-14T02:05:00Z",
+      "end_time_utc": "2026-09-14T06:30:00Z",
+      "operator": {
+        "name": {
+          "values": [
+            {
+              "language": "en",
+              "value": "Japan Airlines"
+            },
+            {
+              "language": "ja",
+              "value": "日本航空"
+            }
+          ]
+        },
+        "website": "https://www.jal.com/"
+      },
+      "start_place": {
+        "type": "airport",
+        "name": {
+          "values": [
+            {
+              "language": "en",
+              "value": "Ninoy Aquino International Airport"
+            }
+          ]
+        },
+        "country": "PH",
+        "timezone": "Asia/Manila",
+        "coordinate": {
+          "latitude": 14.509939,
+          "longitude": 121.013859
+        },
+        "formatted_address": {
+          "values": [
+            {
+              "language": "en",
+              "value": "Andrews Avenue, Pasay 1300, Metro Manila, Philippines"
+            }
+          ]
+        },
+        "iata_code": "MNL",
+        "icao_code": "RPLL"
+      },
+      "end_place": {
+        "type": "airport",
+        "name": {
+          "values": [
+            {
+              "language": "en",
+              "value": "Narita International Airport"
+            },
+            {
+              "language": "ja",
+              "value": "成田国際空港"
+            }
+          ]
+        },
+        "country": "JP",
+        "timezone": "Asia/Tokyo",
+        "coordinate": {
+          "latitude": 35.773808,
+          "longitude": 140.388595
+        },
+        "formatted_address": {
+          "values": [
+            {
+              "language": "en",
+              "value": "1-1 Furugome, Narita, Chiba 282-0004, Japan"
+            },
+            {
+              "language": "ja",
+              "region": "JP",
+              "value": "〒282-0004 千葉県成田市古込1-1"
+            }
+          ]
+        },
+        "iata_code": "NRT",
+        "icao_code": "RJAA"
+      },
+      "flight_number": "JL746"
+    },
+    {
+      "id": "d95c121b-c3af-43c1-b302-1398dfa0d09f",
+      "type": "accommodation",
+      "title": {
+        "values": [
+          {
+            "language": "en",
+            "value": "Two nights at Park Hotel Tokyo"
+          }
+        ]
+      },
+      "description": {
+        "values": [
+          {
+            "language": "en",
+            "value": "A two-night stay in Shiodome with a planned 18:00 local arrival and an early 09:00 local checkout before the train to Osaka."
+          }
+        ]
+      },
+      "start_time_utc": "2026-09-14T09:00:00Z",
+      "end_time_utc": "2026-09-16T00:00:00Z",
+      "operator": {
+        "name": {
+          "values": [
+            {
+              "language": "en",
+              "value": "Park Hotel Tokyo"
+            },
+            {
+              "language": "ja",
+              "value": "パークホテル東京"
+            }
+          ]
+        },
+        "website": "https://parkhoteltokyo.com/",
+        "phone": "+81-3-6252-1111"
+      },
+      "place": {
+        "type": "location",
+        "name": {
+          "values": [
+            {
+              "language": "en",
+              "value": "Park Hotel Tokyo"
+            },
+            {
+              "language": "ja",
+              "value": "パークホテル東京"
+            }
+          ]
+        },
+        "country": "JP",
+        "timezone": "Asia/Tokyo",
+        "coordinate": {
+          "latitude": 35.663202,
+          "longitude": 139.759535
+        },
+        "formatted_address": {
+          "values": [
+            {
+              "language": "en",
+              "value": "Shiodome Media Tower, 1-7-1 Higashi-Shimbashi, Minato-ku, Tokyo 105-7227, Japan"
+            },
+            {
+              "language": "ja",
+              "region": "JP",
+              "value": "〒105-7227 東京都港区東新橋1丁目7番1号 汐留メディアタワー"
+            }
+          ]
+        }
+      },
+      "unit_type": {
+        "values": [
+          {
+            "language": "en",
+            "value": "Corner King Tokyo Tower Side"
+          }
+        ]
+      }
+    },
+    {
+      "id": "755498d6-abff-465f-a006-06881d2f7e97",
+      "type": "tour",
+      "title": {
+        "values": [
+          {
+            "language": "en",
+            "value": "1-Day Dynamic Tokyo Tour by Hato Bus"
+          }
+        ]
+      },
+      "description": {
+        "values": [
+          {
+            "language": "en",
+            "value": "An English-guided sightseeing bus tour including the Imperial Palace Plaza, Asakusa, a Tokyo Bay cruise and Tokyo Tower."
+          }
+        ]
+      },
+      "start_time_utc": "2026-09-14T23:30:00Z",
+      "end_time_utc": "2026-09-15T08:20:00Z",
+      "operator": {
+        "name": {
+          "values": [
+            {
+              "language": "en",
+              "value": "Hato Bus Co., Ltd."
+            },
+            {
+              "language": "ja",
+              "value": "株式会社はとバス"
+            }
+          ]
+        },
+        "website": "https://www.hatobus.com/v01/en/"
+      },
+      "place": {
+        "type": "location",
+        "name": {
+          "values": [
+            {
+              "language": "en",
+              "value": "Tokyo Station Marunouchi South Exit Hato Bus Boarding Area"
+            }
+          ]
+        },
+        "country": "JP",
+        "timezone": "Asia/Tokyo",
+        "coordinate": {
+          "latitude": 35.680843,
+          "longitude": 139.765336
+        },
+        "formatted_address": {
+          "values": [
+            {
+              "language": "en",
+              "value": "1 Marunouchi, Chiyoda-ku, Tokyo 100-0005, Japan"
+            }
+          ]
+        }
+      },
+      "stops": [
+        {
+          "type": "location",
+          "name": {
+            "values": [
+              {
+                "language": "en",
+                "value": "Imperial Palace Plaza"
+              },
+              {
+                "language": "ja",
+                "value": "皇居前広場"
+              }
+            ]
+          },
+          "country": "JP",
+          "timezone": "Asia/Tokyo",
+          "coordinate": {
+            "latitude": 35.680207,
+            "longitude": 139.757665
+          },
+          "formatted_address": {
+            "values": [
+              {
+                "language": "en",
+                "value": "Kokyogaien, Chiyoda-ku, Tokyo 100-0002, Japan"
+              }
+            ]
+          }
+        },
+        {
+          "type": "location",
+          "name": {
+            "values": [
+              {
+                "language": "en",
+                "value": "Senso-ji Temple and Nakamise Shopping Street"
+              },
+              {
+                "language": "ja",
+                "value": "浅草寺・仲見世商店街"
+              }
+            ]
+          },
+          "country": "JP",
+          "timezone": "Asia/Tokyo",
+          "coordinate": {
+            "latitude": 35.714765,
+            "longitude": 139.796655
+          },
+          "formatted_address": {
+            "values": [
+              {
+                "language": "en",
+                "value": "2-3-1 Asakusa, Taito-ku, Tokyo 111-0032, Japan"
+              }
+            ]
+          }
+        },
+        {
+          "type": "location",
+          "name": {
+            "values": [
+              {
+                "language": "en",
+                "value": "Symphony Tokyo Bay Cruise at Hinode Pier"
+              }
+            ]
+          },
+          "country": "JP",
+          "timezone": "Asia/Tokyo",
+          "coordinate": {
+            "latitude": 35.649459,
+            "longitude": 139.758348
+          },
+          "formatted_address": {
+            "values": [
+              {
+                "language": "en",
+                "value": "2-7-104 Kaigan, Minato-ku, Tokyo 105-0022, Japan"
+              }
+            ]
+          }
+        },
+        {
+          "type": "location",
+          "name": {
+            "values": [
+              {
+                "language": "en",
+                "value": "Tokyo Tower Main Deck"
+              },
+              {
+                "language": "ja",
+                "value": "東京タワー メインデッキ"
+              }
+            ]
+          },
+          "country": "JP",
+          "timezone": "Asia/Tokyo",
+          "coordinate": {
+            "latitude": 35.658581,
+            "longitude": 139.745433
+          },
+          "formatted_address": {
+            "values": [
+              {
+                "language": "en",
+                "value": "4-2-8 Shibakoen, Minato-ku, Tokyo 105-0011, Japan"
+              }
+            ]
+          }
+        }
+      ],
+      "drop_off_place": {
+        "type": "location",
+        "name": {
+          "values": [
+            {
+              "language": "en",
+              "value": "Tokyo Station Marunouchi South Entrance"
+            }
+          ]
+        },
+        "country": "JP",
+        "timezone": "Asia/Tokyo",
+        "coordinate": {
+          "latitude": 35.680843,
+          "longitude": 139.765336
+        },
+        "formatted_address": {
+          "values": [
+            {
+              "language": "en",
+              "value": "1 Marunouchi, Chiyoda-ku, Tokyo 100-0005, Japan"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "72da9db4-ef7b-49d5-89ac-e1d78771af11",
+      "type": "train",
+      "title": {
+        "values": [
+          {
+            "language": "en",
+            "value": "Nozomi 21 from Tokyo to Shin-Osaka"
+          }
+        ]
+      },
+      "description": {
+        "values": [
+          {
+            "language": "en",
+            "value": "Direct Tokaido Shinkansen service from Tokyo Station to Shin-Osaka Station."
+          }
+        ]
+      },
+      "start_time_utc": "2026-09-16T00:30:00Z",
+      "end_time_utc": "2026-09-16T03:00:00Z",
+      "operator": {
+        "name": {
+          "values": [
+            {
+              "language": "en",
+              "value": "Central Japan Railway Company"
+            },
+            {
+              "language": "ja",
+              "value": "東海旅客鉄道株式会社"
+            }
+          ]
+        },
+        "website": "https://global.jr-central.co.jp/en/"
+      },
+      "start_place": {
+        "type": "train_station",
+        "name": {
+          "values": [
+            {
+              "language": "en",
+              "value": "Tokyo Station"
+            },
+            {
+              "language": "ja",
+              "value": "東京駅"
+            }
+          ]
+        },
+        "country": "JP",
+        "timezone": "Asia/Tokyo",
+        "coordinate": {
+          "latitude": 35.681236,
+          "longitude": 139.767125
+        },
+        "formatted_address": {
+          "values": [
+            {
+              "language": "en",
+              "value": "1 Marunouchi, Chiyoda-ku, Tokyo 100-0005, Japan"
+            }
+          ]
+        }
+      },
+      "end_place": {
+        "type": "train_station",
+        "name": {
+          "values": [
+            {
+              "language": "en",
+              "value": "Shin-Osaka Station"
+            },
+            {
+              "language": "ja",
+              "value": "新大阪駅"
+            }
+          ]
+        },
+        "country": "JP",
+        "timezone": "Asia/Tokyo",
+        "coordinate": {
+          "latitude": 34.733466,
+          "longitude": 135.500254
+        },
+        "formatted_address": {
+          "values": [
+            {
+              "language": "en",
+              "value": "5-16-1 Nishinakajima, Yodogawa-ku, Osaka 532-0011, Japan"
+            }
+          ]
+        }
+      },
+      "train_number": "Nozomi 21"
+    },
+    {
+      "id": "eed10679-4c10-4380-b963-e3fb44563091",
+      "type": "accommodation",
+      "title": {
+        "values": [
+          {
+            "language": "en",
+            "value": "Two nights at Hotel Monterey Grasmere Osaka"
+          }
+        ]
+      },
+      "description": {
+        "values": [
+          {
+            "language": "en",
+            "value": "A two-night stay in Namba using the hotel's standard 15:00 local check-in and 11:00 local checkout."
+          }
+        ]
+      },
+      "start_time_utc": "2026-09-16T06:00:00Z",
+      "end_time_utc": "2026-09-18T02:00:00Z",
+      "operator": {
+        "name": {
+          "values": [
+            {
+              "language": "en",
+              "value": "Hotel Monterey Grasmere Osaka"
+            },
+            {
+              "language": "ja",
+              "value": "ホテルモントレ グラスミア大阪"
+            }
+          ]
+        },
+        "website": "https://www.hotelmonterey.co.jp/en/grasmere_osaka/",
+        "phone": "+81-6-6645-7111"
+      },
+      "place": {
+        "type": "location",
+        "name": {
+          "values": [
+            {
+              "language": "en",
+              "value": "Hotel Monterey Grasmere Osaka"
+            },
+            {
+              "language": "ja",
+              "value": "ホテルモントレ グラスミア大阪"
+            }
+          ]
+        },
+        "country": "JP",
+        "timezone": "Asia/Tokyo",
+        "coordinate": {
+          "latitude": 34.666311,
+          "longitude": 135.496022
+        },
+        "formatted_address": {
+          "values": [
+            {
+              "language": "en",
+              "value": "1-2-3 Minatomachi, Naniwa-ku, Osaka 556-0017, Japan"
+            },
+            {
+              "language": "ja",
+              "region": "JP",
+              "value": "〒556-0017 大阪府大阪市浪速区湊町1丁目2番3号"
+            }
+          ]
+        }
+      },
+      "unit_type": {
+        "values": [
+          {
+            "language": "en",
+            "value": "Non-smoking Standard Twin"
+          }
+        ]
+      }
+    },
+    {
+      "id": "844b9891-bfc0-42b8-838d-e002cebc8eb7",
+      "type": "train",
+      "title": {
+        "values": [
+          {
+            "language": "en",
+            "value": "Nozomi 30 from Shin-Osaka to Tokyo"
+          }
+        ]
+      },
+      "description": {
+        "values": [
+          {
+            "language": "en",
+            "value": "Direct Tokaido Shinkansen service to Tokyo. Nozomi trains are all-reserved during the 2026 Silver Week period beginning on this date."
+          }
+        ]
+      },
+      "start_time_utc": "2026-09-18T06:06:00Z",
+      "end_time_utc": "2026-09-18T08:33:00Z",
+      "operator": {
+        "name": {
+          "values": [
+            {
+              "language": "en",
+              "value": "Central Japan Railway Company"
+            },
+            {
+              "language": "ja",
+              "value": "東海旅客鉄道株式会社"
+            }
+          ]
+        },
+        "website": "https://global.jr-central.co.jp/en/"
+      },
+      "start_place": {
+        "type": "train_station",
+        "name": {
+          "values": [
+            {
+              "language": "en",
+              "value": "Shin-Osaka Station"
+            },
+            {
+              "language": "ja",
+              "value": "新大阪駅"
+            }
+          ]
+        },
+        "country": "JP",
+        "timezone": "Asia/Tokyo",
+        "coordinate": {
+          "latitude": 34.733466,
+          "longitude": 135.500254
+        },
+        "formatted_address": {
+          "values": [
+            {
+              "language": "en",
+              "value": "5-16-1 Nishinakajima, Yodogawa-ku, Osaka 532-0011, Japan"
+            }
+          ]
+        }
+      },
+      "end_place": {
+        "type": "train_station",
+        "name": {
+          "values": [
+            {
+              "language": "en",
+              "value": "Tokyo Station"
+            },
+            {
+              "language": "ja",
+              "value": "東京駅"
+            }
+          ]
+        },
+        "country": "JP",
+        "timezone": "Asia/Tokyo",
+        "coordinate": {
+          "latitude": 35.681236,
+          "longitude": 139.767125
+        },
+        "formatted_address": {
+          "values": [
+            {
+              "language": "en",
+              "value": "1 Marunouchi, Chiyoda-ku, Tokyo 100-0005, Japan"
+            }
+          ]
+        }
+      },
+      "train_number": "Nozomi 30"
+    },
+    {
+      "id": "c85473a0-724e-4f6c-8497-4d03577502fc",
+      "type": "accommodation",
+      "title": {
+        "values": [
+          {
+            "language": "en",
+            "value": "Final night at Park Hotel Tokyo"
+          }
+        ]
+      },
+      "description": {
+        "values": [
+          {
+            "language": "en",
+            "value": "A final night in Shiodome after returning from Osaka, with the hotel's standard 11:00 local checkout."
+          }
+        ]
+      },
+      "start_time_utc": "2026-09-18T10:30:00Z",
+      "end_time_utc": "2026-09-19T02:00:00Z",
+      "operator": {
+        "name": {
+          "values": [
+            {
+              "language": "en",
+              "value": "Park Hotel Tokyo"
+            },
+            {
+              "language": "ja",
+              "value": "パークホテル東京"
+            }
+          ]
+        },
+        "website": "https://parkhoteltokyo.com/",
+        "phone": "+81-3-6252-1111"
+      },
+      "place": {
+        "type": "location",
+        "name": {
+          "values": [
+            {
+              "language": "en",
+              "value": "Park Hotel Tokyo"
+            },
+            {
+              "language": "ja",
+              "value": "パークホテル東京"
+            }
+          ]
+        },
+        "country": "JP",
+        "timezone": "Asia/Tokyo",
+        "coordinate": {
+          "latitude": 35.663202,
+          "longitude": 139.759535
+        },
+        "formatted_address": {
+          "values": [
+            {
+              "language": "en",
+              "value": "Shiodome Media Tower, 1-7-1 Higashi-Shimbashi, Minato-ku, Tokyo 105-7227, Japan"
+            },
+            {
+              "language": "ja",
+              "region": "JP",
+              "value": "〒105-7227 東京都港区東新橋1丁目7番1号 汐留メディアタワー"
+            }
+          ]
+        }
+      },
+      "unit_type": {
+        "values": [
+          {
+            "language": "en",
+            "value": "Corner King Tokyo Tower Side"
+          }
+        ]
+      }
+    },
+    {
+      "id": "42f20fb2-b11f-4692-82d4-f36413090ea1",
+      "type": "flight",
+      "title": {
+        "values": [
+          {
+            "language": "en",
+            "value": "JL745 from Tokyo (Narita) to Manila"
+          }
+        ]
+      },
+      "description": {
+        "values": [
+          {
+            "language": "en",
+            "value": "Japan Airlines nonstop flight from Tokyo Narita to Manila."
+          }
+        ]
+      },
+      "start_time_utc": "2026-09-19T09:00:00Z",
+      "end_time_utc": "2026-09-19T13:40:00Z",
+      "operator": {
+        "name": {
+          "values": [
+            {
+              "language": "en",
+              "value": "Japan Airlines"
+            },
+            {
+              "language": "ja",
+              "value": "日本航空"
+            }
+          ]
+        },
+        "website": "https://www.jal.com/"
+      },
+      "start_place": {
+        "type": "airport",
+        "name": {
+          "values": [
+            {
+              "language": "en",
+              "value": "Narita International Airport"
+            },
+            {
+              "language": "ja",
+              "value": "成田国際空港"
+            }
+          ]
+        },
+        "country": "JP",
+        "timezone": "Asia/Tokyo",
+        "coordinate": {
+          "latitude": 35.773808,
+          "longitude": 140.388595
+        },
+        "formatted_address": {
+          "values": [
+            {
+              "language": "en",
+              "value": "1-1 Furugome, Narita, Chiba 282-0004, Japan"
+            },
+            {
+              "language": "ja",
+              "region": "JP",
+              "value": "〒282-0004 千葉県成田市古込1-1"
+            }
+          ]
+        },
+        "iata_code": "NRT",
+        "icao_code": "RJAA"
+      },
+      "end_place": {
+        "type": "airport",
+        "name": {
+          "values": [
+            {
+              "language": "en",
+              "value": "Ninoy Aquino International Airport"
+            }
+          ]
+        },
+        "country": "PH",
+        "timezone": "Asia/Manila",
+        "coordinate": {
+          "latitude": 14.509939,
+          "longitude": 121.013859
+        },
+        "formatted_address": {
+          "values": [
+            {
+              "language": "en",
+              "value": "Andrews Avenue, Pasay 1300, Metro Manila, Philippines"
+            }
+          ]
+        },
+        "iata_code": "MNL",
+        "icao_code": "RPLL"
+      },
+      "flight_number": "JL745"
+    }
+  ],
+  "created_at": "2026-08-22T00:00:00Z",
+  "updated_at": "2026-08-22T00:00:00Z"
+}
