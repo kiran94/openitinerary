@@ -8,6 +8,10 @@ Read `README.md` to understand:
 
 The README is the canonical source for project context. This document only contains instructions for AI agents.
 
+# Guidelines
+
+* For Github Actions; Put non-trivial shell logic in a dedicated script under `.github/scripts/` and invoke it from the workflow. Keep inline `run` steps limited to simple commands so scripts can be highlighted, linted, and tested independently.
+
 # Restricted Operations
 
 * Never commit to the repository.
