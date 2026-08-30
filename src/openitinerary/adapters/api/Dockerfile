@@ -28,6 +28,10 @@ ENV PATH="/app/.venv/bin:$PATH" \
     PYTHONDONTWRITEBYTECODE=1 \
     PYTHONUNBUFFERED=1
 
+RUN apt-get update \
+    && DEBIAN_FRONTEND=noninteractive apt-get upgrade --yes --no-install-recommends \
+    && rm -rf /var/lib/apt/lists/*
+
 RUN useradd --no-log-init --uid 10001 --create-home \
     --home-dir /home/openitinerary --shell /usr/sbin/nologin openitinerary
 
