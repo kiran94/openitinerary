@@ -1,12 +1,12 @@
 import asyncio
 from types import SimpleNamespace
-from unittest.mock import AsyncMock, Mock, patch
+from unittest.mock import AsyncMock, Mock
 
-import pytest
-from fastapi import HTTPException, Response, status
+from fastapi import Response
 
-from openitinerary.adapters import Adapter, DocumentExtractionError, InputContent
-from openitinerary.adapters.api import adapt as adapt_api
+from openitinerary.adapters import Adapter
+from openitinerary.adapters.api import mock as adapt_api
+from openitinerary.models.domains.flight import FlightSegment
 
 
 def _adapter(media_type: str = "application/pdf", segments: list | None = None) -> Mock:
@@ -25,98 +25,20 @@ def _upload(data: bytes, *, media_type: str = "application/pdf", size: int | Non
     )
 
 
-@pytest.mark.parametrize("size", [3, 4])
-@patch("openitinerary.adapters.api.adapt.OPEN_ITINERARY_MAX_UPLOAD_SIZE_BYTES", 4)
-@patch("openitinerary.adapters.api.adapt.ALL_ADAPTERS", new_callable=list)
-def test_adapt_accepts_files_up_to_the_configured_limit(all_adapters: list[Adapter], size: int):
-    adapter = _adapter(segments=[Mock(name="segment")])
-    all_adapters.append(adapter)
-    upload = _upload(b"x" * size)
+def test_adapt_mock_returns_fixed_segments_without_reading_upload():
+    upload = _upload(b"ignored", media_type="text/plain")
     response = Response()
 
-    actual = asyncio.run(adapt_api.adapt(upload, response))
+    actual = asyncio.run(adapt_api.adapt_mock(upload, response))
 
-    assert actual == adapter.load.return_value
-    upload.read.assert_awaited_once_with(5)
-    upload.close.assert_awaited_once_with()
-    adapter.load.assert_awaited_once_with(InputContent(b"x" * size, "application/pdf"))
-    assert response.headers["X-Segment-Count"] == "1"
-
-
-@patch("openitinerary.adapters.api.adapt.OPEN_ITINERARY_MAX_UPLOAD_SIZE_BYTES", 4)
-@patch("openitinerary.adapters.api.adapt.ALL_ADAPTERS", new_callable=list)
-def test_adapt_rejects_known_oversized_file_without_reading(all_adapters: list[Adapter]):
-    adapter = _adapter()
-    all_adapters.append(adapter)
-    upload = _upload(b"", size=5)
-
-    with pytest.raises(HTTPException) as e:
-        asyncio.run(adapt_api.adapt(upload, Response()))
-
-    assert e.value.status_code == status.HTTP_413_CONTENT_TOO_LARGE
-    assert e.value.detail == "Uploaded file exceeds the configured limit of 4 bytes"
-
+    assert len(actual) == 3
+    assert all(isinstance(segment, FlightSegment) for segment in actual)
+    assert [segment.flight_number for segment in actual] == ["PR101", "AD2898", "AD4056"]
+    assert str(actual[0].id) == "cc09f4cd-5377-4bf5-a8fd-08b8b0c57e10"
+    assert actual[0].start_place.iata_code == "HNL"
+    assert actual[0].end_place.iata_code == "MNL"
+    assert actual[1].start_place.iata_code == "SDU"
+    assert actual[2].end_place.iata_code == "MAO"
+    assert response.headers["X-Segment-Count"] == "3"
     upload.read.assert_not_awaited()
-    upload.close.assert_awaited_once_with()
-    adapter.load.assert_not_awaited()
-
-
-@patch("openitinerary.adapters.api.adapt.OPEN_ITINERARY_MAX_UPLOAD_SIZE_BYTES", 4)
-@patch("openitinerary.adapters.api.adapt.ALL_ADAPTERS", new_callable=list)
-def test_adapt_rejects_oversized_file_when_size_is_unknown(all_adapters: list[Adapter]):
-    adapter = _adapter()
-    all_adapters.append(adapter)
-    upload = _upload(b"12345")
-    upload.size = None
-
-    with pytest.raises(HTTPException) as e:
-        asyncio.run(adapt_api.adapt(upload, Response()))
-
-    assert e.value.status_code == status.HTTP_413_CONTENT_TOO_LARGE
-    upload.read.assert_awaited_once_with(5)
-    upload.close.assert_awaited_once_with()
-    adapter.load.assert_not_awaited()
-
-
-@patch("openitinerary.adapters.api.adapt.ALL_ADAPTERS", new_callable=list)
-def test_adapt_rejects_unsupported_media_type_without_reading(all_adapters: list[Adapter]):
-    adapter = _adapter()
-    all_adapters.append(adapter)
-    upload = _upload(b"content", media_type="text/plain")
-
-    with pytest.raises(HTTPException) as e:
-        asyncio.run(adapt_api.adapt(upload, Response()))
-
-    assert e.value.status_code == status.HTTP_415_UNSUPPORTED_MEDIA_TYPE
-
-    upload.read.assert_not_awaited()
-    upload.close.assert_awaited_once_with()
-    adapter.load.assert_not_awaited()
-
-
-@patch("openitinerary.adapters.api.adapt.ALL_ADAPTERS", new_callable=list)
-def test_adapt_closes_upload_when_adapter_fails(all_adapters: list[Adapter]):
-    adapter = _adapter()
-    adapter.load.side_effect = RuntimeError("adapter failed")
-    all_adapters.append(adapter)
-    upload = _upload(b"content")
-
-    with pytest.raises(RuntimeError, match="adapter failed"):
-        asyncio.run(adapt_api.adapt(upload, Response()))
-
-    upload.close.assert_awaited_once_with()
-
-
-@patch("openitinerary.adapters.api.adapt.ALL_ADAPTERS", new_callable=list)
-def test_adapt_rejects_unextractable_document(all_adapters: list[Adapter]):
-    adapter = _adapter()
-    adapter.load.side_effect = DocumentExtractionError("could not extract document content")
-    all_adapters.append(adapter)
-    upload = _upload(b"malformed content")
-
-    with pytest.raises(HTTPException) as e:
-        asyncio.run(adapt_api.adapt(upload, Response()))
-
-    assert e.value.status_code == status.HTTP_422_UNPROCESSABLE_CONTENT
-    assert e.value.detail == "could not extract document content"
     upload.close.assert_awaited_once_with()
