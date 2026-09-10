@@ -1,6 +1,8 @@
 from abc import ABC, abstractmethod
 from dataclasses import dataclass
 
+from opentelemetry import trace
+
 from openitinerary.models.itinerary import Segment
 
 
@@ -16,8 +18,14 @@ class InputContent:
 
 class Adapter(ABC):
     async def load(self, content: InputContent) -> list[Segment]:
-        temp = await self._extract(content)
-        return await self._translate(temp)
+        tracer = trace.get_tracer(__name__)
+        with tracer.start_as_current_span("Adapter Extract", attributes={"content.length.bytes": len(content.data)}):
+            temp = await self._extract(content)
+
+        with tracer.start_as_current_span("Adapter Translate", attributes={"extracted.length.string": len(temp)}):
+            segments = await self._translate(temp)
+
+        return segments
 
     @abstractmethod
     async def _extract(self, content: InputContent) -> str:
