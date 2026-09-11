@@ -37,6 +37,7 @@ def setup():
 
     EXPORT_INTERVAL_MS = int(os.environ.get("OTEL_EXPORTER_INTERVAL_MS", "15_000"))
     LOGGING_LEVEL = os.environ.get("OI_ADAPTER_LOGGING_LEVEL", "INFO")
+    LOGGING_LEVEL = logging.getLevelNamesMapping()[LOGGING_LEVEL]
 
     # Tracing
     trace_provider = TracerProvider(resource=resource)
