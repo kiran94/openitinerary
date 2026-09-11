@@ -9,6 +9,7 @@ from openitinerary.version import __version__
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
+    telemetry.setup()
     try:
         yield
     finally:
