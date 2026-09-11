@@ -1,4 +1,7 @@
+import logging
+
 from fastapi import APIRouter, Response, UploadFile
+from opentelemetry import metrics, trace
 
 from openitinerary.models.domains.flight import FlightSegment
 from openitinerary.models.itinerary import Segment
@@ -8,14 +11,26 @@ router = APIRouter()
 _TAGS = ["Mock"]
 
 
+_meter = metrics.get_meter(__name__)
+mock_metric = _meter.create_histogram("oi.document.input.size.mock", "By")
+tracer = trace.get_tracer(__name__)
+
+
 @router.post("/segment-mock", response_model=list[Segment], tags=_TAGS, include_in_schema=False)
 async def adapt_mock(file: UploadFile, response: Response) -> list[Segment]:
-    try:
-        segments: list[Segment] = _MOCK_SEGMENTS
-        response.headers["X-Segment-Count"] = str(len(segments))
-        return segments
-    finally:
-        await file.close()
+    logger = logging.getLogger(__name__)
+
+    logger.info("running adapter mock")
+    mock_metric.record(file.size, {"content_type": file.content_type})
+
+    with tracer.start_as_current_span("mock segment") as span:
+        span.set_attribute("file.size.bytes", file.size)
+        try:
+            segments: list[Segment] = _MOCK_SEGMENTS
+            response.headers["X-Segment-Count"] = str(len(segments))
+            return segments
+        finally:
+            await file.close()
 
 
 _MOCK_SEGMENTS: list[FlightSegment] = [

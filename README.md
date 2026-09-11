@@ -103,7 +103,11 @@ The `BaseSegment` defined common concepts for all travel related activities and 
  - [x] Adapter API
  - [x] Python Package
  - [ ] JSON Schema Package
- - [ ] Batch Ingestion & Job Processing Service
+ - [ ] [Batch Ingestion & Job Processing Service](https://github.com/kiran94/openitinerary-batch-processing)
+
+## Telemetry
+
+This project uses [OpenTelemetry](https://opentelemetry.io/) for logging, metrics and traces. See the [Standard environment variables](https://opentelemetry.io/docs/languages/sdk-configuration/otlp-exporter/) to configure the collector.
 
 ### Versioning and releases
 

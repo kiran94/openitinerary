@@ -1,4 +1,8 @@
+import importlib.metadata
 import re
+
+__version__ = importlib.metadata.version("openitinerary")
+
 
 OPEN_ITINERARY_VERSION = "0.1.0"
 """
@@ -36,4 +40,5 @@ def derive_major_minor(version: str) -> str:
 
 
 if __name__ == "__main__":
-    print(derive_major_minor(OPEN_ITINERARY_VERSION))
+    print("OPEN_ITINERARY_VERSION", derive_major_minor(OPEN_ITINERARY_VERSION))
+    print("OPEN_ITINERARY_PYTHON_PACKAGE_VERSION", __version__)

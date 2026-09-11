@@ -1,6 +1,6 @@
 [project]
 name = "openitinerary"
-version = "0.1.3"
+version = "0.1.4"
 description = "OpenItinerary is an open, vendor-neutral standard for representing travel itineraries as structured data."
 readme = "README.md"
 license = "Apache-2.0"
@@ -32,6 +32,14 @@ adapters = [
     "pydantic-ai>=2.22.0",
     "pydantic-ai-slim[duckduckgo]>=2.22.0",
     "pypdf>=6.14.2",
+    "opentelemetry-api>=1.44.0",
+    "opentelemetry-sdk>=1.44.0",
+    "opentelemetry-exporter-otlp>=1.44.0",
+    "opentelemetry-instrumentation-fastapi>=0.65b0",
+    "opentelemetry-instrumentation-httpx>=0.65b0",
+    "opentelemetry-instrumentation-requests>=0.65b0",
+    "opentelemetry-instrumentation-grpc>=0.65b0",
+    "opentelemetry-instrumentation-logging>=0.65b0",
 ]
 
 [project.scripts]
