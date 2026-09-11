@@ -4,6 +4,7 @@ from fastapi import FastAPI
 from fastapi.responses import RedirectResponse
 
 from openitinerary.adapters.api import adapt, mock, telemetry
+from openitinerary.version import __version__
 
 
 @asynccontextmanager
@@ -14,9 +15,7 @@ async def lifespan(app: FastAPI):
         telemetry.shutdown()
 
 
-telemetry.setup()
-
-app = FastAPI(title="OpenItinerary Adapter API", debug=False, lifespan=lifespan)
+app = FastAPI(title="OpenItinerary Adapter API", version=__version__, debug=False, lifespan=lifespan)
 telemetry.setup_libraries(app)
 
 app.include_router(adapt.router, prefix="/api/v1/adapt")

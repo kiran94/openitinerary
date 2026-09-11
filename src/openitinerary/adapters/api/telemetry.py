@@ -19,12 +19,14 @@ from opentelemetry.sdk.resources import Resource
 from opentelemetry.sdk.trace import TracerProvider
 from opentelemetry.sdk.trace.export import BatchSpanProcessor, ConsoleSpanExporter
 
+from openitinerary.version import __version__
+
 
 def setup():
     resource = Resource.create(
         {
             "service.name": "oi-adapter",
-            "service.version": "0.0.1",
+            "service.version": __version__,
         }
     )
 
