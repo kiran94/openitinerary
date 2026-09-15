@@ -24,7 +24,7 @@ from openitinerary.version import __version__
 
 
 class RequestIdFilter(logging.Filter):
-    """Attach the request ID from the current ASGI request to log records."""
+    """Attach the request ID from the current request to log records."""
 
     def filter(self, record: logging.LogRecord) -> bool:
         record.request_id = correlation_id.get("-")
