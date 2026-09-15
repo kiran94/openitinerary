@@ -21,7 +21,7 @@ async def lifespan(app: FastAPI):
 app = FastAPI(title="OpenItinerary Adapter API", version=__version__, debug=False, lifespan=lifespan)
 telemetry.setup_libraries(app)
 
-app.add_middleware(CorrelationIdMiddleware, generator=uuid4().__str__)
+app.add_middleware(CorrelationIdMiddleware, generator=lambda: str(uuid4()))
 app.include_router(adapt.router, prefix="/api/v1/adapt")
 app.include_router(mock.router, prefix="/api/v1/mock")
 
