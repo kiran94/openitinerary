@@ -40,6 +40,7 @@ adapters = [
     "opentelemetry-instrumentation-requests>=0.65b0",
     "opentelemetry-instrumentation-grpc>=0.65b0",
     "opentelemetry-instrumentation-logging>=0.65b0",
+    "asgi-correlation-id>=5.0.1",
 ]
 
 [project.scripts]
