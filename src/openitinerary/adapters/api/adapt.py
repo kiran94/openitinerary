@@ -1,3 +1,4 @@
+import logging
 import os
 
 from fastapi import HTTPException, Response, UploadFile, status
@@ -13,6 +14,7 @@ from openitinerary.models.itinerary import Segment
 router = APIRouter()
 
 _TAGS = ["Adapt"]
+logger = logging.getLogger(__name__)
 
 OPEN_ITINERARY_MAX_UPLOAD_SIZE_BYTES = int(os.environ.get("OPEN_ITINERARY_MAX_UPLOAD_SIZE_BYTES", "10485760"))  # 10MB
 
@@ -40,11 +42,24 @@ async def adapt(file: UploadFile, response: Response) -> list[Segment]:
         try:
             adapter = determine_adapter(file.content_type)
             if not adapter:
+                logger.warning(
+                    "document content type is not supported",
+                    extra={"content_type": file.content_type, "status_code": status.HTTP_415_UNSUPPORTED_MEDIA_TYPE},
+                )
                 raise HTTPException(
                     status_code=status.HTTP_415_UNSUPPORTED_MEDIA_TYPE, detail=f"'{file.content_type}' is not supported"
                 )
 
             if file.size and file.size > OPEN_ITINERARY_MAX_UPLOAD_SIZE_BYTES:
+                logger.warning(
+                    "document exceeds the configured upload limit",
+                    extra={
+                        "content_type": file.content_type,
+                        "file_size_bytes": file.size,
+                        "max_file_size_bytes": OPEN_ITINERARY_MAX_UPLOAD_SIZE_BYTES,
+                        "status_code": status.HTTP_413_CONTENT_TOO_LARGE,
+                    },
+                )
                 raise _upload_too_large_error()
 
             raw_file_data = await file.read(OPEN_ITINERARY_MAX_UPLOAD_SIZE_BYTES + 1)
@@ -55,6 +70,15 @@ async def adapt(file: UploadFile, response: Response) -> list[Segment]:
                 error = _upload_too_large_error()
                 span.set_status(trace.StatusCode.ERROR)
                 span.record_exception(error)
+                logger.warning(
+                    "document exceeds the configured upload limit",
+                    extra={
+                        "content_type": file.content_type,
+                        "file_size_bytes": len(raw_file_data),
+                        "max_file_size_bytes": OPEN_ITINERARY_MAX_UPLOAD_SIZE_BYTES,
+                        "status_code": status.HTTP_413_CONTENT_TOO_LARGE,
+                    },
+                )
                 raise error
 
             span.set_attribute("content.type", file.content_type)
@@ -65,10 +89,22 @@ async def adapt(file: UploadFile, response: Response) -> list[Segment]:
             except DocumentExtractionError as exc:
                 span.set_status(trace.StatusCode.ERROR)
                 span.record_exception(exc)
+                logger.warning(
+                    "document extraction failed",
+                    extra={"content_type": file.content_type, "status_code": status.HTTP_422_UNPROCESSABLE_CONTENT},
+                )
                 raise HTTPException(status_code=status.HTTP_422_UNPROCESSABLE_CONTENT, detail=str(exc)) from exc
 
             response.headers["X-Segment-Count"] = str(len(segments))
             span.set_attribute("segment.count", len(segments))
+            logger.info(
+                "document adapted",
+                extra={
+                    "content_type": file.content_type,
+                    "segment_count": len(segments),
+                    "status_code": status.HTTP_200_OK,
+                },
+            )
             return segments
         finally:
             await file.close()
