@@ -1,5 +1,7 @@
 from contextlib import asynccontextmanager
+from uuid import uuid4
 
+from asgi_correlation_id import CorrelationIdMiddleware
 from fastapi import FastAPI
 from fastapi.responses import RedirectResponse
 
@@ -19,6 +21,7 @@ async def lifespan(app: FastAPI):
 app = FastAPI(title="OpenItinerary Adapter API", version=__version__, debug=False, lifespan=lifespan)
 telemetry.setup_libraries(app)
 
+app.add_middleware(CorrelationIdMiddleware, generator=uuid4().__str__)
 app.include_router(adapt.router, prefix="/api/v1/adapt")
 app.include_router(mock.router, prefix="/api/v1/mock")
 
