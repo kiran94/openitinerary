@@ -1,6 +1,7 @@
 import logging
 import os
 
+from asgi_correlation_id import correlation_id
 from fastapi import FastAPI
 from opentelemetry import metrics, trace
 from opentelemetry._logs import get_logger_provider, set_logger_provider
@@ -20,6 +21,14 @@ from opentelemetry.sdk.trace import TracerProvider
 from opentelemetry.sdk.trace.export import BatchSpanProcessor, ConsoleSpanExporter
 
 from openitinerary.version import __version__
+
+
+class RequestIdFilter(logging.Filter):
+    """Attach the request ID from the current request to log records."""
+
+    def filter(self, record: logging.LogRecord) -> bool:
+        record.request_id = correlation_id.get("-")
+        return True
 
 
 def setup():
@@ -52,6 +61,7 @@ def setup():
     logger_provider = LoggerProvider(resource=resource)
     logger_provider.add_log_record_processor(BatchLogRecordProcessor(OTLPLogExporter()))
     logger_handler = LoggingHandler(logger_provider=logger_provider)
+    logger_handler.addFilter(RequestIdFilter())
 
     root_logger = logging.getLogger()
     root_logger.setLevel(LOGGING_LEVEL)
