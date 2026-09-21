@@ -5,7 +5,7 @@ from asgi_correlation_id import CorrelationIdMiddleware
 from fastapi import FastAPI
 from fastapi.responses import RedirectResponse
 
-from openitinerary.adapters.api import adapt, mock, telemetry
+from openitinerary.adapters.api import adapt, health, mock, telemetry
 from openitinerary.version import __version__
 
 
@@ -24,6 +24,7 @@ telemetry.setup_libraries(app)
 app.add_middleware(CorrelationIdMiddleware, generator=lambda: str(uuid4()))
 app.include_router(adapt.router, prefix="/api/v1/adapt")
 app.include_router(mock.router, prefix="/api/v1/mock")
+app.include_router(health.router, prefix="/health")
 
 
 @app.get("/", include_in_schema=False)
