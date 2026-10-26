@@ -1,9 +1,17 @@
-# OpenItinerary
+<h1 align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="assets/openitinerary-social-preview-dark.png" />
+    <source media="(prefers-color-scheme: light)" srcset="assets/openitinerary-social-preview-light.png" />
+    <img src="assets/openitinerary-social-preview-light.png" alt="OpenItinerary" width="560" />
+  </picture>
+</h1>
 
-[![build](https://github.com/kiran94/openitinerary/actions/workflows/build.yml/badge.svg)](https://github.com/kiran94/openitinerary/actions/workflows/build.yml) ![PyPI Version](https://img.shields.io/pypi/v/openitinerary)
+<p align="center">
+  <a href="https://github.com/kiran94/openitinerary/actions/workflows/build.yml"><img src="https://github.com/kiran94/openitinerary/actions/workflows/build.yml/badge.svg" alt="Build status" /></a>
+  <img src="https://img.shields.io/pypi/v/openitinerary" alt="PyPI version" />
+</p>
 
-
-OpenItinerary is an open, vendor-neutral standard for representing travel itineraries as structured data.
+<p align="center"><strong>An open, vendor-neutral standard for representing travel itineraries as structured data.</strong></p>
 
 Inspired by JSON in the data exchange space, OpenItinerary facilitates a common specification that any travel company can produce or consume without relying on proprietary formats. A single itinerary can contain flights, trains, accommodation and other travel related activities from various vendors within a single unified model.
 
