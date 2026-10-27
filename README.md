@@ -321,7 +321,7 @@ complementary projects exploring real-world travel-data workflows.
 | --- | --- |
 | **[OpenItinerary](https://github.com/kiran94/openitinerary)** | Defines the vendor-neutral schema and provides validation and document-conversion tooling. |
 | **[OpenItinerary Batch Processing](https://github.com/kiran94/openitinerary-batch-processing)** | Processes travel documents asynchronously, with job tracking, object storage, worker orchestration, failure handling, and operational telemetry. |
-| **[OpenItinerary Server](https://github.com/kiran94/openitinerary-server)** | Validates, stores, and serves OpenItinerary documents through a persistent HTTP API. |
+<!-- | **[OpenItinerary Server](https://github.com/kiran94/openitinerary-server)** | Validates, stores, and serves OpenItinerary documents through a persistent HTTP API. | -->
 
 These projects are separate components at different stages of maturity. They
 demonstrate possible ways to build around the standard; none is required to
