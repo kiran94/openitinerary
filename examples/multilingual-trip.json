@@ -1,0 +1,256 @@
+{
+  "schema_version": "0.1.0",
+  "id": "multilingual-trip-example",
+  "title": "A multilingual trip from Singapore to Kyoto",
+  "segments": [
+    {
+      "id": "33333333-3333-4333-8333-333333333331",
+      "type": "flight",
+      "title": {
+        "values": [
+          {
+            "language": "en",
+            "value": "Singapore to Tokyo"
+          },
+          {
+            "language": "ja",
+            "value": "シンガポールから東京へ"
+          }
+        ]
+      },
+      "start_time_utc": "2027-03-17T14:25:00Z",
+      "end_time_utc": "2027-03-17T20:55:00Z",
+      "start_place": {
+        "type": "airport",
+        "name": {
+          "values": [
+            {
+              "language": "en",
+              "value": "Singapore Changi Airport"
+            },
+            {
+              "language": "ja",
+              "value": "シンガポール・チャンギ空港"
+            }
+          ]
+        },
+        "country": "SG",
+        "timezone": "Asia/Singapore",
+        "coordinate": {
+          "latitude": 1.3644,
+          "longitude": 103.9915
+        },
+        "iata_code": "SIN",
+        "icao_code": "WSSS"
+      },
+      "end_place": {
+        "type": "airport",
+        "name": {
+          "values": [
+            {
+              "language": "en",
+              "value": "Haneda Airport"
+            },
+            {
+              "language": "ja",
+              "value": "羽田空港"
+            }
+          ]
+        },
+        "country": "JP",
+        "timezone": "Asia/Tokyo",
+        "coordinate": {
+          "latitude": 35.5494,
+          "longitude": 139.7798
+        },
+        "iata_code": "HND",
+        "icao_code": "RJTT"
+      },
+      "operator": {
+        "name": {
+          "values": [
+            {
+              "language": "en",
+              "value": "Japan Airlines"
+            },
+            {
+              "language": "ja",
+              "value": "日本航空"
+            }
+          ]
+        },
+        "website": "https://www.jal.com/"
+      },
+      "flight_number": "JL036"
+    },
+    {
+      "id": "33333333-3333-4333-8333-333333333332",
+      "type": "train",
+      "title": {
+        "values": [
+          {
+            "language": "en",
+            "value": "Tokyo to Kyoto"
+          },
+          {
+            "language": "ja",
+            "value": "東京から京都へ"
+          }
+        ]
+      },
+      "start_time_utc": "2027-03-17T23:30:00Z",
+      "end_time_utc": "2027-03-18T01:45:00Z",
+      "start_place": {
+        "type": "train_station",
+        "name": {
+          "values": [
+            {
+              "language": "en",
+              "value": "Tokyo Station"
+            },
+            {
+              "language": "ja",
+              "value": "東京駅"
+            }
+          ]
+        },
+        "country": "JP",
+        "timezone": "Asia/Tokyo",
+        "coordinate": {
+          "latitude": 35.6812,
+          "longitude": 139.7671
+        }
+      },
+      "end_place": {
+        "type": "train_station",
+        "name": {
+          "values": [
+            {
+              "language": "en",
+              "value": "Kyoto Station"
+            },
+            {
+              "language": "ja",
+              "value": "京都駅"
+            }
+          ]
+        },
+        "country": "JP",
+        "timezone": "Asia/Tokyo",
+        "coordinate": {
+          "latitude": 34.9858,
+          "longitude": 135.7588
+        }
+      },
+      "operator": {
+        "name": {
+          "values": [
+            {
+              "language": "en",
+              "value": "Central Japan Railway Company"
+            },
+            {
+              "language": "ja",
+              "value": "東海旅客鉄道"
+            }
+          ]
+        },
+        "website": "https://global.jr-central.co.jp/en/"
+      },
+      "train_number": "Nozomi 21"
+    },
+    {
+      "id": "33333333-3333-4333-8333-333333333333",
+      "type": "accommodation",
+      "title": {
+        "values": [
+          {
+            "language": "en",
+            "value": "Three nights in Kyoto"
+          },
+          {
+            "language": "ja",
+            "value": "京都で三泊"
+          }
+        ]
+      },
+      "start_time_utc": "2027-03-18T02:30:00Z",
+      "end_time_utc": "2027-03-21T01:00:00Z",
+      "place": {
+        "type": "location",
+        "name": {
+          "values": [
+            {
+              "language": "en",
+              "value": "Maple Lantern Guesthouse"
+            },
+            {
+              "language": "ja",
+              "value": "楓灯ゲストハウス"
+            }
+          ]
+        },
+        "country": "JP",
+        "timezone": "Asia/Tokyo",
+        "coordinate": {
+          "latitude": 35.0116,
+          "longitude": 135.7681
+        }
+      },
+      "unit_type": {
+        "values": [
+          {
+            "language": "en",
+            "value": "Twin room"
+          },
+          {
+            "language": "ja",
+            "value": "ツインルーム"
+          }
+        ]
+      }
+    },
+    {
+      "id": "33333333-3333-4333-8333-333333333334",
+      "type": "activity",
+      "title": {
+        "values": [
+          {
+            "language": "en",
+            "value": "Tea workshop"
+          },
+          {
+            "language": "ja",
+            "value": "茶道体験"
+          }
+        ]
+      },
+      "start_time_utc": "2027-03-19T05:00:00Z",
+      "end_time_utc": "2027-03-19T06:30:00Z",
+      "place": {
+        "type": "location",
+        "name": {
+          "values": [
+            {
+              "language": "en",
+              "value": "Tsukikage Tea Studio"
+            },
+            {
+              "language": "ja",
+              "value": "月影茶房"
+            }
+          ]
+        },
+        "country": "JP",
+        "timezone": "Asia/Tokyo",
+        "coordinate": {
+          "latitude": 35.0037,
+          "longitude": 135.7788
+        }
+      },
+      "activity_type": "class"
+    }
+  ],
+  "created_at": "2027-01-01T00:00:00Z",
+  "updated_at": "2027-01-01T00:00:00Z"
+}

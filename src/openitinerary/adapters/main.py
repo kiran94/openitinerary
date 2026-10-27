@@ -1,7 +1,7 @@
 import argparse
 import asyncio
 import logging
-import os
+from collections.abc import Sequence
 from pathlib import Path
 
 from openitinerary.adapters import Adapter, InputContent
@@ -13,17 +13,25 @@ logging.basicConfig(format=logging.BASIC_FORMAT, level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 
-async def main():
+def _parse_args(args: Sequence[str] | None = None) -> argparse.Namespace:
     parser = argparse.ArgumentParser()
-    parser.add_argument("-i", "--input", default="./data/example_documents/HNL_MNL.pdf")
-    parser.add_argument("-o", "--output-folder", dest="output_folder", default="./data/example_documents/converted/")
+    parser.add_argument("input", type=Path, help="PDF, HTML, or EML travel document to convert")
+    parser.add_argument(
+        "-o",
+        "--output-folder",
+        type=Path,
+        default=Path("converted"),
+        help="Directory for converted segment JSON files (default: ./converted)",
+    )
 
-    args = parser.parse_args()
+    return parser.parse_args(args)
 
-    file_type = Path(args.input).suffix
 
-    content_type: str = None
-    adapter: Adapter = None
+async def _adapt(input_path: Path, output_folder: Path) -> None:
+    file_type = input_path.suffix.lower()
+
+    content_type: str
+    adapter: Adapter
 
     match file_type:
         case ".pdf":
@@ -38,24 +46,28 @@ async def main():
         case _:
             raise NotImplementedError(f"{file_type} is not supported")
 
-    logger.info("reading %s", args.input)
-    data = await asyncio.to_thread(Path(args.input).read_bytes)
+    logger.info("reading %s", input_path)
+    data = await asyncio.to_thread(input_path.read_bytes)
 
     logger.info("adapting content")
     content = InputContent(data, content_type)
     result = await adapter.load(content)
 
-    os.makedirs(args.output_folder, exist_ok=True)
+    output_folder.mkdir(parents=True, exist_ok=True)
 
     for index, current_result in enumerate(result):
         obj = current_result.model_dump_json(indent=4)
 
-        file_name = Path(args.input).name + f"_{index}.json"
-        file_name = os.path.join(args.output_folder, file_name)
+        output_file = output_folder / f"{input_path.name}_{index}.json"
 
-        logger.info("dumping result %s to %s", index, file_name)
-        await asyncio.to_thread(Path(file_name).write_text, obj)
+        logger.info("dumping result %s to %s", index, output_file)
+        await asyncio.to_thread(output_file.write_text, obj, encoding="utf-8")
+
+
+def main() -> None:
+    args = _parse_args()
+    asyncio.run(_adapt(args.input, args.output_folder))
 
 
 if __name__ == "__main__":
-    asyncio.run(main())
+    main()

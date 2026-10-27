@@ -193,3 +193,5 @@ schemas/schema.json.tmp
 
 data
 .DS_Store
+
+converted/

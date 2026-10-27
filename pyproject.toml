@@ -1,6 +1,6 @@
 [project]
 name = "openitinerary"
-version = "0.1.8"
+version = "0.1.9"
 description = "OpenItinerary is an open, vendor-neutral standard for representing travel itineraries as structured data."
 readme = "README.md"
 license = "Apache-2.0"
@@ -45,6 +45,7 @@ adapters = [
 
 [project.scripts]
 openitinerary = "openitinerary:main"
+openitinerary-adapt = "openitinerary.adapters.main:main"
 
 [project.urls]
 Homepage = "https://pypi.org/project/openitinerary/"
@@ -54,6 +55,12 @@ Documentation = "https://github.com/kiran94/openitinerary/blob/main/README.md"
 [build-system]
 requires = ["uv_build>=0.11.8,<0.12.0"]
 build-backend = "uv_build"
+
+[tool.uv.build-backend]
+wheel-exclude = [
+    "**/test_*.py",
+    "**/Dockerfile",
+]
 
 [dependency-groups]
 dev = [

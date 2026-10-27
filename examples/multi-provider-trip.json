@@ -1,0 +1,344 @@
+{
+  "schema_version": "0.1.0",
+  "id": "multi-provider-trip-example",
+  "title": "A multi-provider trip across Japan",
+  "segments": [
+    {
+      "id": "22222222-2222-4222-8222-222222222221",
+      "type": "flight",
+      "title": {
+        "values": [
+          {
+            "language": "en",
+            "value": "Manila to Tokyo"
+          }
+        ]
+      },
+      "description": {
+        "values": [
+          {
+            "language": "en",
+            "value": "A fictional flight used to demonstrate a multi-provider itinerary."
+          }
+        ]
+      },
+      "start_time_utc": "2027-03-10T01:40:00Z",
+      "end_time_utc": "2027-03-10T05:45:00Z",
+      "operator": {
+        "name": {
+          "values": [
+            {
+              "language": "en",
+              "value": "Japan Airlines"
+            },
+            {
+              "language": "ja",
+              "value": "日本航空"
+            }
+          ]
+        },
+        "website": "https://www.jal.com/"
+      },
+      "start_place": {
+        "type": "airport",
+        "name": {
+          "values": [
+            {
+              "language": "en",
+              "value": "Ninoy Aquino International Airport"
+            }
+          ]
+        },
+        "country": "PH",
+        "timezone": "Asia/Manila",
+        "coordinate": {
+          "latitude": 14.5086,
+          "longitude": 121.0198
+        },
+        "iata_code": "MNL",
+        "icao_code": "RPLL"
+      },
+      "end_place": {
+        "type": "airport",
+        "name": {
+          "values": [
+            {
+              "language": "en",
+              "value": "Narita International Airport"
+            }
+          ]
+        },
+        "country": "JP",
+        "timezone": "Asia/Tokyo",
+        "coordinate": {
+          "latitude": 35.772,
+          "longitude": 140.3929
+        },
+        "iata_code": "NRT",
+        "icao_code": "RJAA"
+      },
+      "flight_number": "JL746"
+    },
+    {
+      "id": "22222222-2222-4222-8222-222222222222",
+      "type": "transfer",
+      "title": {
+        "values": [
+          {
+            "language": "en",
+            "value": "Airport shuttle to central Tokyo"
+          }
+        ]
+      },
+      "start_time_utc": "2027-03-10T06:30:00Z",
+      "end_time_utc": "2027-03-10T08:00:00Z",
+      "start_place": {
+        "type": "airport",
+        "name": {
+          "values": [
+            {
+              "language": "en",
+              "value": "Narita International Airport"
+            }
+          ]
+        },
+        "country": "JP",
+        "timezone": "Asia/Tokyo",
+        "coordinate": {
+          "latitude": 35.772,
+          "longitude": 140.3929
+        },
+        "iata_code": "NRT",
+        "icao_code": "RJAA"
+      },
+      "end_place": {
+        "type": "location",
+        "name": {
+          "values": [
+            {
+              "language": "en",
+              "value": "Harborlight Tokyo Hotel"
+            }
+          ]
+        },
+        "country": "JP",
+        "timezone": "Asia/Tokyo",
+        "coordinate": {
+          "latitude": 35.6812,
+          "longitude": 139.7671
+        }
+      },
+      "transfer_mode": "shuttle"
+    },
+    {
+      "id": "22222222-2222-4222-8222-222222222223",
+      "type": "accommodation",
+      "title": {
+        "values": [
+          {
+            "language": "en",
+            "value": "Five nights in Tokyo"
+          }
+        ]
+      },
+      "start_time_utc": "2027-03-10T08:15:00Z",
+      "end_time_utc": "2027-03-15T00:00:00Z",
+      "operator": {
+        "name": {
+          "values": [
+            {
+              "language": "en",
+              "value": "Harborlight Tokyo Hotel"
+            }
+          ]
+        }
+      },
+      "place": {
+        "type": "location",
+        "name": {
+          "values": [
+            {
+              "language": "en",
+              "value": "Harborlight Tokyo Hotel"
+            }
+          ]
+        },
+        "country": "JP",
+        "timezone": "Asia/Tokyo",
+        "coordinate": {
+          "latitude": 35.6812,
+          "longitude": 139.7671
+        }
+      },
+      "unit_type": {
+        "values": [
+          {
+            "language": "en",
+            "value": "Standard double room"
+          }
+        ]
+      }
+    },
+    {
+      "id": "22222222-2222-4222-8222-222222222224",
+      "type": "activity",
+      "title": {
+        "values": [
+          {
+            "language": "en",
+            "value": "Contemporary art exhibition"
+          }
+        ]
+      },
+      "start_time_utc": "2027-03-11T01:00:00Z",
+      "end_time_utc": "2027-03-11T03:00:00Z",
+      "place": {
+        "type": "location",
+        "name": {
+          "values": [
+            {
+              "language": "en",
+              "value": "Aoba Contemporary Gallery"
+            }
+          ]
+        },
+        "country": "JP",
+        "timezone": "Asia/Tokyo",
+        "coordinate": {
+          "latitude": 35.6654,
+          "longitude": 139.7298
+        }
+      },
+      "activity_type": "attraction"
+    },
+    {
+      "id": "22222222-2222-4222-8222-222222222225",
+      "type": "tour",
+      "title": {
+        "values": [
+          {
+            "language": "en",
+            "value": "Old and new Tokyo walking tour"
+          }
+        ]
+      },
+      "start_time_utc": "2027-03-12T00:00:00Z",
+      "end_time_utc": "2027-03-12T06:00:00Z",
+      "place": {
+        "type": "location",
+        "name": {
+          "values": [
+            {
+              "language": "en",
+              "value": "Tokyo Station meeting point"
+            }
+          ]
+        },
+        "country": "JP",
+        "timezone": "Asia/Tokyo",
+        "coordinate": {
+          "latitude": 35.6812,
+          "longitude": 139.7671
+        }
+      },
+      "stops": [
+        {
+          "type": "location",
+          "name": {
+            "values": [
+              {
+                "language": "en",
+                "value": "Asakusa"
+              }
+            ]
+          },
+          "country": "JP",
+          "timezone": "Asia/Tokyo",
+          "coordinate": {
+            "latitude": 35.7148,
+            "longitude": 139.7967
+          }
+        },
+        {
+          "type": "location",
+          "name": {
+            "values": [
+              {
+                "language": "en",
+                "value": "Shibuya"
+              }
+            ]
+          },
+          "country": "JP",
+          "timezone": "Asia/Tokyo",
+          "coordinate": {
+            "latitude": 35.6595,
+            "longitude": 139.7005
+          }
+        }
+      ]
+    },
+    {
+      "id": "22222222-2222-4222-8222-222222222226",
+      "type": "train",
+      "title": {
+        "values": [
+          {
+            "language": "en",
+            "value": "Tokyo to Kyoto"
+          }
+        ]
+      },
+      "start_time_utc": "2027-03-15T00:30:00Z",
+      "end_time_utc": "2027-03-15T02:45:00Z",
+      "start_place": {
+        "type": "train_station",
+        "name": {
+          "values": [
+            {
+              "language": "en",
+              "value": "Tokyo Station"
+            }
+          ]
+        },
+        "country": "JP",
+        "timezone": "Asia/Tokyo",
+        "coordinate": {
+          "latitude": 35.6812,
+          "longitude": 139.7671
+        }
+      },
+      "end_place": {
+        "type": "train_station",
+        "name": {
+          "values": [
+            {
+              "language": "en",
+              "value": "Kyoto Station"
+            }
+          ]
+        },
+        "country": "JP",
+        "timezone": "Asia/Tokyo",
+        "coordinate": {
+          "latitude": 34.9858,
+          "longitude": 135.7588
+        }
+      },
+      "operator": {
+        "name": {
+          "values": [
+            {
+              "language": "en",
+              "value": "Central Japan Railway Company"
+            }
+          ]
+        },
+        "website": "https://global.jr-central.co.jp/en/"
+      },
+      "train_number": "Nozomi 21"
+    }
+  ],
+  "created_at": "2027-01-01T00:00:00Z",
+  "updated_at": "2027-01-01T00:00:00Z"
+}

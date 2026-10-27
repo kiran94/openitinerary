@@ -1,17 +1,15 @@
 import os
+from glob import glob
 from pathlib import Path
+
+import pytest
 
 from openitinerary.models.itinerary import Itinerary
 
+_examples_folder = Path(os.getcwd()) / "examples"
 
-def test_validate_examples():
-    examples_folder = Path(os.getcwd()) / "examples"
-    target_files = []
 
-    for file in os.listdir(examples_folder):
-        if file.endswith(".json"):
-            target_files.append(examples_folder / file)
-
-    for target in target_files:
-        with open(target, "r") as f:
-            Itinerary.model_validate_json(f.read())
+@pytest.mark.parametrize("file", glob("*.json", root_dir=_examples_folder))
+def test_validate_examples(file: str):
+    with open(_examples_folder / file, "r", encoding="utf-8") as f:
+        Itinerary.model_validate_json(f.read())
