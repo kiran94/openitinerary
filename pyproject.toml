@@ -45,6 +45,7 @@ adapters = [
 
 [project.scripts]
 openitinerary = "openitinerary:main"
+openitinerary-adapt = "openitinerary.adapters.main:main"
 
 [project.urls]
 Homepage = "https://pypi.org/project/openitinerary/"
