@@ -96,8 +96,7 @@ Convert a PDF, HTML, or EML booking into validated OpenItinerary segments:
 ```bash
 export OPENAI_API_KEY="your-api-key"
 
-uvx --from 'openitinerary[adapters]' \
-    openitinerary-adapt booking.pdf
+uvx --from 'openitinerary[adapters]' openitinerary-adapt booking.pdf
 ```
 
 Each extracted segment is written as JSON under `./converted`. Choose another
@@ -113,8 +112,8 @@ output directory with `--output-folder`.
 
 | Audience | What OpenItinerary enables |
 | --- | --- |
-| **Travel application developers** | Normalize content from different vendors and document formats into one typed model, then build a unified timeline without repeating core logic for every source. |
-| **Travel providers** | Airlines, hotels, and booking platforms can emit OpenItinerary alongside their existing formats when sharing purchased itineraries or individual segments with customers and integration partners. |
+| **Travel Application Developers** | Normalize content from different vendors and document formats into one typed model, then build a unified timeline without repeating core logic for every source. |
+| **Travel Providers** | Airlines, hotels, and booking platforms can emit OpenItinerary alongside their existing formats when sharing purchased itineraries or individual segments with customers and integration partners. |
 | **Travellers** | Applications that support the same OpenItinerary schema version can combine bookings from different providers into one searchable, connected itinerary and exchange itinerary documents with other compatible systems using a shared format. This creates a path to portable travel data instead of leaving bookings scattered across apps, emails, and PDFs. |
 
 ## How it works
@@ -158,7 +157,7 @@ generating types from the JSON Schema. Because they are exercised by the test
 suite, changes that make an example incompatible with the model fail
 validation.
 
-## Design principles
+## Design Principles
 
 | Principle | Commitment |
 | --- | --- |
@@ -232,6 +231,7 @@ Run the published container from GitHub Container Registry:
 
 ```bash
 export OPENAI_API_KEY="your-api-key"
+export OTEL_SDK_DISABLED=true
 
 docker run --rm \
     --publish 8000:8000 \
