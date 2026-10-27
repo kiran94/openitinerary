@@ -115,6 +115,7 @@ output directory with `--output-folder`.
 | **Travel Application Developers** | Normalize content from different vendors and document formats into one typed model, then build a unified timeline without repeating core logic for every source. |
 | **Travel Providers** | Airlines, hotels, and booking platforms can emit OpenItinerary alongside their existing formats when sharing purchased itineraries or individual segments with customers and integration partners. |
 | **Travellers** | Applications that support the same OpenItinerary schema version can combine bookings from different providers into one searchable, connected itinerary and exchange itinerary documents with other compatible systems using a shared format. This creates a path to portable travel data instead of leaving bookings scattered across apps, emails, and PDFs. |
+| **Agentic Application Developers** | Give agents a versioned, validated contract for reading, producing, and exchanging itinerary data across multi-step travel workflows, without coupling agent logic to each provider’s proprietary format. |
 
 ## How it works
 
