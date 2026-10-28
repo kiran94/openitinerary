@@ -4,8 +4,6 @@ import logging
 import os
 from pathlib import Path
 
-from pydantic import ValidationError
-
 from openitinerary.models.itinerary import Itinerary
 from openitinerary.version import (
     JSON_SCHEMA_DIALECT,
