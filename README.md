@@ -62,7 +62,7 @@ uvx openitinerary schema --output stdout --indent
 
 ### Validate an Itinerary
 
-Validate a synthetic itinerary and read its timeline using the Python package.
+Validate a synthetic itinerary and read its timeline using the Python package. For this example you need to have the [`examples/minimal-flight.json`](./examples/minimal-flight.json) file locally or bring your own OI document.
 
 ```bash
 python -m pip install openitinerary
