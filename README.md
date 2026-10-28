@@ -20,7 +20,7 @@ application to every proprietary format.
 <p align="center">
   <a href="#quick-start">Quick Start</a> ·
   <a href="#examples">Explore Examples</a> ·
-  <a href="schemas/0.1/itinerary.schema.json">Read the Schema</a> ·
+  <a href="schemas/0.2/itinerary.schema.json">Read the Schema</a> ·
   <a href="#convert-a-travel-document">Convert a Document</a> ·
   <a href="#ecosystem">Ecosystem</a>
 </p>
@@ -46,7 +46,7 @@ requiring separate apps, emails, and PDF documents.
 
 | I want to… | Start here |
 | --- | --- |
-| Integrate the standard in any language | Browse the [JSON Schema](schemas/0.1/itinerary.schema.json) and [example itineraries](examples/) |
+| Integrate the standard in any language | Browse the [JSON Schema](schemas/0.2/itinerary.schema.json) and [example itineraries](examples/) |
 | Create and validate itineraries in Python | Install the [Python package](#python-package) |
 | Convert an existing PDF, email, or HTML booking | Run the [Adapter CLI](#convert-a-travel-document) |
 
@@ -176,7 +176,7 @@ validation.
 ## Standard and Tooling
 
 The published contract for OpenItinerary is its
-[JSON Schema](schemas/0.1/itinerary.schema.json). Applications can use the
+[JSON Schema](schemas/0.2/itinerary.schema.json). Applications can use the
 schema directly from any language or platform with JSON Schema support.
 
 This repository maintains the standard as Pydantic source models and generates
@@ -374,7 +374,7 @@ Schema versions follow semantic versioning:
 - **Patch:** corrections to schema documentation or metadata.
 
 Generated schema directories use the major and minor version, such as
-`schemas/0.1/itinerary.schema.json`. Patch releases update the schema file for
+`schemas/0.2/itinerary.schema.json`. Patch releases update the schema file for
 that compatibility line rather than creating another directory.
 
 Consumers should inspect `schema_version` and explicitly support the schema

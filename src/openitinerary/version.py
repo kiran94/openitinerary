@@ -4,7 +4,7 @@ import re
 __version__ = importlib.metadata.version("openitinerary")
 
 
-OPEN_ITINERARY_VERSION = "0.1.0"
+OPEN_ITINERARY_VERSION = "0.2.0"
 """
 Version of the published OpenItinerary Schema.
 

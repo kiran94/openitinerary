@@ -101,7 +101,7 @@ def test_itinerary_rejects_non_string_schema_version():
 
 def test_itinerary_rejects_unknown_schema_version():
     payload = itinerary_payload()
-    payload["schema_version"] = "0.2.0"
+    payload["schema_version"] = "0.100.0"
 
     with pytest.raises(ValidationError):
         Itinerary.model_validate(payload)
