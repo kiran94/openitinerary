@@ -1,5 +1,5 @@
 {
-  "$schema": "https://raw.githubusercontent.com/kiran94/openitinerary/main/schemas/0.1/itinerary.schema.json",
+  "$schema": "https://raw.githubusercontent.com/kiran94/openitinerary/refs/heads/main/schemas/0.1/itinerary.schema.json",
   "schema_version": "0.1.0",
   "id": "8b8f7acd-f12a-4f7a-82b7-5b1f2a531bbc",
   "title": "A multi-provider trip from Singapore to Beijing and Xi'an",

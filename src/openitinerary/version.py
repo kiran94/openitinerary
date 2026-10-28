@@ -44,7 +44,7 @@ def derive_major_minor(version: str) -> str:
 
 OPEN_ITINERARY_SCHEMA_URL = (
     "https://raw.githubusercontent.com/kiran94/openitinerary/"
-    f"main/schemas/{derive_major_minor(OPEN_ITINERARY_VERSION)}/itinerary.schema.json"
+    f"refs/heads/main/schemas/{derive_major_minor(OPEN_ITINERARY_VERSION)}/itinerary.schema.json"
 )
 
 
