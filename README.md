@@ -8,7 +8,7 @@
 
 <p align="center">
   <a href="https://github.com/kiran94/openitinerary/actions/workflows/build.yml"><img src="https://github.com/kiran94/openitinerary/actions/workflows/build.yml/badge.svg" alt="Build status" /></a>
-  <img src="https://img.shields.io/pypi/v/openitinerary" alt="PyPI version" />
+  <a href="https://pypi.org/project/openitinerary/"><img src="https://img.shields.io/pypi/v/openitinerary" alt="PyPI version" /></a>
 </p>
 
 <p align="center"><strong>An open, vendor-neutral standard for representing travel itineraries as structured data.</strong></p>
@@ -144,10 +144,10 @@ exchanged consistently.
 Every example is synthetic and validated against the current OpenItinerary
 model by the automated test suite.
 
-Each document includes OpenItinerary's required `$id` and `$schema` discovery field so compatible editors such as VS Code can load
-the published schema for completion
-and validation. This instance property is part of the OpenItinerary document
-contract to promote validation and discoverability of the schema.
+Each example includes OpenItinerary's required `$schema` property, which points
+to the published schema so compatible editors such as VS Code can provide
+completion and validation. This property is part of the OpenItinerary document
+contract and helps applications discover the correct schema.
 
 | Example | What it demonstrates |
 | --- | --- |
@@ -266,7 +266,7 @@ curl --fail --silent --show-error \
     http://127.0.0.1:8000/api/v1/adapt/segment
 ```
 
-The response is a JSON array containing the extracted OpenItinerary segments.
+Where `booking.pdf` is a document on your filesystem.  The response is a JSON array containing the extracted OpenItinerary segments.
 
 Uploaded documents are limited to 10 MiB by default:
 
@@ -309,15 +309,16 @@ pin the schema version and expect the model to evolve.
 
 ### Planned
 
-- Car-rental, ferry, and cruise segments.
-- Calendar and ZIP document adapters.
-- A standalone JSON Schema package.
-- A model-validation API.
+- An OpenItinerary Server for storing, updating, and deleting itinerary documents.
+- An OpenItinerary UI for visualising itineraries.
+- OpenItinerary validation tooling for checks that go beyond JSON Schema.
+- Support for Car-rental, ferry, and cruise segments.
+- Support for Calendar and ZIP document adapters.
 
 ## Ecosystem
 
 OpenItinerary is the shared data standard at the centre of a set of
-complementary projects exploring real-world travel-data workflows.
+complementary projects exploring real-world travel-data workflows and applications.
 
 | Project | Role |
 | --- | --- |
@@ -396,8 +397,7 @@ Use `minor` or `major` when appropriate. If the standard changed, also update
 make generate_out
 ```
 
-Pull requests publish beta Python packages for testing. When a
-distribution-version change reaches `main`, CI publishes the stable Python
+Pull requests publish beta Python packages for testing ([example](https://github.com/kiran94/openitinerary/pull/23#issuecomment-5760198550)). When a distribution-version change reaches `main`, CI publishes the stable Python
 package and versioned Adapter API container. Changes that do not update the
 distribution version are built and tested without creating another stable
 release.
