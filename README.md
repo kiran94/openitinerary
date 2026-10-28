@@ -54,17 +54,15 @@ requiring separate apps, emails, and PDF documents.
 
 ### Generate the Schema
 
-You can generate the JSON Schema yourself:
+Generate the JSON Schema included in the latest OpenItinerary release:
 
 ```bash
-uvx openitinerary --output stdout --indent
+uvx openitinerary schema --output stdout --indent
 ```
 
 ### Validate an Itinerary
 
 Validate a synthetic itinerary and read its timeline using the Python package.
-
-From a checkout of this repository:
 
 ```bash
 python -m pip install openitinerary
