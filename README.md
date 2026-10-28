@@ -266,7 +266,7 @@ curl --fail --silent --show-error \
     http://127.0.0.1:8000/api/v1/adapt/segment
 ```
 
-The response is a JSON array containing the extracted OpenItinerary segments.
+Where `booking.pdf` is a document on your filesystem.  The response is a JSON array containing the extracted OpenItinerary segments.
 
 Uploaded documents are limited to 10 MiB by default:
 
