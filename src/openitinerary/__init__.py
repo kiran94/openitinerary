@@ -4,6 +4,8 @@ import logging
 import os
 from pathlib import Path
 
+from pydantic import ValidationError
+
 from openitinerary.models.itinerary import Itinerary
 from openitinerary.version import (
     JSON_SCHEMA_DIALECT,
@@ -50,10 +52,6 @@ def _schema(output: str, indent: bool):
         raise NotImplementedError(f"unknown output: {output}")
 
 
-def _validate():
-    pass
-
-
 def main() -> None:
     parser = argparse.ArgumentParser()
     subparsers = parser.add_subparsers(dest="operation", required=True)
@@ -62,14 +60,9 @@ def main() -> None:
     schema_parser.add_argument("-o", "--output", choices=["stdout", "versioned"], default="stdout")
     schema_parser.add_argument("-i", "--indent", action="store_true")
 
-    validate_parser = subparsers.add_parser("validate")
-    validate_parser.add_argument("-t")
-
     args = parser.parse_args()
 
     if args.operation == "schema":
         _schema(args.output, args.indent)
-    elif args.operation == "validate":
-        pass
     else:
         raise NotImplementedError(f"unknown command: {args.operation}")
