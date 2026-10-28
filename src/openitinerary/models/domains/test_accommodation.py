@@ -8,6 +8,7 @@ from openitinerary.models.domains.flight import AirportPlace
 from openitinerary.models.domains.train import TrainStation
 from openitinerary.models.itinerary import Itinerary
 from openitinerary.models.place import GenericPlace
+from openitinerary.version import OPEN_ITINERARY_SCHEMA_URL
 
 
 def place_payload(place_type: str = "location", name: str = "Test place") -> dict:
@@ -72,6 +73,7 @@ def test_accommodation_segment_accepts_optional_unit_type():
 def test_itinerary_parses_accommodation_segment():
     itinerary = Itinerary.model_validate(
         {
+            "$schema": OPEN_ITINERARY_SCHEMA_URL,
             "id": "test-itinerary",
             "title": "Test itinerary",
             "segments": [accommodation_payload()],

@@ -5,6 +5,7 @@ from pydantic import ValidationError
 
 from openitinerary.models.domains.train import TrainSegment, TrainStation
 from openitinerary.models.itinerary import Itinerary
+from openitinerary.version import OPEN_ITINERARY_SCHEMA_URL
 
 
 def station_payload(name: str = "Tokyo Station") -> dict:
@@ -55,6 +56,7 @@ def test_train_segment_rejects_non_station_places(field: str):
 def test_itinerary_parses_train_segment():
     itinerary = Itinerary.model_validate(
         {
+            "$schema": OPEN_ITINERARY_SCHEMA_URL,
             "id": "test-itinerary",
             "title": "Test itinerary",
             "segments": [train_payload()],

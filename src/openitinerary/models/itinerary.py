@@ -21,7 +21,6 @@ class Itinerary(BaseModel):
 
     schema_uri: str = Field(
         alias="$schema",
-        default=OPEN_ITINERARY_SCHEMA_URL,
         description="Canonical URI of the JSON Schema used to validate this itinerary.",
         json_schema_extra={"const": OPEN_ITINERARY_SCHEMA_URL},
     )

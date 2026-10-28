@@ -2912,7 +2912,6 @@
     "properties": {
         "$schema": {
             "const": "https://raw.githubusercontent.com/kiran94/openitinerary/main/schemas/0.1/itinerary.schema.json",
-            "default": "https://raw.githubusercontent.com/kiran94/openitinerary/main/schemas/0.1/itinerary.schema.json",
             "description": "Canonical URI of the JSON Schema used to validate this itinerary.",
             "title": "$Schema",
             "type": "string"
@@ -3014,6 +3013,7 @@
         }
     },
     "required": [
+        "$schema",
         "id",
         "title",
         "segments"
