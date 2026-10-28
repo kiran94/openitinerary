@@ -5,13 +5,26 @@ import os
 from pathlib import Path
 
 from openitinerary.models.itinerary import Itinerary
-from openitinerary.version import OPEN_ITINERARY_VERSION, derive_major_minor
+from openitinerary.version import (
+    JSON_SCHEMA_DIALECT,
+    OPEN_ITINERARY_SCHEMA_URL,
+    OPEN_ITINERARY_VERSION,
+    derive_major_minor,
+)
 
 logging.basicConfig(format=logging.BASIC_FORMAT, level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 SCHEMAS_FOLDER = "schemas"
 SCHEMAS_FILE = "itinerary.schema.json"
+
+
+def generate_schema() -> dict:
+    return {
+        "$schema": JSON_SCHEMA_DIALECT,
+        "$id": OPEN_ITINERARY_SCHEMA_URL,
+        **Itinerary.model_json_schema(),
+    }
 
 
 def main() -> None:
@@ -22,7 +35,7 @@ def main() -> None:
     args = parser.parse_args()
 
     logger.debug("generating schema from Itinerary")
-    schema = Itinerary.model_json_schema()
+    schema = generate_schema()
 
     indent = 4 if args.indent else None
 

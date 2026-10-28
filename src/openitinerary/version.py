@@ -4,7 +4,7 @@ import re
 __version__ = importlib.metadata.version("openitinerary")
 
 
-OPEN_ITINERARY_VERSION = "0.1.0"
+OPEN_ITINERARY_VERSION = "0.2.0"
 """
 Version of the published OpenItinerary Schema.
 
@@ -13,6 +13,8 @@ of this project because the version of the python package may include
 implementation-only work such as tooling improvements, documentation changes etc
 which may not result in a new published schema.
 """
+
+JSON_SCHEMA_DIALECT = "https://json-schema.org/draft/2020-12/schema"
 
 semantic_version_regex = re.compile(
     r"^(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)"
@@ -32,13 +34,21 @@ def validate(version: str):
 def derive_major_minor(version: str) -> str:
     validate(version)
 
-    p = semantic_version_regex.match(version)
+    if not (p := semantic_version_regex.match(version)):
+        raise ValueError(f'version: "{version}" did not match the {semantic_version_regex!s}')
+
     major = p.group(1)
     minor = p.group(2)
-
     return f"{major}.{minor}"
+
+
+OPEN_ITINERARY_SCHEMA_URL = (
+    "https://raw.githubusercontent.com/kiran94/openitinerary/"
+    f"refs/heads/main/schemas/{derive_major_minor(OPEN_ITINERARY_VERSION)}/itinerary.schema.json"
+)
 
 
 if __name__ == "__main__":
     print("OPEN_ITINERARY_VERSION", derive_major_minor(OPEN_ITINERARY_VERSION))
     print("OPEN_ITINERARY_PYTHON_PACKAGE_VERSION", __version__)
+    print("OPEN_ITINERARY_SCHEMA_URL", OPEN_ITINERARY_SCHEMA_URL)

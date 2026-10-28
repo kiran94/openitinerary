@@ -5,7 +5,7 @@ from pydantic import ValidationError
 
 from openitinerary.models.domains.activity import ActivitySegment
 from openitinerary.models.itinerary import Itinerary
-from openitinerary.version import OPEN_ITINERARY_VERSION
+from openitinerary.version import OPEN_ITINERARY_SCHEMA_URL, OPEN_ITINERARY_VERSION
 
 
 def activity_payload(name: str = "Museum visit", start_time_utc: str = "2026-08-07T03:00:00Z") -> dict:
@@ -26,6 +26,7 @@ def activity_payload(name: str = "Museum visit", start_time_utc: str = "2026-08-
 
 def itinerary_payload() -> dict:
     return {
+        "$schema": OPEN_ITINERARY_SCHEMA_URL,
         "id": "test-itinerary",
         "title": "Test itinerary",
         "segments": [activity_payload()],
@@ -38,9 +39,33 @@ def test_itinerary_defaults_to_current_schema_version():
     assert itinerary.schema_version == OPEN_ITINERARY_VERSION
 
 
+def test_itinerary_accepts_canonical_schema_uri():
+    itinerary = Itinerary.model_validate(itinerary_payload())
+
+    assert itinerary.schema_uri == OPEN_ITINERARY_SCHEMA_URL
+    assert itinerary.model_dump(mode="json")["$schema"] == OPEN_ITINERARY_SCHEMA_URL
+
+
+def test_itinerary_rejects_missing_schema_uri():
+    payload = itinerary_payload()
+    del payload["$schema"]
+
+    with pytest.raises(ValidationError):
+        Itinerary.model_validate(payload)
+
+
+def test_itinerary_rejects_unknown_schema_uri():
+    payload = itinerary_payload()
+    payload["$schema"] = "https://example.com/itinerary.schema.json"
+
+    with pytest.raises(ValidationError):
+        Itinerary.model_validate(payload)
+
+
 def test_itinerary_accepts_empty_segments():
     itinerary = Itinerary.model_validate(
         {
+            "$schema": OPEN_ITINERARY_SCHEMA_URL,
             "id": None,
             "title": None,
             "segments": [],
@@ -69,6 +94,14 @@ def test_itinerary_rejects_malformed_segment_payload():
 def test_itinerary_rejects_non_string_schema_version():
     payload = itinerary_payload()
     payload["schema_version"] = 2
+
+    with pytest.raises(ValidationError):
+        Itinerary.model_validate(payload)
+
+
+def test_itinerary_rejects_unknown_schema_version():
+    payload = itinerary_payload()
+    payload["schema_version"] = "0.100.0"
 
     with pytest.raises(ValidationError):
         Itinerary.model_validate(payload)

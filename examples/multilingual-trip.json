@@ -1,5 +1,6 @@
 {
-  "schema_version": "0.1.0",
+  "$schema": "https://raw.githubusercontent.com/kiran94/openitinerary/refs/heads/main/schemas/0.2/itinerary.schema.json",
+  "schema_version": "0.2.0",
   "id": "43a547ff-7d28-4975-8fd5-d7dcb517f8a7",
   "title": "A multilingual trip from Singapore to Kyoto",
   "segments": [

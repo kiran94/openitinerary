@@ -5,6 +5,7 @@ from pydantic import ValidationError
 
 from openitinerary.models.domains.flight import AirportPlace, FlightSegment
 from openitinerary.models.itinerary import Itinerary
+from openitinerary.version import OPEN_ITINERARY_SCHEMA_URL
 
 
 def airport_payload(name: str = "Ninoy Aquino International Airport") -> dict:
@@ -60,6 +61,7 @@ def test_flight_segment_rejects_non_airport_places(field: str):
 def test_itinerary_parses_flight_segment():
     itinerary = Itinerary.model_validate(
         {
+            "$schema": OPEN_ITINERARY_SCHEMA_URL,
             "id": "test-itinerary",
             "title": "Test itinerary",
             "segments": [flight_payload()],

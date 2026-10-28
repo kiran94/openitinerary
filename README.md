@@ -20,7 +20,7 @@ application to every proprietary format.
 <p align="center">
   <a href="#quick-start">Quick Start</a> ·
   <a href="#examples">Explore Examples</a> ·
-  <a href="schemas/0.1/itinerary.schema.json">Read the Schema</a> ·
+  <a href="schemas/0.2/itinerary.schema.json">Read the Schema</a> ·
   <a href="#convert-a-travel-document">Convert a Document</a> ·
   <a href="#ecosystem">Ecosystem</a>
 </p>
@@ -32,7 +32,7 @@ hotels, booking platforms, emails, PDFs, and other sources. Each source has its
 own format, forcing development teams to maintain source-specific models and
 repeat integration logic.
 
-OpenItinerary provides one vendor-neutral, strongly typed model for this data.
+OpenItinerary (OI) provides one vendor-neutral, strongly typed model for this data.
 **Travel providers can produce it directly, while adapters can convert existing
 documents when a provider does not yet support the standard**. Applications can
 then build a unified journey timeline without proprietary format lock-in or
@@ -46,7 +46,7 @@ requiring separate apps, emails, and PDF documents.
 
 | I want to… | Start here |
 | --- | --- |
-| Integrate the standard in any language | Browse the [JSON Schema](schemas/0.1/itinerary.schema.json) and [example itineraries](examples/) |
+| Integrate the standard in any language | Browse the [JSON Schema](schemas/0.2/itinerary.schema.json) and [example itineraries](examples/) |
 | Create and validate itineraries in Python | Install the [Python package](#python-package) |
 | Convert an existing PDF, email, or HTML booking | Run the [Adapter CLI](#convert-a-travel-document) |
 
@@ -72,10 +72,7 @@ itinerary = Itinerary.model_validate_json(document)
 print(itinerary.title)
 
 for segment in itinerary.segments:
-    print(
-        f"{segment.start_time_utc:%Y-%m-%d %H:%M} UTC"
-        f" — {segment.title.values[0].value}"
-    )
+    print(f"{segment.start_time_utc:%Y-%m-%d %H:%M} UTC — {segment.title.values[0].value}")
 ```
 
 Output:
@@ -147,6 +144,11 @@ exchanged consistently.
 Every example is synthetic and validated against the current OpenItinerary
 model by the automated test suite.
 
+Each document includes OpenItinerary's required `$id` and `$schema` discovery field so compatible editors such as VS Code can load
+the published schema for completion
+and validation. This instance property is part of the OpenItinerary document
+contract to promote validation and discoverability of the schema.
+
 | Example | What it demonstrates |
 | --- | --- |
 | [`minimal-flight.json`](examples/minimal-flight.json) | The smallest approachable itinerary: one flight from Tokyo to Manila. This is the document used by the Quick Start. |
@@ -174,7 +176,7 @@ validation.
 ## Standard and Tooling
 
 The published contract for OpenItinerary is its
-[JSON Schema](schemas/0.1/itinerary.schema.json). Applications can use the
+[JSON Schema](schemas/0.2/itinerary.schema.json). Applications can use the
 schema directly from any language or platform with JSON Schema support.
 
 This repository maintains the standard as Pydantic source models and generates
@@ -372,7 +374,7 @@ Schema versions follow semantic versioning:
 - **Patch:** corrections to schema documentation or metadata.
 
 Generated schema directories use the major and minor version, such as
-`schemas/0.1/itinerary.schema.json`. Patch releases update the schema file for
+`schemas/0.2/itinerary.schema.json`. Patch releases update the schema file for
 that compatibility line rather than creating another directory.
 
 Consumers should inspect `schema_version` and explicitly support the schema
