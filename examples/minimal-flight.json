@@ -1,10 +1,10 @@
 {
   "schema_version": "0.1.0",
-  "id": "minimal-flight-example",
-  "title": "A minimal flight itinerary from Tokyo to Manila",
+  "id": "ec66ae66-e260-452b-99d6-fa4d5e2ecb62",
+  "title": "Flight from Tokyo to Manila",
   "segments": [
     {
-      "id": "11111111-1111-4111-8111-111111111111",
+      "id": "b8e48a0f-3e57-4c90-a778-eb363bd29b9e",
       "type": "flight",
       "title": {
         "values": [
