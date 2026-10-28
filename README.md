@@ -397,8 +397,7 @@ Use `minor` or `major` when appropriate. If the standard changed, also update
 make generate_out
 ```
 
-Pull requests publish beta Python packages for testing. When a
-distribution-version change reaches `main`, CI publishes the stable Python
+Pull requests publish beta Python packages for testing ([example](https://github.com/kiran94/openitinerary/pull/23#issuecomment-5760198550)). When a distribution-version change reaches `main`, CI publishes the stable Python
 package and versioned Adapter API container. Changes that do not update the
 distribution version are built and tested without creating another stable
 release.
