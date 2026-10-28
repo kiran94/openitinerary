@@ -32,7 +32,7 @@ hotels, booking platforms, emails, PDFs, and other sources. Each source has its
 own format, forcing development teams to maintain source-specific models and
 repeat integration logic.
 
-OpenItinerary provides one vendor-neutral, strongly typed model for this data.
+OpenItinerary (OI) provides one vendor-neutral, strongly typed model for this data.
 **Travel providers can produce it directly, while adapters can convert existing
 documents when a provider does not yet support the standard**. Applications can
 then build a unified journey timeline without proprietary format lock-in or
