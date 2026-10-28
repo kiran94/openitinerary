@@ -144,7 +144,7 @@ exchanged consistently.
 Every example is synthetic and validated against the current OpenItinerary
 model by the automated test suite.
 
-Each document includes OpenItinerary's required `$schema` discovery field so compatible editors such as VS Code can load
+Each document includes OpenItinerary's required `$id` and `$schema` discovery field so compatible editors such as VS Code can load
 the published schema for completion
 and validation. This instance property is part of the OpenItinerary document
 contract to promote validation and discoverability of the schema.
