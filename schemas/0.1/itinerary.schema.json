@@ -1,4 +1,6 @@
 {
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://raw.githubusercontent.com/kiran94/openitinerary/main/schemas/0.1/itinerary.schema.json",
     "$defs": {
         "AccommodationSegment": {
             "additionalProperties": false,
@@ -2908,7 +2910,15 @@
         }
     },
     "properties": {
+        "$schema": {
+            "const": "https://raw.githubusercontent.com/kiran94/openitinerary/main/schemas/0.1/itinerary.schema.json",
+            "default": "https://raw.githubusercontent.com/kiran94/openitinerary/main/schemas/0.1/itinerary.schema.json",
+            "description": "Canonical URI of the JSON Schema used to validate this itinerary.",
+            "title": "$Schema",
+            "type": "string"
+        },
         "schema_version": {
+            "const": "0.1.0",
             "default": "0.1.0",
             "description": "The schema version of open itinerary being used.",
             "title": "Schema Version",
