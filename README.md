@@ -1,8 +1,8 @@
 <h1 align="center">
   <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="assets/openitinerary-social-preview-dark.png" />
-    <source media="(prefers-color-scheme: light)" srcset="assets/openitinerary-social-preview-light.png" />
-    <img src="assets/openitinerary-social-preview-light.png" alt="OpenItinerary" width="560" />
+    <source media="(prefers-color-scheme: dark)" srcset="assets/openitinerary-logo-dark.svg" />
+    <source media="(prefers-color-scheme: light)" srcset="assets/openitinerary-logo.svg" />
+    <img src="assets/openitinerary-logo.svg" alt="OpenItinerary" width="560" />
   </picture>
 </h1>
 
@@ -150,7 +150,7 @@ model by the automated test suite.
 | Example | What it demonstrates |
 | --- | --- |
 | [`minimal-flight.json`](examples/minimal-flight.json) | The smallest approachable itinerary: one flight from Tokyo to Manila. This is the document used by the Quick Start. |
-| [`multi-provider-trip.json`](examples/multi-provider-trip.json) | A six-segment journey containing a flight, transfer, accommodation, activity, tour, and train in one ordered itinerary. |
+| [`multi-provider-trip.json`](examples/multi-provider-trip.json) | A multi-provider journey across Beijing and Xi'an with flights, a taxi transfer, two hotel stays, rail travel, four tours, and English and Simplified Chinese content. |
 | [`multilingual-trip.json`](examples/multilingual-trip.json) | English and Japanese names, travel between Singapore and Japan, and explicit local time zones. |
 
 The examples are also useful as fixtures when evaluating an integration or
