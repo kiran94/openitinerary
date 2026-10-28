@@ -1,6 +1,6 @@
 [project]
 name = "openitinerary"
-version = "0.1.10"
+version = "0.1.11"
 description = "OpenItinerary is an open, vendor-neutral standard for representing travel itineraries as structured data."
 readme = "README.md"
 license = "Apache-2.0"
