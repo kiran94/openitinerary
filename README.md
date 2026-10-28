@@ -8,7 +8,7 @@
 
 <p align="center">
   <a href="https://github.com/kiran94/openitinerary/actions/workflows/build.yml"><img src="https://github.com/kiran94/openitinerary/actions/workflows/build.yml/badge.svg" alt="Build status" /></a>
-  <img src="https://img.shields.io/pypi/v/openitinerary" alt="PyPI version" />
+  <a href="https://pypi.org/project/openitinerary/"><img src="https://img.shields.io/pypi/v/openitinerary" alt="PyPI version" /></a>
 </p>
 
 <p align="center"><strong>An open, vendor-neutral standard for representing travel itineraries as structured data.</strong></p>
