@@ -50,7 +50,7 @@ jobs:
       - name: Run CLI
         run: |
           uv run openitinerary --help
-          uv run openitinerary schema
+          uv run openitinerary schema > /dev/null
 
       - name: Check Schema Changes
         run: |
