@@ -5,10 +5,10 @@ test:
 	uv run --all-extras pytest
 
 generate:
-	PYTHONTZPATH="" uv run openitinerary --output stdout
+	PYTHONTZPATH="" uv run openitinerary schema --output stdout
 
 generate_out:
-	PYTHONTZPATH="" uv run openitinerary --output versioned --indent
+	PYTHONTZPATH="" uv run openitinerary schema --output versioned --indent
 
 format:
 	uv run ruff check --fix

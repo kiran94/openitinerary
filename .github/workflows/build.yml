@@ -47,6 +47,11 @@ jobs:
       - name: Run unit tests
         run: make test
 
+      - name: Run CLI
+        run: |
+          uv run openitinerary --help
+          uv run openitinerary schema > /dev/null
+
       - name: Check Schema Changes
         run: |
           make generate_out
