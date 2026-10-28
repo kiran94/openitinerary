@@ -309,15 +309,16 @@ pin the schema version and expect the model to evolve.
 
 ### Planned
 
-- Car-rental, ferry, and cruise segments.
-- Calendar and ZIP document adapters.
-- A standalone JSON Schema package.
-- A model-validation API.
+- An OpenItinerary Server that allows you to store, update & delete itinerary documents.
+- An OpenItinerary UI that allows you to visualise a itinerary.
+- An OpenItinerary Validation that allows us to perform more complex validation then what is provided by just JSON Schema
+- Support for Car-rental, ferry, and cruise segments.
+- Support for Calendar and ZIP document adapters.
 
 ## Ecosystem
 
 OpenItinerary is the shared data standard at the centre of a set of
-complementary projects exploring real-world travel-data workflows.
+complementary projects exploring real-world travel-data workflows and applications.
 
 | Project | Role |
 | --- | --- |
