@@ -309,9 +309,9 @@ pin the schema version and expect the model to evolve.
 
 ### Planned
 
-- An OpenItinerary Server that allows you to store, update & delete itinerary documents.
-- An OpenItinerary UI that allows you to visualise a itinerary.
-- An OpenItinerary Validation that allows us to perform more complex validation then what is provided by just JSON Schema
+- An OpenItinerary Server for storing, updating, and deleting itinerary documents.
+- An OpenItinerary UI for visualising itineraries.
+- OpenItinerary validation tooling for checks that go beyond JSON Schema.
 - Support for Car-rental, ferry, and cruise segments.
 - Support for Calendar and ZIP document adapters.
 
