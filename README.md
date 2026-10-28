@@ -1,8 +1,8 @@
 <h1 align="center">
   <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="assets/openitinerary-social-preview-dark.png" />
-    <source media="(prefers-color-scheme: light)" srcset="assets/openitinerary-social-preview-light.png" />
-    <img src="assets/openitinerary-social-preview-light.png" alt="OpenItinerary" width="560" />
+    <source media="(prefers-color-scheme: dark)" srcset="assets/openitinerary-logo-dark.svg" />
+    <source media="(prefers-color-scheme: light)" srcset="assets/openitinerary-logo.svg" />
+    <img src="assets/openitinerary-logo.svg" alt="OpenItinerary" width="560" />
   </picture>
 </h1>
 
