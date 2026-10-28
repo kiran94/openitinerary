@@ -228,7 +228,7 @@ See the [Quick Start](#quick-start) for a complete validation example.
 Generate the schema supplied by the installed package:
 
 ```bash
-openitinerary --output stdout --indent
+openitinerary schema --output stdout --indent
 ```
 
 ### Adapter API
