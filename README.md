@@ -72,10 +72,7 @@ itinerary = Itinerary.model_validate_json(document)
 print(itinerary.title)
 
 for segment in itinerary.segments:
-    print(
-        f"{segment.start_time_utc:%Y-%m-%d %H:%M} UTC"
-        f" — {segment.title.values[0].value}"
-    )
+    print(f"{segment.start_time_utc:%Y-%m-%d %H:%M} UTC — {segment.title.values[0].value}")
 ```
 
 Output:
