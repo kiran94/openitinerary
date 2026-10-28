@@ -1,6 +1,19 @@
 import pytest
 
-from openitinerary.version import derive_major_minor, validate
+from openitinerary import generate_schema
+from openitinerary.version import (
+    JSON_SCHEMA_DIALECT,
+    OPEN_ITINERARY_SCHEMA_URL,
+    derive_major_minor,
+    validate,
+)
+
+
+def test_generated_schema_declares_dialect_and_canonical_id():
+    schema = generate_schema()
+
+    assert schema["$schema"] == JSON_SCHEMA_DIALECT
+    assert schema["$id"] == OPEN_ITINERARY_SCHEMA_URL
 
 
 @pytest.mark.parametrize(
