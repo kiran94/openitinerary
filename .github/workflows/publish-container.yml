@@ -2,9 +2,31 @@ name: publish container
 
 on:
   pull_request:
+    paths-ignore:
+      - ".gitignore"
+      - ".github/pull_request_template.md"
+      - ".python-version"
+      - ".vscode/**"
+      - "AGENTS.md"
+      - "README.md"
+      - "assets/**"
+      - "examples/**"
+      - "schemas/**"
+      - "src/**/test_*.py"
   push:
     branches:
       - main
+    paths-ignore:
+      - ".gitignore"
+      - ".github/pull_request_template.md"
+      - ".python-version"
+      - ".vscode/**"
+      - "AGENTS.md"
+      - "README.md"
+      - "assets/**"
+      - "examples/**"
+      - "schemas/**"
+      - "src/**/test_*.py"
   workflow_dispatch:
 
 permissions:

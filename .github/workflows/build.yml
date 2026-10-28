@@ -2,9 +2,23 @@ name: build
 
 on:
   pull_request:
+    paths-ignore:
+      - ".dockerignore"
+      - ".github/pull_request_template.md"
+      - ".vscode/**"
+      - "AGENTS.md"
+      - "README.md"
+      - "assets/**"
   push:
     branches:
       - main
+    paths-ignore:
+      - ".dockerignore"
+      - ".github/pull_request_template.md"
+      - ".vscode/**"
+      - "AGENTS.md"
+      - "README.md"
+      - "assets/**"
 
 permissions:
   contents: read
