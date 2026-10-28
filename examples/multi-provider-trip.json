@@ -1,344 +1,605 @@
 {
   "schema_version": "0.1.0",
-  "id": "multi-provider-trip-example",
-  "title": "A multi-provider trip across Japan",
+  "id": "8b8f7acd-f12a-4f7a-82b7-5b1f2a531bbc",
+  "title": "A multi-provider trip from Singapore to Beijing and Xi'an",
   "segments": [
     {
-      "id": "22222222-2222-4222-8222-222222222221",
+      "id": "f321919f-14d8-4a21-82bf-23e49ef7a27b",
       "type": "flight",
       "title": {
         "values": [
-          {
-            "language": "en",
-            "value": "Manila to Tokyo"
-          }
+          { "language": "en", "value": "Singapore to Beijing" },
+          { "language": "zh", "value": "新加坡至北京" }
         ]
       },
-      "description": {
-        "values": [
-          {
-            "language": "en",
-            "value": "A fictional flight used to demonstrate a multi-provider itinerary."
-          }
-        ]
-      },
-      "start_time_utc": "2027-03-10T01:40:00Z",
-      "end_time_utc": "2027-03-10T05:45:00Z",
+      "start_time_utc": "2026-11-13T17:10:00Z",
+      "end_time_utc": "2026-11-13T23:15:00Z",
       "operator": {
         "name": {
           "values": [
-            {
-              "language": "en",
-              "value": "Japan Airlines"
-            },
-            {
-              "language": "ja",
-              "value": "日本航空"
-            }
+            { "language": "en", "value": "Singapore Airlines" },
+            { "language": "zh", "value": "新加坡航空" }
           ]
         },
-        "website": "https://www.jal.com/"
+        "website": "https://www.singaporeair.com/"
+      },
+      "booking": {
+        "provider": {
+          "name": { "values": [{ "language": "en", "value": "Expedia" }] },
+          "website": "https://www.expedia.com/"
+        },
+        "reference": "E7Q4LM"
       },
       "start_place": {
         "type": "airport",
         "name": {
           "values": [
-            {
-              "language": "en",
-              "value": "Ninoy Aquino International Airport"
-            }
+            { "language": "en", "value": "Singapore Changi Airport" },
+            { "language": "zh", "value": "新加坡樟宜机场" }
           ]
         },
-        "country": "PH",
-        "timezone": "Asia/Manila",
-        "coordinate": {
-          "latitude": 14.5086,
-          "longitude": 121.0198
-        },
-        "iata_code": "MNL",
-        "icao_code": "RPLL"
+        "country": "SG",
+        "timezone": "Asia/Singapore",
+        "coordinate": { "latitude": 1.3644, "longitude": 103.9915 },
+        "iata_code": "SIN",
+        "icao_code": "WSSS"
       },
       "end_place": {
         "type": "airport",
         "name": {
           "values": [
-            {
-              "language": "en",
-              "value": "Narita International Airport"
-            }
+            { "language": "en", "value": "Beijing Capital International Airport" },
+            { "language": "zh", "value": "北京首都国际机场" }
           ]
         },
-        "country": "JP",
-        "timezone": "Asia/Tokyo",
-        "coordinate": {
-          "latitude": 35.772,
-          "longitude": 140.3929
-        },
-        "iata_code": "NRT",
-        "icao_code": "RJAA"
+        "country": "CN",
+        "timezone": "Asia/Shanghai",
+        "coordinate": { "latitude": 40.0773, "longitude": 116.5967 },
+        "iata_code": "PEK",
+        "icao_code": "ZBAA"
       },
-      "flight_number": "JL746"
+      "flight_number": "SQ800",
+      "pnr": "K4M9QX"
     },
     {
-      "id": "22222222-2222-4222-8222-222222222222",
+      "id": "c52189cc-a58e-4c80-ab7a-75dd2cb31af4",
       "type": "transfer",
       "title": {
         "values": [
-          {
-            "language": "en",
-            "value": "Airport shuttle to central Tokyo"
-          }
+          { "language": "en", "value": "Taxi to Cordis, Beijing Capital Airport" },
+          { "language": "zh", "value": "乘出租车前往北京首都机场康得思酒店" }
         ]
       },
-      "start_time_utc": "2027-03-10T06:30:00Z",
-      "end_time_utc": "2027-03-10T08:00:00Z",
+      "start_time_utc": "2026-11-14T00:15:00Z",
+      "end_time_utc": "2026-11-14T00:30:00Z",
       "start_place": {
         "type": "airport",
         "name": {
           "values": [
-            {
-              "language": "en",
-              "value": "Narita International Airport"
-            }
+            { "language": "en", "value": "Beijing Capital International Airport" },
+            { "language": "zh", "value": "北京首都国际机场" }
           ]
         },
-        "country": "JP",
-        "timezone": "Asia/Tokyo",
-        "coordinate": {
-          "latitude": 35.772,
-          "longitude": 140.3929
-        },
-        "iata_code": "NRT",
-        "icao_code": "RJAA"
+        "country": "CN",
+        "timezone": "Asia/Shanghai",
+        "coordinate": { "latitude": 40.0773, "longitude": 116.5967 },
+        "iata_code": "PEK",
+        "icao_code": "ZBAA"
       },
       "end_place": {
         "type": "location",
         "name": {
           "values": [
-            {
-              "language": "en",
-              "value": "Harborlight Tokyo Hotel"
-            }
+            { "language": "en", "value": "Cordis, Beijing Capital Airport" },
+            { "language": "zh", "value": "北京首都机场康得思酒店" }
           ]
         },
-        "country": "JP",
-        "timezone": "Asia/Tokyo",
-        "coordinate": {
-          "latitude": 35.6812,
-          "longitude": 139.7671
-        }
-      },
-      "transfer_mode": "shuttle"
-    },
-    {
-      "id": "22222222-2222-4222-8222-222222222223",
-      "type": "accommodation",
-      "title": {
-        "values": [
-          {
-            "language": "en",
-            "value": "Five nights in Tokyo"
-          }
-        ]
-      },
-      "start_time_utc": "2027-03-10T08:15:00Z",
-      "end_time_utc": "2027-03-15T00:00:00Z",
-      "operator": {
-        "name": {
+        "country": "CN",
+        "timezone": "Asia/Shanghai",
+        "coordinate": { "latitude": 40.0556, "longitude": 116.6157 },
+        "formatted_address": {
           "values": [
             {
               "language": "en",
-              "value": "Harborlight Tokyo Hotel"
+              "value": "No. 1 Yi Jing Road, Terminal 3, Capital International Airport, Beijing 100621, China"
+            },
+            {
+              "language": "zh",
+              "value": "中国北京市顺义区北京首都国际机场三号航站楼一经路1号 100621"
             }
           ]
         }
+      },
+      "transfer_mode": "taxi"
+    },
+    {
+      "id": "75bb75f4-bbde-4eb5-b8d0-853cae178060",
+      "type": "accommodation",
+      "title": {
+        "values": [
+          { "language": "en", "value": "Four nights in Beijing" },
+          { "language": "zh", "value": "北京四晚住宿" }
+        ]
+      },
+      "start_time_utc": "2026-11-14T06:00:00Z",
+      "end_time_utc": "2026-11-18T00:00:00Z",
+      "operator": {
+        "name": {
+          "values": [
+            { "language": "en", "value": "Cordis, Beijing Capital Airport" },
+            { "language": "zh", "value": "北京首都机场康得思酒店" }
+          ]
+        },
+        "website": "https://www.cordishotels.com/en/beijing/"
+      },
+      "booking": {
+        "provider": {
+          "name": { "values": [{ "language": "en", "value": "Booking.com" }] },
+          "website": "https://www.booking.com/"
+        },
+        "reference": "B8N5RD"
       },
       "place": {
         "type": "location",
         "name": {
           "values": [
-            {
-              "language": "en",
-              "value": "Harborlight Tokyo Hotel"
-            }
+            { "language": "en", "value": "Cordis, Beijing Capital Airport" },
+            { "language": "zh", "value": "北京首都机场康得思酒店" }
           ]
         },
-        "country": "JP",
-        "timezone": "Asia/Tokyo",
-        "coordinate": {
-          "latitude": 35.6812,
-          "longitude": 139.7671
+        "country": "CN",
+        "timezone": "Asia/Shanghai",
+        "coordinate": { "latitude": 40.0556, "longitude": 116.6157 },
+        "formatted_address": {
+          "values": [
+            {
+              "language": "en",
+              "value": "No. 1 Yi Jing Road, Terminal 3, Capital International Airport, Beijing 100621, China"
+            },
+            {
+              "language": "zh",
+              "value": "中国北京市顺义区北京首都国际机场三号航站楼一经路1号 100621"
+            }
+          ]
         }
       },
       "unit_type": {
         "values": [
-          {
-            "language": "en",
-            "value": "Standard double room"
-          }
+          { "language": "en", "value": "Superior room" },
+          { "language": "zh", "value": "高级客房" }
         ]
       }
     },
     {
-      "id": "22222222-2222-4222-8222-222222222224",
-      "type": "activity",
-      "title": {
-        "values": [
-          {
-            "language": "en",
-            "value": "Contemporary art exhibition"
-          }
-        ]
-      },
-      "start_time_utc": "2027-03-11T01:00:00Z",
-      "end_time_utc": "2027-03-11T03:00:00Z",
-      "place": {
-        "type": "location",
-        "name": {
-          "values": [
-            {
-              "language": "en",
-              "value": "Aoba Contemporary Gallery"
-            }
-          ]
-        },
-        "country": "JP",
-        "timezone": "Asia/Tokyo",
-        "coordinate": {
-          "latitude": 35.6654,
-          "longitude": 139.7298
-        }
-      },
-      "activity_type": "attraction"
-    },
-    {
-      "id": "22222222-2222-4222-8222-222222222225",
+      "id": "e617b07c-8551-4f38-bb6a-d608fc7d2cc3",
       "type": "tour",
       "title": {
         "values": [
-          {
-            "language": "en",
-            "value": "Old and new Tokyo walking tour"
-          }
+          { "language": "en", "value": "Tiananmen Square and Forbidden City private tour" },
+          { "language": "zh", "value": "天安门广场和故宫私人游" }
         ]
       },
-      "start_time_utc": "2027-03-12T00:00:00Z",
-      "end_time_utc": "2027-03-12T06:00:00Z",
+      "start_time_utc": "2026-11-15T01:00:00Z",
+      "end_time_utc": "2026-11-15T05:00:00Z",
+      "booking": {
+        "provider": {
+          "name": { "values": [{ "language": "en", "value": "GetYourGuide" }] },
+          "website": "https://www.getyourguide.com/en-gb/beijing-l186/4-hour-private-tour-to-tian-anmen-square-and-the-forbidden-city-t459862/"
+        },
+        "reference": "F3C7WP"
+      },
       "place": {
         "type": "location",
         "name": {
           "values": [
-            {
-              "language": "en",
-              "value": "Tokyo Station meeting point"
-            }
+            { "language": "en", "value": "Tiananmen Square" },
+            { "language": "zh", "value": "天安门广场" }
           ]
         },
-        "country": "JP",
-        "timezone": "Asia/Tokyo",
-        "coordinate": {
-          "latitude": 35.6812,
-          "longitude": 139.7671
-        }
+        "country": "CN",
+        "timezone": "Asia/Shanghai",
+        "coordinate": { "latitude": 39.9055, "longitude": 116.3976 }
       },
       "stops": [
         {
           "type": "location",
           "name": {
             "values": [
-              {
-                "language": "en",
-                "value": "Asakusa"
-              }
+              { "language": "en", "value": "Tiananmen Square" },
+              { "language": "zh", "value": "天安门广场" }
             ]
           },
-          "country": "JP",
-          "timezone": "Asia/Tokyo",
-          "coordinate": {
-            "latitude": 35.7148,
-            "longitude": 139.7967
-          }
+          "country": "CN",
+          "timezone": "Asia/Shanghai",
+          "coordinate": { "latitude": 39.9055, "longitude": 116.3976 }
         },
         {
           "type": "location",
           "name": {
             "values": [
-              {
-                "language": "en",
-                "value": "Shibuya"
-              }
+              { "language": "en", "value": "Forbidden City" },
+              { "language": "zh", "value": "故宫博物院" }
             ]
           },
-          "country": "JP",
-          "timezone": "Asia/Tokyo",
-          "coordinate": {
-            "latitude": 35.6595,
-            "longitude": 139.7005
-          }
+          "country": "CN",
+          "timezone": "Asia/Shanghai",
+          "coordinate": { "latitude": 39.9163, "longitude": 116.3972 }
+        }
+      ],
+      "drop_off_place": {
+        "type": "location",
+        "name": {
+          "values": [
+            { "language": "en", "value": "Forbidden City" },
+            { "language": "zh", "value": "故宫博物院" }
+          ]
+        },
+        "country": "CN",
+        "timezone": "Asia/Shanghai",
+        "coordinate": { "latitude": 39.9163, "longitude": 116.3972 }
+      }
+    },
+    {
+      "id": "d9a19e51-2574-4c9e-a474-a3c904028501",
+      "type": "tour",
+      "title": {
+        "values": [
+          { "language": "en", "value": "Mutianyu Great Wall tour" },
+          { "language": "zh", "value": "慕田峪长城一日游" }
+        ]
+      },
+      "start_time_utc": "2026-11-15T23:30:00Z",
+      "end_time_utc": "2026-11-16T08:30:00Z",
+      "operator": {
+        "name": { "values": [{ "language": "en", "value": "MuBus" }] }
+      },
+      "booking": {
+        "provider": {
+          "name": { "values": [{ "language": "en", "value": "GetYourGuide" }] },
+          "website": "https://www.getyourguide.com/en-gb/beijing-l186/from-beijing-mutianyu-great-wall-tours-with-options-t165345/"
+        },
+        "reference": "G6T2HX"
+      },
+      "place": {
+        "type": "location",
+        "name": {
+          "values": [
+            { "language": "en", "value": "Dongzhimen meeting point" },
+            { "language": "zh", "value": "东直门集合点" }
+          ]
+        },
+        "country": "CN",
+        "timezone": "Asia/Shanghai",
+        "coordinate": { "latitude": 39.9414, "longitude": 116.4337 }
+      },
+      "stops": [
+        {
+          "type": "location",
+          "name": {
+            "values": [
+              { "language": "en", "value": "Mutianyu Great Wall" },
+              { "language": "zh", "value": "慕田峪长城" }
+            ]
+          },
+          "country": "CN",
+          "timezone": "Asia/Shanghai",
+          "coordinate": { "latitude": 40.4319, "longitude": 116.5704 }
         }
       ]
     },
     {
-      "id": "22222222-2222-4222-8222-222222222226",
+      "id": "55e86d8a-331e-435c-9bd3-2f56524bfd37",
       "type": "train",
       "title": {
         "values": [
-          {
-            "language": "en",
-            "value": "Tokyo to Kyoto"
-          }
+          { "language": "en", "value": "Beijing to Xi'an" },
+          { "language": "zh", "value": "北京至西安" }
         ]
       },
-      "start_time_utc": "2027-03-15T00:30:00Z",
-      "end_time_utc": "2027-03-15T02:45:00Z",
+      "start_time_utc": "2026-11-18T01:55:00Z",
+      "end_time_utc": "2026-11-18T06:06:00Z",
+      "operator": {
+        "name": {
+          "values": [
+            { "language": "en", "value": "China Railway" },
+            { "language": "zh", "value": "中国铁路" }
+          ]
+        },
+        "website": "https://www.12306.cn/en/index.html"
+      },
+      "booking": {
+        "provider": {
+          "name": { "values": [{ "language": "en", "value": "Trip.com" }] },
+          "website": "https://www.trip.com/trains/china/"
+        },
+        "reference": "R9L4VK"
+      },
       "start_place": {
         "type": "train_station",
         "name": {
           "values": [
-            {
-              "language": "en",
-              "value": "Tokyo Station"
-            }
+            { "language": "en", "value": "Beijing West Railway Station" },
+            { "language": "zh", "value": "北京西站" }
           ]
         },
-        "country": "JP",
-        "timezone": "Asia/Tokyo",
-        "coordinate": {
-          "latitude": 35.6812,
-          "longitude": 139.7671
-        }
+        "country": "CN",
+        "timezone": "Asia/Shanghai",
+        "coordinate": { "latitude": 39.8948, "longitude": 116.3213 }
       },
       "end_place": {
         "type": "train_station",
         "name": {
           "values": [
-            {
-              "language": "en",
-              "value": "Kyoto Station"
-            }
+            { "language": "en", "value": "Xi'an North Railway Station" },
+            { "language": "zh", "value": "西安北站" }
           ]
         },
-        "country": "JP",
-        "timezone": "Asia/Tokyo",
-        "coordinate": {
-          "latitude": 34.9858,
-          "longitude": 135.7588
-        }
+        "country": "CN",
+        "timezone": "Asia/Shanghai",
+        "coordinate": { "latitude": 34.3769, "longitude": 108.9398 }
       },
+      "train_number": "G55"
+    },
+    {
+      "id": "eae02100-3b91-4bc7-8e57-b1502ea47d1f",
+      "type": "accommodation",
+      "title": {
+        "values": [
+          { "language": "en", "value": "Three nights in Xi'an" },
+          { "language": "zh", "value": "西安三晚住宿" }
+        ]
+      },
+      "start_time_utc": "2026-11-18T07:00:00Z",
+      "end_time_utc": "2026-11-21T04:00:00Z",
       "operator": {
         "name": {
           "values": [
-            {
-              "language": "en",
-              "value": "Central Japan Railway Company"
-            }
+            { "language": "en", "value": "Novotel Xi'an The Bell Tower" },
+            { "language": "zh", "value": "西安钟楼诺富特酒店" }
           ]
         },
-        "website": "https://global.jr-central.co.jp/en/"
+        "website": "https://all.accor.com/hotel/B6K7/index.en.shtml"
       },
-      "train_number": "Nozomi 21"
+      "booking": {
+        "provider": {
+          "name": { "values": [{ "language": "en", "value": "Booking.com" }] },
+          "website": "https://www.booking.com/"
+        },
+        "reference": "X2D8QJ"
+      },
+      "place": {
+        "type": "location",
+        "name": {
+          "values": [
+            { "language": "en", "value": "Novotel Xi'an The Bell Tower" },
+            { "language": "zh", "value": "西安钟楼诺富特酒店" }
+          ]
+        },
+        "country": "CN",
+        "timezone": "Asia/Shanghai",
+        "coordinate": { "latitude": 34.260479, "longitude": 108.950159 },
+        "formatted_address": {
+          "values": [
+            {
+              "language": "en",
+              "value": "No. 16 Anban Street, Xincheng District, Xi'an 710004, China"
+            },
+            {
+              "language": "zh",
+              "value": "中国陕西省西安市新城区案板街16号 710004"
+            }
+          ]
+        }
+      },
+      "unit_type": {
+        "values": [
+          { "language": "en", "value": "Standard room with one king-size bed" },
+          { "language": "zh", "value": "标准房，配备一张特大床" }
+        ]
+      }
+    },
+    {
+      "id": "50cbcc10-af3f-42db-b693-5af461c36793",
+      "type": "tour",
+      "title": {
+        "values": [
+          { "language": "en", "value": "Terracotta Army, City Wall, Pagoda and Muslim Quarter tour" },
+          { "language": "zh", "value": "兵马俑、城墙、大雁塔和回民街一日游" }
+        ]
+      },
+      "start_time_utc": "2026-11-19T00:00:00Z",
+      "end_time_utc": "2026-11-19T09:00:00Z",
+      "booking": {
+        "provider": {
+          "name": { "values": [{ "language": "en", "value": "GetYourGuide" }] },
+          "website": "https://www.getyourguide.com/xi-an-l270/mini-group-terracotta-army-city-wall-pagoda-muslim-souk-t1082860/"
+        },
+        "reference": "T5K3MN"
+      },
+      "place": {
+        "type": "location",
+        "name": {
+          "values": [
+            { "language": "en", "value": "Novotel Xi'an The Bell Tower" },
+            { "language": "zh", "value": "西安钟楼诺富特酒店" }
+          ]
+        },
+        "country": "CN",
+        "timezone": "Asia/Shanghai",
+        "coordinate": { "latitude": 34.260479, "longitude": 108.950159 }
+      },
+      "stops": [
+        {
+          "type": "location",
+          "name": {
+            "values": [
+              { "language": "en", "value": "Emperor Qinshihuang's Mausoleum Site Museum" },
+              { "language": "zh", "value": "秦始皇帝陵博物院" }
+            ]
+          },
+          "country": "CN",
+          "timezone": "Asia/Shanghai",
+          "coordinate": { "latitude": 34.3841, "longitude": 109.2785 }
+        },
+        {
+          "type": "location",
+          "name": {
+            "values": [
+              { "language": "en", "value": "Giant Wild Goose Pagoda" },
+              { "language": "zh", "value": "大雁塔" }
+            ]
+          },
+          "country": "CN",
+          "timezone": "Asia/Shanghai",
+          "coordinate": { "latitude": 34.2186, "longitude": 108.9642 }
+        },
+        {
+          "type": "location",
+          "name": {
+            "values": [
+              { "language": "en", "value": "Xi'an City Wall" },
+              { "language": "zh", "value": "西安城墙" }
+            ]
+          },
+          "country": "CN",
+          "timezone": "Asia/Shanghai",
+          "coordinate": { "latitude": 34.2594, "longitude": 108.9470 }
+        },
+        {
+          "type": "location",
+          "name": {
+            "values": [
+              { "language": "en", "value": "Xi'an Muslim Quarter" },
+              { "language": "zh", "value": "西安回民街" }
+            ]
+          },
+          "country": "CN",
+          "timezone": "Asia/Shanghai",
+          "coordinate": { "latitude": 34.2635, "longitude": 108.9423 }
+        }
+      ],
+      "drop_off_place": {
+        "type": "location",
+        "name": {
+          "values": [
+            { "language": "en", "value": "Xi'an Muslim Quarter" },
+            { "language": "zh", "value": "西安回民街" }
+          ]
+        },
+        "country": "CN",
+        "timezone": "Asia/Shanghai",
+        "coordinate": { "latitude": 34.2635, "longitude": 108.9423 }
+      }
+    },
+    {
+      "id": "7f4b08a4-5068-4616-b7b0-0b1d13041a74",
+      "type": "tour",
+      "title": {
+        "values": [
+          { "language": "en", "value": "Mount Hua day trip with cable car and guide" },
+          { "language": "zh", "value": "华山缆车导览一日游" }
+        ]
+      },
+      "start_time_utc": "2026-11-20T00:00:00Z",
+      "end_time_utc": "2026-11-20T10:00:00Z",
+      "booking": {
+        "provider": {
+          "name": { "values": [{ "language": "en", "value": "GetYourGuide" }] },
+          "website": "https://www.getyourguide.com/xi-an-l270/xi-an-mount-hua-day-trip-with-cable-car-and-guide-t1283202/"
+        },
+        "reference": "H7P4RW"
+      },
+      "place": {
+        "type": "location",
+        "name": {
+          "values": [
+            { "language": "en", "value": "Novotel Xi'an The Bell Tower" },
+            { "language": "zh", "value": "西安钟楼诺富特酒店" }
+          ]
+        },
+        "country": "CN",
+        "timezone": "Asia/Shanghai",
+        "coordinate": { "latitude": 34.260479, "longitude": 108.950159 }
+      },
+      "stops": [
+        {
+          "type": "location",
+          "name": {
+            "values": [
+              { "language": "en", "value": "Mount Hua" },
+              { "language": "zh", "value": "华山" }
+            ]
+          },
+          "country": "CN",
+          "timezone": "Asia/Shanghai",
+          "coordinate": { "latitude": 34.4779, "longitude": 110.0849 }
+        }
+      ]
+    },
+    {
+      "id": "329a0238-da79-4bf9-981c-d55bfd140f70",
+      "type": "flight",
+      "title": {
+        "values": [
+          { "language": "en", "value": "Xi'an to Singapore" },
+          { "language": "zh", "value": "西安至新加坡" }
+        ]
+      },
+      "start_time_utc": "2026-11-21T17:55:00Z",
+      "end_time_utc": "2026-11-21T23:50:00Z",
+      "operator": {
+        "name": {
+          "values": [
+            { "language": "en", "value": "Scoot" },
+            { "language": "zh", "value": "酷航" }
+          ]
+        },
+        "website": "https://www.flyscoot.com/"
+      },
+      "booking": {
+        "provider": {
+          "name": {
+            "values": [
+              { "language": "en", "value": "Scoot" },
+              { "language": "zh", "value": "酷航" }
+            ]
+          },
+          "website": "https://www.flyscoot.com/"
+        },
+        "reference": "S4V8NC"
+      },
+      "start_place": {
+        "type": "airport",
+        "name": {
+          "values": [
+            { "language": "en", "value": "Xi'an Xianyang International Airport" },
+            { "language": "zh", "value": "西安咸阳国际机场" }
+          ]
+        },
+        "country": "CN",
+        "timezone": "Asia/Shanghai",
+        "coordinate": { "latitude": 34.4378, "longitude": 108.7566 },
+        "iata_code": "XIY",
+        "icao_code": "ZLXY"
+      },
+      "end_place": {
+        "type": "airport",
+        "name": {
+          "values": [
+            { "language": "en", "value": "Singapore Changi Airport" },
+            { "language": "zh", "value": "新加坡樟宜机场" }
+          ]
+        },
+        "country": "SG",
+        "timezone": "Asia/Singapore",
+        "coordinate": { "latitude": 1.3644, "longitude": 103.9915 },
+        "iata_code": "SIN",
+        "icao_code": "WSSS"
+      },
+      "flight_number": "TR135",
+      "pnr": "M6R2ZT"
     }
   ],
-  "created_at": "2027-01-01T00:00:00Z",
-  "updated_at": "2027-01-01T00:00:00Z"
+  "created_at": "2026-08-12T09:24:00Z",
+  "updated_at": "2026-10-21T14:37:00Z"
 }
