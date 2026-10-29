@@ -1,6 +1,6 @@
 [project]
 name = "openitinerary"
-version = "0.2.1"
+version = "0.2.2"
 description = "OpenItinerary is an open, vendor-neutral standard for representing travel itineraries as structured data."
 readme = "README.md"
 license = "Apache-2.0"
@@ -29,16 +29,16 @@ dependencies = [
 adapters = [
     "beautifulsoup4>=4.15.0",
     "fastapi[standard]>=0.141.1",
-    "pydantic-ai-slim[duckduckgo,openai]>=2.22.0",
-    "pypdf>=6.14.2",
-    "opentelemetry-api>=1.44.0",
-    "opentelemetry-sdk>=1.44.0",
-    "opentelemetry-exporter-otlp>=1.44.0",
-    "opentelemetry-instrumentation-fastapi>=0.65b0",
-    "opentelemetry-instrumentation-httpx>=0.65b0",
-    "opentelemetry-instrumentation-requests>=0.65b0",
-    "opentelemetry-instrumentation-grpc>=0.65b0",
-    "opentelemetry-instrumentation-logging>=0.65b0",
+    "pydantic-ai-slim[duckduckgo,openai]>=2.53.0",
+    "pypdf>=6.21.2",
+    "opentelemetry-api>=1.45.1",
+    "opentelemetry-sdk>=1.45.1",
+    "opentelemetry-exporter-otlp>=1.45.1",
+    "opentelemetry-instrumentation-fastapi>=0.66b1",
+    "opentelemetry-instrumentation-httpx>=0.66b1",
+    "opentelemetry-instrumentation-requests>=0.66b1",
+    "opentelemetry-instrumentation-grpc>=0.66b1",
+    "opentelemetry-instrumentation-logging>=0.66b1",
     "asgi-correlation-id>=5.0.1",
 ]
 
